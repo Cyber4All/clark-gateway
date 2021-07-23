@@ -1069,6 +1069,27 @@ export class UserServiceController implements Controller {
             .get(this.proxyRequest((req: Request) => ADMIN_MAILER_ROUTES.GET_AVAILABLE_TEMPLATES))
             .post(this.proxyRequest((req: Request) => ADMIN_MAILER_ROUTES.SEND_TEMPLATE_EMAIL));
 
+        /**
+         * @swagger
+         * /keys:
+         *  get:
+         *      description: Gets a public key from the backend
+         *      tags:
+         *          - User Service
+         *      responses:
+         *          200:
+         *              description: OK
+         *              content:
+         *                  application/json:
+         *                      schema:
+         *                          type: object
+         *                          properties:
+         *                              publicKey:
+         *                                  type: string
+         *                                  description: The public key to encrypt with
+         */
+        router.get('/keys', this.proxyRequest((req: Request) => '/keys'));
+
         return router;
     }
 
