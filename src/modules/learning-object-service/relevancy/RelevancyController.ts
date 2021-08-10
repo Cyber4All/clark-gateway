@@ -53,7 +53,7 @@ export class RelevancyController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object not found
      */
-    router.patch('/users/:username/learning-objects/:id/relevancy-check', this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.cuid)}/versions`));
+    router.patch('/users/:username/learning-objects/:id/relevancy-check', this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/relevancy-check`));
 
     return router;
   }
