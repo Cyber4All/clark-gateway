@@ -626,4 +626,16 @@
  *                      example: This is a outcome
  *                      required: true
  *                      description: The outcome text
+ *          Topic:
+ *              properties:
+ *                  id:
+ *                      type: string
+ *                      example: 000000000000000000000000
+ *                      required: true
+ *                      description: The id of the standard outcome
+ *                  name:
+ *                      type: string
+ *                      example: Algorithmic Strategies
+ *                      required: true
+ *                      description: The type of the outcome
  */
