@@ -76,7 +76,7 @@ export class RelevancyController implements Controller {
 
     /**
      * @swagger
-     * /users/:username/learning-objects/:id/topics:
+     * /users/{username}/learning-objects/{id}/topics:
      *  patch:
      *    description: Updates topics on a object
      *    tags:
@@ -122,7 +122,7 @@ export class RelevancyController implements Controller {
 
     /**
      * @swagger
-     * /users/:username/learning-objects/:id/topics/:topicId:
+     * /users/{username}/learning-objects/{id}/topics/{topicId}:
      *  delete:
      *    description: Deletes a topic from a object
      *    tags:
