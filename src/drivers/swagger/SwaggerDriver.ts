@@ -64,6 +64,10 @@ export class SwaggerDriver {
                         {
                             name: "Utility Service",
                             tags: ['Utility Service']
+                        },
+                        {
+                            name: "Standard Guideline Service",
+                            tags: ['Standard Guideline Service']
                         }
                     ],
                 },
