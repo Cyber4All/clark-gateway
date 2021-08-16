@@ -25,6 +25,10 @@ export class GuidelineController implements Controller {
          *    responses:
          *      200:
          *        description: OK
+         *        content:
+         *          application/json:
+         *            schema:
+         *              $ref: '#/components/schemas/Guideline'
          *      400:
          *        description: BAD REQUEST - The provided id is not a valid mongo id, Missing property ${property} in Framework
          */
@@ -47,6 +51,10 @@ export class GuidelineController implements Controller {
          *    responses:
          *      200:
          *        description: OK
+         *        content:
+         *          application/json:
+         *            schema:
+         *              $ref: '#/components/schemas/Guideline'
          *      400:
          *        description: BAD REQUEST - The provided id is not a valid mongo id
          *      404:

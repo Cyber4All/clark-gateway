@@ -61,6 +61,10 @@ export class SearchController implements Controller {
          *    responses:
          *      200:
          *        description: OK
+         *        content:
+         *          application/json:
+         *            schema:
+         *              $ref: '#/components/schemas/FrameworkSearchResults'
          */
         router.get('/frameworks', this.proxyRequest((req: Request) => `/frameworks`));
 
@@ -117,6 +121,10 @@ export class SearchController implements Controller {
          *    responses:
          *      200:
          *        description: OK
+         *        content:
+         *          application/json:
+         *            schema:
+         *              $ref: '#/components/schemas/SearchResults'
          */
         router.get('/guidelines', this.proxyRequest((req: Request) => `/guidelines`));
 

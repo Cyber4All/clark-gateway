@@ -25,6 +25,10 @@ export class FrameworkController implements Controller {
          *    responses:
          *      200:
          *        description: OK
+         *        content:
+         *          application/json:
+         *            schema:
+         *              $ref: '#/components/schemas/FrameworkDocument'
          *      400:
          *        description: BAD REQUEST - The provided id is not a valid mongo id
          *      404:
