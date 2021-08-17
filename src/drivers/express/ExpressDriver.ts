@@ -18,6 +18,7 @@ import { NotificationServiceController } from '../../modules/notification-servic
 import { RatingServiceController } from '../../modules/rating-service/RatingServiceController';
 import { UserServiceController } from '../../modules/user-service/UserServiceController';
 import { UtilityServiceController } from '../../modules/utility-service/UtilityServiceController';
+import { StandardGuidelineServiceController } from '../../modules/standard-guidelines/StandardGuidelinesController';
 
 var url = require('url');
 
@@ -81,6 +82,7 @@ export class ExpressDriver {
     this.app.use(new LibraryServiceController().buildRouter());
     this.app.use(new NotificationServiceController().buildRouter());
     this.app.use(new RatingServiceController().buildRouter());
+    this.app.use(new StandardGuidelineServiceController().buildRouter());
     this.app.use(new UserServiceController().buildRouter());
     this.app.use(new UtilityServiceController().buildRouter());
 
