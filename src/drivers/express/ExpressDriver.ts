@@ -75,6 +75,10 @@ export class ExpressDriver {
       });
     });
 
+    this.app.get('/favicon.ico', function(req, res) { 
+      res.sendStatus(204); 
+  });
+
     // Set up the different controllers
     this.app.use(new FeatureServiceController().buildRouter());
     this.app.use(new GuidelineServiceController().buildRouter());

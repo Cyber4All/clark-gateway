@@ -47,12 +47,12 @@ export const enforceTokenAccess = jwt({
     '/outcomes/stats',
     '/keys',
     '/authenticate',
-    /\/frameworks\/[0-z,.,-]+/i,
-    /\/frameworks\/[0-z,.,-]+\/guidelines/i,
-    /\/guidelines\/[0-z,.,-]+/i,
+    /\/frameworks/i,
+    /\/guidelines/i,
     '/guidelines',
     '/frameworks',
     '/topics',
+    '/favicon.ico',
   ],
 }); // register // all ota-code routes do their own verification outsides of JWT // login
 // TODO: Whitelist user routes
