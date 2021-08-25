@@ -1,6 +1,7 @@
 import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../../interfaces/Controller";
+import * as querystring from 'querystring';
 
 const STANDARD_GUIDELINES_API = process.env.STANDARD_GUIDELINES_API || 'localhost:8888';
 
@@ -126,7 +127,7 @@ export class SearchController implements Controller {
          *            schema:
          *              $ref: '#/components/schemas/SearchResults'
          */
-        router.get('/guidelines', this.proxyRequest((req: Request) => `/guidelines`));
+        router.get('/guidelines', this.proxyRequest((req: Request) => `/guidelines?${req.query ? querystring.stringify(req.query) : ''}`));
 
         return router;
     }

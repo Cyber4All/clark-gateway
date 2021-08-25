@@ -211,6 +211,116 @@ export class RelevancyController implements Controller {
      */
     router.delete('/users/:username/learning-objects/:id/topics/:topicId', this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${req.params.id}/topics/${req.params.topicId}`));
 
+    /**
+     * @swagger
+     * /learning-objects/evaluators:
+     *  post:
+     *    description: Assigns evaluators to objects
+     *    tags:
+     *      - Learning Object Service
+     *    requestBody:
+     *      content:
+     *        application/json:
+     *          schema:
+     *            type: object
+     *            properties:
+     *              cuids:
+     *                type: array
+     *                items:
+     *                  type: string
+     *                required: true
+     *                description: An array of cuids
+     *              assignerIds:
+     *                type: array
+     *                items:
+     *                  type: string
+     *                required: true
+     *                description: An array of user ids
+     *    responses:
+     *      200:
+     *        description: OK
+     *      400:
+     *        description: BAD REQUEST - Assigner id(s) provided do not have an access group
+     *      401:
+     *        description: UNAUTHENTICATED - User not logged in
+     *      403:
+     *        description: UNAUTHORIZED - User does not have curator, editor, or admin privileges
+     *      404:
+     *        description: NOT FOUND - Learning objects or users were not found
+     *      409:
+     *        description: CONFLICT - A given user has already been assigned to one or more cuids
+     */
+    router.post('/learning-objects/evaluators', this.proxyRequest((req: Request) => `/learning-objects/evaluators`));
+
+    /**
+     * @swagger
+     * /users/{username}/learning-objects/{cuid}/evaluation:
+     *  patch:
+     *    description: Evaluates a learning object
+     *    tags:
+     *      - Learning Object Service
+     *    parameters:
+     *      - in: path
+     *        name: username
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The learning object's author's username
+     *      - in: path
+     *        name: cuid
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The cuid of the learning object
+     *    responses:
+     *      200:
+     *        description: OK
+     *      401:
+     *        description: UNAUTHENTICATED - User not logged in
+     *      403:
+     *        description: UNAUTHORIZED - User does not have mapper, reviewer, curator, editor, or admin privileges
+     *      404:
+     *        description: NOT FOUND - Learning object was not found
+     */
+    router.patch('/users/:username/learning-objects/:cuid/evaluation', this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${req.params.cuid}/evaluation`));
+    
+    /**
+     * @swagger
+     * /learning-objects/evaluators:
+     *  delete:
+     *    description: Unassigns evaluators to objects
+     *    tags:
+     *      - Learning Object Service
+     *    requestBody:
+     *      content:
+     *        application/json:
+     *          schema:
+     *            type: object
+     *            properties:
+     *              cuids:
+     *                type: array
+     *                items:
+     *                  type: string
+     *                required: true
+     *                description: An array of cuids
+     *              assignerIds:
+     *                type: array
+     *                items:
+     *                  type: string
+     *                required: true
+     *                description: An array of user ids
+     *    responses:
+     *      204:
+     *        description: NO CONTENT
+     *      401:
+     *        description: UNAUTHENTICATED - User not logged in
+     *      403:
+     *        description: UNAUTHORIZED - User does not have curator, editor, or admin privileges
+     *      404:
+     *        description: NOT FOUND - Learning objects or users were not found
+     */
+    router.delete('/learning-objects/evaluators', this.proxyRequest((req: Request) => `/learning-objects/evaluators`));
+
     return router;
   }
 

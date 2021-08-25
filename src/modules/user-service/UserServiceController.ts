@@ -804,7 +804,7 @@ export class UserServiceController implements Controller {
          *                          items:
          *                              $ref: '#/components/schemas/User'
          */
-        router.get('/users/search', this.proxyRequest((req: Request) => `/users?${querystring.stringify(req.query)}`));
+        router.get('/users/search', this.proxyRequest((req: Request) => `/users?${req.query ? querystring.stringify(req.query) : ''}`));
 
         /**
          * @swagger
