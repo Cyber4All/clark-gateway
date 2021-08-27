@@ -36,6 +36,25 @@ export class UserServiceController implements Controller {
 
         /**
          * @swagger
+         * /users/{userId}:
+         *  get:
+         *      description: Gets a single user via user id
+         *      tags:
+         *          - User Service
+         *      responses:
+         *          200:
+         *              description: Gets a single user
+         *              content:
+         *                  application/json:
+         *                      schema:
+         *                          $ref: '#/components/schemas/User'
+         *          404:
+         *              description: User does not exist
+         */
+        router.route('/users/:userId').get(this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.userId)}`));
+
+        /**
+         * @swagger
          * /guidelines/members/{memberId}:
          *  put:
          *      description: Adds a new mapper
