@@ -287,7 +287,7 @@ export class RelevancyController implements Controller {
     /**
      * @swagger
      * /learning-objects/evaluators:
-     *  delete:
+     *  patch:
      *    description: Unassigns evaluators to objects
      *    tags:
      *      - Learning Object Service
@@ -319,7 +319,7 @@ export class RelevancyController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning objects or users were not found
      */
-    router.delete('/learning-objects/evaluators', this.proxyRequest((req: Request) => `/learning-objects/evaluators`));
+    router.patch('/learning-objects/evaluators', this.proxyRequest((req: Request) => `/learning-objects/evaluators`));
 
     return router;
   }
