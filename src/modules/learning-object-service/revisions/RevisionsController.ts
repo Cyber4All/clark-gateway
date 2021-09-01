@@ -128,8 +128,9 @@ export class RevisionsController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object not found or Learning Object revision not found
      */
-         router.delete('/users/:username/learning-objects/:cuid/versions', this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.cuid)}/versions`));
-    return router;
+      router.delete('/users/:username/learning-objects/:cuid/versions', this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.cuid)}/versions`));
+    
+      return router;
   }
 
   private proxyRequest(callback: Function) {
