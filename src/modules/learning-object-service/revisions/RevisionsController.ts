@@ -95,6 +95,40 @@ export class RevisionsController implements Controller {
      */
     router.get('/users/:username/learning-objects/:learningObjectId/revisions/:revisionId', this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.GET_LEARNING_OBJECT_REVISION({username: req.params.username, learningObjectId: req.params.learningObjectId, revisionId: req.params.revisionId, query: req.query})));
 
+
+        /**
+     * @swagger
+     * /users/{username}/learning-objects/{cuid}/versions:
+     *  delete:
+     *    description: Deletes the revision of the learning-object
+     *    tags:
+     *      - Learning Object Service
+     *    parameters:
+     *      - in: path
+     *        name: username
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The learning object's author's username
+     *      - in: path
+     *        name: cuid
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The cuid of the learning object
+     *    responses:
+     *      204:
+     *        description: OK
+     *      400:
+     *        description: BAD REQUEST - Username provided in params in not author username
+     *      401:
+     *        description: UNAUTHENTICATED - User not logged in
+     *      403:
+     *        description: UNAUTHORIZED - User not object author or have editor/admin privilege
+     *      404:
+     *        description: NOT FOUND - Learning object not found or Learning Object revision not found
+     */
+         router.delete('/users/:username/learning-objects/:cuid/versions', this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.cuid)}/versions`));
     return router;
   }
 
