@@ -867,11 +867,17 @@ export class UserServiceController implements Controller {
          *          - User Service
          *      parameters:
          *          - in: path
-         *            name: username
+         *            name: user
          *            schema:
          *                type: string
-         *            required: false
-         *            description: The username of the user
+         *            required: true
+         *            description: The identifier of the user (userId or username)
+         *          - in: query
+         *            name: q
+         *            schema:
+         *              type: string
+         *            required: true
+         *            description: Identifies whether querying by userId or username
          *      responses:
          *          200:
          *              description: OK
@@ -889,7 +895,7 @@ export class UserServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - Unable to find user
          */
-        router.get('/users/:username', this.proxyRequest((req: Request) => USER_ROUTES.FETCH_USER(req.params.username)));
+        router.get('/users/:user', this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.user)}?${querystring.stringify(req.query)}`));
 
         /**
          * @swagger
