@@ -67,7 +67,7 @@ export class SearchController implements Controller {
          *            schema:
          *              $ref: '#/components/schemas/FrameworkSearchResults'
          */
-        router.get('/frameworks', this.proxyRequest((req: Request) => `/frameworks`));
+        router.get('/frameworks', this.proxyRequest((req: Request) => `/frameworks?${req.query ? querystring.stringify(req.query) : ''}`));
 
         /**
          * @swagger
