@@ -160,6 +160,8 @@ export class FrameworkController implements Controller {
          *        description: FORBIDDEN - User is not whitelisted, please use a whitelisted certificate
          *      404:
          *        description: NOT FOUND - Framework with id ${id} was not found
+         *      409:
+         *        description: CONFLICT - Framework is already deprecated
          */
         router.patch('/frameworks/:id/deprecate', this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}/deprecate`));
 
