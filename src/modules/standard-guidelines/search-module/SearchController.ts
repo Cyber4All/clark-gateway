@@ -21,44 +21,44 @@ export class SearchController implements Controller {
          *        name: text
          *        schema:
          *          type: string
-         *        required: true
          *        description: The search string
          *        example: Framework
          *      - in: query
          *        name: year
          *        schema:
          *          type: string
-         *        required: true
          *        description: The year a guideline or framework is assigned
          *        example: 2021
          *      - in: query
          *        name: levels
          *        schema:
          *          type: string
-         *        required: true
          *        description: The levels to guidelines apply to
          *        example: high,middle
          *      - in: query
          *        name: page
          *        schema:
          *          type: string
-         *        required: true
          *        description: The current page, default is 1
          *        example: 1
          *      - in: query
          *        name: limit
          *        schema:
          *          type: string
-         *        required: true
          *        description: The max number of search indexes returned, default is 10
          *        example: 10
          *      - in: query
          *        name: type
          *        schema:
          *          type: string
-         *        required: true
          *        description: Determine whether to search for guidelines or frameworks, default is guidelines
          *        example: guidelines
+         *      - in: query
+         *        name: deprecated
+         *        schema:
+         *          type: string
+         *        description: Filter for deprecated frameworks, can be set to 'true', 'false', or 'all' defaults to 'false'
+         *        example: all
          *    responses:
          *      200:
          *        description: OK
@@ -81,44 +81,44 @@ export class SearchController implements Controller {
          *        name: text
          *        schema:
          *          type: string
-         *        required: true
          *        description: The search string
          *        example: Framework
          *      - in: query
          *        name: year
          *        schema:
          *          type: string
-         *        required: true
          *        description: The year a guideline or framework is assigned
          *        example: 2021
          *      - in: query
          *        name: levels
          *        schema:
          *          type: string
-         *        required: true
          *        description: The levels to guidelines apply to
          *        example: high,middle
          *      - in: query
          *        name: page
          *        schema:
          *          type: string
-         *        required: true
          *        description: The current page, default is 1
          *        example: 1
          *      - in: query
          *        name: limit
          *        schema:
          *          type: string
-         *        required: true
          *        description: The max number of search indexes returned, default is 10
          *        example: 10
          *      - in: query
          *        name: type
          *        schema:
          *          type: string
-         *        required: true
          *        description: Determine whether to search for guidelines or frameworks, default is guidelines
          *        example: guidelines
+         *      - in: query
+         *        name: deprecated
+         *        schema:
+         *          type: string
+         *        description: Filter for deprecated guidelines, can be set to 'true', 'false', or 'all' defaults to 'false'
+         *        example: all
          *    responses:
          *      200:
          *        description: OK
