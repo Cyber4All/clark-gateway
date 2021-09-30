@@ -8,6 +8,5 @@ WORKDIR /opt/app
 RUN npm i -g nodemon
 COPY nodemon.json tsconfig.json ./
 COPY --from=build ./build ./
-COPY ./docs .
-RUN npm install --only=production
+COPY docs/* docs/
 EXPOSE 3001 5858 9229
