@@ -1,19 +1,12 @@
-#--------------------------------
-# Build Stage
-#--------------------------------
-FROM node:12-alpine
-
-WORKDIR /usr/src/app
-
-# Install for hot-reload
-RUN npm install -g nodemon
-
-COPY package*.json .
-
+FROM node:12 as build
+WORKDIR /build
+COPY package*.json ./
 RUN npm install
 
-COPY . .
-
-RUN npm run build
-
-EXPOSE 80
+FROM node:12-alpine
+WORKDIR /opt/app
+RUN npm i -g nodemon
+COPY nodemon.json tsconfig.json ./
+COPY --from=build ./build ./
+RUN npm install --only=production
+EXPOSE 3001 5858 9229
