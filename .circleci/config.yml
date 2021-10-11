@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: ~/cards-service
+  working_directory: ~/clark-gateway
   docker:
     - image: cyber4all/circleci-aws:node-alpine
 orbs:
@@ -16,10 +16,9 @@ jobs:
       - install-docker
       - setup_remote_docker
       - run:
-          name: Install dependencies and run tests
+          name: Install dependencies
           command: |
             npm install
-            npm test --maxWorkers=2
       - run:
           name: Build Image
           command: | 
@@ -36,7 +35,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/cards-service
+          at: ~/clark-gateway
       - checkout
       - install-docker
       - setup_remote_docker
