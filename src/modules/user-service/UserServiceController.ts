@@ -233,7 +233,7 @@ export class UserServiceController implements Controller {
          *                          items:
          *                              $ref: '#/components/schemas/User'
          */
-        router.get('/collections/:collectionName/members', this.proxyRequest((req: Request) => ADMIN_USER_ROUTES.FETCH_COLLECTION_MEMBERS(req.params.collectionName, req.query)));
+        router.get('/collections/:collectionName/members', this.proxyRequest((req: Request) => ADMIN_USER_ROUTES.FETCH_COLLECTION_MEMBERS(req.params.collectionName as string, req.query as any)));
 
         /**
          * @swagger
