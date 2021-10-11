@@ -49,32 +49,32 @@ jobs:
       - run: 
           name: Publish image
           command: |
-              export SEMVER=$(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-              docker tag "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" "${DOCKER_USER_ORG}/clark-gateway:${SEMVER}"
-              docker tag "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" "${DOCKER_USER_ORG}/clark-gateway:latest"
-              docker push "${DOCKER_USER_ORG}/clark-gateway:${SEMVER}"
-              docker push "${DOCKER_USER_ORG}/clark-gateway:latest"
+            export SEMVER=$(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+            docker tag "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" "${DOCKER_USER_ORG}/clark-gateway:${SEMVER}"
+            docker tag "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" "${DOCKER_USER_ORG}/clark-gateway:latest"
+            docker push "${DOCKER_USER_ORG}/clark-gateway:${SEMVER}"
+            docker push "${DOCKER_USER_ORG}/clark-gateway:latest"
 workflows:
   version: 2.1
   build:
     jobs:
       - build:
-        context:
-          - DockerHub
-        filters:
-          branches:
-            ignore: /master/
+          context:
+            - DockerHub
+          filters:
+            branches:
+              ignore: /master/
   deploy:
     jobs:
       - build:
-        filters:
-          branches:
-            only: /master/
+          filters:
+            branches:
+              only: /master/
       - deploy-production:
-        requires:
-          - build
-        context:
-          - DockerHub
-        filters:
-          branches:
-            only: /master/
+          requires:
+            - build
+          context:
+            - DockerHub
+          filters:
+            branches:
+              only: /master/
