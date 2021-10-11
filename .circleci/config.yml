@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Build Image
           command: | 
-            docker build -t clark-gateway:$CIRCLE_SHA1 .
+            docker build -t clark-gateway:$CIRCLE_SHA1 -f Dockerfile.prod .
       - run: 
           name: Login to docker
           command: docker login -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
