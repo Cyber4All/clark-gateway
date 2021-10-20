@@ -6,6 +6,8 @@ orbs:
   node: circleci/node@3.0.0
   docker: circleci/docker@1.4.0
 commands:
+  install-aws: aws-cli/install
+  setup-aws-cli: aws-cli/setup
   install-docker: docker/install-docker
 version: 2.1
 jobs:
@@ -39,6 +41,10 @@ jobs:
       - checkout
       - install-docker
       - setup_remote_docker
+      - setup-aws-cli:
+          aws-access-key-id: AWS_EB_AccessKey
+          aws-region: AWS_REGION_N_VA
+          aws-secret-access-key: AWS_EB_SecretKey
       - run: 
           name: Login to docker
           command: docker login -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
@@ -53,6 +59,15 @@ jobs:
             docker tag "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" "${DOCKER_USER_ORG}/clark-gateway:latest"
             docker push "${DOCKER_USER_ORG}/clark-gateway:${SEMVER}"
             docker push "${DOCKER_USER_ORG}/clark-gateway:latest"
+      - run: 
+          name: Install and init eb cli
+          command: | 
+            pip install awsebcli
+            eb init --region us-east-1 CLARK-Gateway -p docker
+      - run:
+          name: Deploy to Elastic Beanstalk
+          command: |
+            eb deploy clark-gateway-production --verbose --label clark-gateway-v$(node -p "require('./package.json').version")
 workflows:
   version: 2.1
   build:
@@ -74,6 +89,7 @@ workflows:
             - build
           context:
             - DockerHub
+            - AWS
           filters:
             branches:
               only: /master/
