@@ -61,6 +61,28 @@ export class FeatureServiceController implements Controller {
          */
         router.route('/featured/learning-objects').patch(this.proxyRequest((req: Request) => `/featured/learning-objects`));
 
+        /**
+         * @swagger
+         * /featured/learning-objects/:collection:
+         *  get:
+         *      description: Gets the list of featured learning objects for a collection
+         *      tags:
+         *          - Feature Service
+         *      responses:
+         *          200:
+         *              description: CREATED
+         *              content:
+         *                  application/json:
+         *                      schema:
+         *                          type: array
+         *                          items:
+         *                              $ref: '#/components/schemas/LearningObject'
+         *          400:
+         *              description: BAD REQUEST - At least one of the learning objects is not from the desired featured collection
+         *          404:
+         *              description: NOT FOUND - The desired collection does not exist
+         */
+        router.route('/featured/learning-objects/:collection').get(this.proxyRequest((req: Request) => `/featured/learning-objects/${encodeURIComponent(req.params.collection)}`));
         return router;
     }
 
