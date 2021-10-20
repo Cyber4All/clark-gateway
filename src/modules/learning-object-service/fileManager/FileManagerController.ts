@@ -12,7 +12,7 @@ export class FileManagerController implements Controller {
 
     /**
      * @swagger
-     * /{username}/learning-objects/{cuid}/versions/{version}/bundle:
+     * /{username}/learning-objects/{id}/bundle:
      *  get:
      *    description: Download a object
      *    tags:
@@ -25,17 +25,11 @@ export class FileManagerController implements Controller {
      *        required: true
      *        description: The username of the author
      *      - in: path
-     *        name: cuid
+     *        name: id
      *        schema:
      *            type: string
      *        required: true
-     *        description: The cuid of the object to download
-     *      - in: path
-     *        name: version
-     *        schema:
-     *            type: number
-     *        required: true
-     *        description: The version number of the object
+     *        description: The id of the object to download
      *    responses:
      *      200:
      *        description: OK - Downloads a zip file
@@ -49,9 +43,9 @@ export class FileManagerController implements Controller {
      *      403:
      *        description: UNAUTHORIZED - User is trying to access an in review object as a unprivileged user
      *      404:
-     *        description: NOT FOUND - Object not found
+     *        description: NOT FOUND - Bundle not found
      */
-    router.route('/users/:username/learning-objects/:cuid/versions/:version/bundle').get(this.proxyLearningObjectRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.cuid)}/versions/${encodeURIComponent(req.params.version)}/bundle`));
+    router.route('/users/:username/learning-objects/:id/bundle').get(this.proxyLearningObjectRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/bundle`));
     
     /**
      * @swagger
