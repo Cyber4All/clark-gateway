@@ -67,7 +67,7 @@ export class FileManagerController implements Controller {
      *            type: string
      *        required: true
      *        description: The id of the object to bundle
-     *     responses:
+     *    responses:
      *      200:
      *        description: OK - Creates Bundling Document and Initializes a CloudWatch event
      *      401:
