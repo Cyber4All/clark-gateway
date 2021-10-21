@@ -95,6 +95,46 @@ export class NotificationServiceController implements Controller {
          */
         router.route('/users/:username/notifications/:id').delete(this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/notifications/${encodeURIComponent(req.params.id)}`));
 
+        /**
+         * @swagger
+         * /users/{username}/learning-objects/{cuid}/notifications:
+         *  post:
+         *      description: Create a notification for a object
+         *      tags:
+         *          - Notification Service
+         *      parameters:
+         *          - in: path
+         *            name: username
+         *            schema:
+         *                type: string
+         *            required: true
+         *            description: The username of the author of the learning object
+         *          - in: path
+         *            name: cuid
+         *            schema:
+         *                type: string
+         *            required: true
+         *            description: The cuid of the object to make the notification for
+         *      requestBody:
+         *          required: true
+         *          content:
+         *              application/json:
+         *                  schema:
+         *                      $ref: '#/components/schemas/NotificationPayload'
+         *      responses:
+         *          201:
+         *              description: CREATED
+         *          400:
+         *              description: BAD REQUEST - Request body invalid
+         *          401:
+         *              description: UNAUTHENTICATED - User is not logged in
+         *          403:
+         *              description: UNAUTHORIZED - User is not admin or editor
+         *          404:
+         *              description: NOT FOUND - Learning object not found
+         */
+        router.post('/users/:username/learning-objects/:cuid/notifications', this.proxyRequest((req: Request) => `/learning-objects/${encodeURIComponent(req.params.cuid)}/notifications`));
+
         return router;
     }
     
