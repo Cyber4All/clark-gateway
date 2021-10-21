@@ -10,13 +10,14 @@
 # ----------------------------------------------------------------
 # Build Stage
 # ----------------------------------------------------------------
-FROM node:latest as build
+FROM node:14 as build
 WORKDIR /usr/src/app
-COPY package.json tsconfig.json /usr/src/app/
+COPY package.json package-lock.json tsconfig.json ./
 RUN npm install
 
-COPY  ./src /usr/src/app/src
-COPY  ./docs /usr/src/app/docs
+COPY ./src ./src
+COPY ./docs ./docs
+RUN npm run build
 
 # ----------------------------------------------------------------
 # Serve Stage
@@ -30,7 +31,6 @@ RUN apk --no-cache add --virtual builds-deps build-base python
 WORKDIR /usr/src/app
 # Changes ownership of files from root to node
 COPY --chown=node:node --from=build /usr/src/app /usr/src/app
-RUN npm run build
 
 # Removes write access to all files and directories in /usr/src/app
 # runs as root, when user chmod is not permitted

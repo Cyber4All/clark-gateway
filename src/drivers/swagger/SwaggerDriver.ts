@@ -29,7 +29,7 @@ export class SwaggerDriver {
                         email: 'skaza@towson.edu'
                     },
                     "x-logo": {
-                        url: "http://secured.team/assets/images/logo.png",
+                        url: "https://clark.center/assets/images/logo.png",
                         altText: "CLARK Logo"
                     },
                     "x-tagGroups": [
