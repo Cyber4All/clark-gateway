@@ -43,7 +43,9 @@ export class FileManagerController implements Controller {
      *      403:
      *        description: UNAUTHORIZED - User {username} does not have access to download the requested Learning Object
      *      404:
-     *        description: NOT FOUND - Bundle could not be found, Author of learning object not found, Learning Object not found
+     *        description: NOT FOUND - Author of learning object not found, Learning Object not found
+     *      425:
+     *        description: 
      */
     router.route('/users/:username/learning-objects/:id/bundle').get(this.proxyLearningObjectRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/bundle`));
     
