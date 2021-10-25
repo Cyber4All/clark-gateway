@@ -29,4 +29,36 @@
  *                      required: true
  *                      additionalProperties:
  *                          type: string
+ *          NotificationPayload:
+ *              properties:
+ *                  username:
+ *                      type: string
+ *                      description: The requester's username
+ *                      example: jdoe1
+ *                      required: true
+ *                  author:
+ *                      type: string
+ *                      description: The learning object author's username
+ *                      example: jdoe1
+ *                      required: true
+ *                  learningObjectName:
+ *                      type: string
+ *                      description: The name of the learning object updated
+ *                      example: This is a learning object
+ *                      required: true
+ *                  version:
+ *                      type: number
+ *                      description: The version number of the object
+ *                      example: 0
+ *                      required: true
+ *                  cuid:
+ *                      type: string
+ *                      required: true
+ *                      description: The cuid of the learning object
+ *                      example: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+ *                  authorID:
+ *                      type: string
+ *                      required: true
+ *                      description: The learning object author's id
+ *                      example: 000000000000000000000000
  */
