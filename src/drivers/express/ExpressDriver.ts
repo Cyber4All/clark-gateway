@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
 import * as logger from 'morgan';
 import * as http from 'http';
 import { enforceTokenAccess } from '../middleware/jwt.config';
@@ -47,8 +46,7 @@ export class ExpressDriver {
     this.app.use(logger('dev'));
 
     // configure app to use bodyParser()
-    this.app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-    this.app.use(bodyParser.json({ limit: '50mb' }));
+    this.app.use(express.json({ limit: '50mb' }));
 
     // set cookie parser
     this.app.use(cookieParser());
