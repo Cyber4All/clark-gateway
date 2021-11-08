@@ -46,7 +46,7 @@ export class ExpressDriver {
     this.app.use(logger('dev'));
 
     // configure app to use bodyParser()
-    this.app.use(express.json({ limit: '50mb' }));
+    this.app.use(express.json());
 
     // set cookie parser
     this.app.use(cookieParser());
