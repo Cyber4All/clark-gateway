@@ -666,7 +666,41 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - User or object not found
      */
-    router.post('/users/:username/learning-objects/:id/status', this.proxyRequest((req: Request) => `/users/:username/learning-objects/${encodeURIComponent(req.params.id)}/status`));
+    router.post('/users/:username/learning-objects/:id/status', this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/status`));
+    
+    /**
+     * @swagger
+     * /learning-objects/{username}/{learningObjectName}:
+     *  get:
+     *    description: Gets a object's CUID based on name
+     *    tags:
+     *      - Learning Object Service
+     *    parameters:
+     *      - in: path
+     *        name: username
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The username of the object author
+     *      - in: path
+     *        name: learningObjectName
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The object's name
+     *    responses:
+     *      200:
+     *        description: OK
+     *        content:
+     *          application/json:
+     *            schema:
+     *              type: string
+     *              example: 11111111-2222-3333-4444-555555
+     *      404:
+     *        description: NOT FOUND - Object was not found for given name
+     */
+    router.get('/learning-objects/:username/:learningObjectName', this.proxyRequest((req: Request) => `/learning-objects/${encodeURIComponent(req.params.username)}/${encodeURIComponent(req.params.learningObjectName)}`));
+    
     return router;
   }
 
