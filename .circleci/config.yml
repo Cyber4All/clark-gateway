@@ -31,8 +31,7 @@ jobs:
       - run: 
           name: Publish Image
           command: | 
-            docker tag clark-gateway:$CIRCLE_SHA1 "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}"
-            docker push "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}"
+            docker build -t "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" -f Dockerfile.prod .
   deploy-production:
     <<: *defaults
     steps:

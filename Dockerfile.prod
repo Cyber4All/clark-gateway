@@ -39,4 +39,4 @@ RUN chmod -w /usr/src/app
 USER node
 # Runs node instead of npm to be able to recieve signals in runtime (i.e SIGHUP, SIGTERM, etc.)
 CMD ["dumb-init", "node", "-r", "./dist/app.js"]
-EXPOSE 3000
+EXPOSE 3001
