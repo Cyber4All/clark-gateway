@@ -24,9 +24,9 @@ export class SwaggerDriver {
                         url: 'https://www.isc.org/licenses/'
                     },
                     contact: {
-                        name: 'SecurEd Inc',
-                        url: 'http://secured.team/',
-                        email: 'skaza@towson.edu'
+                        name: 'SecurEd Inc.',
+                        url: 'https://secured.team/',
+                        email: 'info@secured.team'
                     },
                     "x-logo": {
                         url: "https://clark.center/assets/images/logo.png",

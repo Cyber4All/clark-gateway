@@ -1,6 +1,6 @@
 {
   "name": "clark-gateway",
-  "version": "3.4.6",
+  "version": "3.4.10",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -35,11 +35,10 @@
   },
   "dependencies": {
     "@sentry/node": "^5.11.2",
-    "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "dotenv": "^6.0.0",
-    "express": "^4.15.2",
+    "express": "^4.17.1",
     "express-http-proxy": "^1.1.0",
     "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.3.0",

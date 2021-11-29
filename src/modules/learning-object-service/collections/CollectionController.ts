@@ -126,6 +126,53 @@ export class CollectionController implements Controller {
      */
     router.patch('/learning-objects/:learningObjectId/collections', this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.ADD_LEARNING_OBJECT_TO_COLLECTION(req.params.learningObjectId)));
 
+    /**
+     * @swagger
+     * /users/{username}/learning-objects/{cuid}/collection:
+     *  patch:
+     *    description: Updates a in review object's collection
+     *    tags:
+     *      - Learning Object Service
+     *    parameters:
+     *      - in: path
+     *        name: username
+     *        schema:
+     *            type: string
+     *        required: true
+     *        description: The username of the author
+     *      - in: path
+     *        name: cuid
+     *        schema:
+     *            type: string
+     *        required: true
+     *        description: The cuid of the object
+     *    requestBody:
+     *      description: The collection
+     *      required: true
+     *      content:
+     *        application/json:
+     *          schema:
+     *            type: object
+     *            properties:
+     *              collection:
+     *                type: string
+     *                example: nccp
+     *                description: The collection name
+     *                required: true
+     *    responses:
+     *      200:
+     *        description: OK
+     *      400:
+     *        description: BAD REQUEST - Collection not defined in request body
+     *      401:
+     *        description: UNAUTHENTICATED - User is not logged in
+     *      403:
+     *        description: UNAUTHORIZED - User is not an admin or editor
+     *      404:
+     *        description: NOT FOUND - Learning object or collection not found
+     */
+    router.patch('/users/:username/learning-objects/:cuid/collection', this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${req.params.cuid}/collection`));
+
     return router;
   }
 
