@@ -5,6 +5,7 @@ defaults: &defaults
 orbs:
   node: circleci/node@3.0.0
   docker: circleci/docker@1.4.0
+  aws-cli: circleci/aws-cli@2.0.6
 commands:
   install-aws: aws-cli/install
   setup-aws-cli: aws-cli/setup
