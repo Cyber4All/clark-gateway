@@ -12,7 +12,7 @@ commands:
   install-docker: docker/install-docker
 version: 2.1
 jobs:
-  build: 
+  build:
     <<: *defaults
     steps:
       - checkout
