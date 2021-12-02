@@ -1,70 +1,94 @@
 defaults: &defaults
-  working_directory: ~/CLARK-Gateway
+  working_directory: ~/clark-gateway
   docker:
     - image: cyber4all/circleci-aws:node-alpine
 orbs:
-  aws-cli: circleci/aws-cli@1.2.1
+  node: circleci/node@3.0.0
+  docker: circleci/docker@1.4.0
+  aws-cli: circleci/aws-cli@2.0.6
 commands:
   install-aws: aws-cli/install
   setup-aws-cli: aws-cli/setup
+  install-docker: docker/install-docker
 version: 2.1
 jobs:
   build:
     <<: *defaults
     steps:
       - checkout
+      - install-docker
+      - setup_remote_docker
       - run:
-          name: Install Dependencies
-          command: npm install
+          name: Install dependencies
+          command: |
+            npm install
       - run:
-          name: Build Application
-          command: npm run build
-      - persist_to_workspace: 
-          root: ./
-          paths: 
-              - ./dist
-              - ./package.json
-              - ./package-lock.json
-              - ./.elasticbeanstalk
-              - ./docs
-              - ./Procfile
-  deploy:
+          name: Build Image
+          command: | 
+            docker build -t clark-gateway:$CIRCLE_SHA1 -f Dockerfile.prod .
+      - run: 
+          name: Login to docker
+          command: docker login -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
+      - run: 
+          name: Publish Image
+          command: | 
+            docker build -t "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" -f Dockerfile.prod .
+  deploy-production:
     <<: *defaults
     steps:
-      - attach_workspace : 
-          at: ~/CLARK-Gateway
+      - attach_workspace:
+          at: ~/clark-gateway
+      - checkout
+      - install-docker
+      - setup_remote_docker
       - setup-aws-cli:
           aws-access-key-id: AWS_EB_AccessKey
           aws-region: AWS_REGION_N_VA
           aws-secret-access-key: AWS_EB_SecretKey
-          version: "1"
-      - run:
-          name: Install prod dependencies
-          command: npm install --only=prod
       - run: 
-          name: Zip dist
-          command: zip -r dist.zip . *
+          name: Login to docker
+          command: docker login -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
+      - run: 
+          name: Pull image
+          command: docker pull "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}"
+      - run: 
+          name: Publish image
+          command: |
+            export SEMVER=$(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+            docker tag "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" "${DOCKER_USER_ORG}/clark-gateway:${SEMVER}"
+            docker tag "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" "${DOCKER_USER_ORG}/clark-gateway:latest"
+            docker push "${DOCKER_USER_ORG}/clark-gateway:${SEMVER}"
+            docker push "${DOCKER_USER_ORG}/clark-gateway:latest"
+      - run: 
+          name: Install and init eb cli
+          command: | 
+            pip install awsebcli
+            eb init --region us-east-1 CLARK-Gateway -p docker
       - run:
-          name: Deploy to Elastic Beanstalk 
-          command: eb deploy Gateway-API --verbose --label Gateway-API-v$(node -p "require('./package.json').version")
+          name: Deploy to Elastic Beanstalk
+          command: |
+            eb deploy clark-gateway-production --verbose --label clark-gateway-v$(node -p "require('./package.json').version")
 workflows:
   version: 2.1
   build:
     jobs:
       - build:
+          context:
+            - DockerHub
           filters:
             branches:
               ignore: /master/
-  build-and-deploy:
+  deploy:
     jobs:
       - build:
           filters:
             branches:
               only: /master/
-      - deploy:
+      - deploy-production:
           requires:
             - build
           context:
+            - DockerHub
             - AWS
           filters:
             branches:
