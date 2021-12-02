@@ -81,6 +81,8 @@ workflows:
   deploy:
     jobs:
       - build:
+          context:
+            - DockerHub
           filters:
             branches:
               only: /master/
