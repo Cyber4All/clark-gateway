@@ -46,7 +46,7 @@
  *                      type: array
  *                      items:
  *                          type: string
- *                          example: https://api-gateway.clark.center/users/kkuczynski/learning-objects/220572e9-bcb3-4af9-b2b2-f87a3286a328/versions/0/bundle
+ *                          example: https://api-gateway.clark.center/users/skaza/learning-objects/5aa0013becba9a264dcd8030/bundle
  *                      description: links affiliated with the outage
  *                  resolved:
  *                      type: time
