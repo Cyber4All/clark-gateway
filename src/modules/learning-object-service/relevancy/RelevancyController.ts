@@ -321,6 +321,38 @@ export class RelevancyController implements Controller {
      */
     router.patch('/learning-objects/evaluators', this.proxyRequest((req: Request) => `/learning-objects/evaluators`));
 
+    /**
+     * @swagger
+     * /users/:username/evaluations:
+     *  get:
+     *    description: Gets evaluator's assigned learning objects
+     *    tags: 
+     *      - Learning Object Service
+     *    parameters:
+     *      - in: path
+     *        name: username
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The evaluator's username
+     *      - in: path
+     *        name: status
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The requested status of evaluated learning objects
+     *    responses:
+     *      200:
+     *        description: OK
+     *      401:
+     *        description: UNAUTHENTICATED - User not logged in
+     *      403:
+     *        description: UNAUTHORIZED - User does not have curator, editor, or admin privileges
+     *      404:
+     *        description: NOT FOUND - Learning objects or users were not found
+     */
+    router.get('/users/:username/evaluations', this.proxyRequest((req: Request) => '/users/:username/evaluations'))
+
     return router;
   }
 
