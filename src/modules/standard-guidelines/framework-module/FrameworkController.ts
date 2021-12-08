@@ -137,6 +137,36 @@ export class FrameworkController implements Controller {
 
         /**
          * @swagger
+         * /frameworks/{id}/deprecate:
+         *  patch:
+         *    description: Deprecate a framework by id
+         *    tags:
+         *      - Standard Guideline Service
+         *    parameters:
+         *      - in: path
+         *        name: id
+         *        schema:
+         *          type: string
+         *        required: true
+         *        description: The framework id
+         *    responses:
+         *      200:
+         *        description: OK
+         *      400:
+         *        description: BAD REQUEST - The provided id is not a valid mongo id
+         *      401:
+         *        description: INVALID ACCESS - Not Authorized
+         *      403:
+         *        description: FORBIDDEN - User is not whitelisted, please use a whitelisted certificate
+         *      404:
+         *        description: NOT FOUND - Framework with id ${id} was not found
+         *      409:
+         *        description: CONFLICT - Framework is already deprecated
+         */
+        router.patch('/frameworks/:id/deprecate', this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}/deprecate`));
+
+        /**
+         * @swagger
          * /frameworks/{id}:
          *  delete:
          *    description: Deletes a framework by id
@@ -159,7 +189,7 @@ export class FrameworkController implements Controller {
          *      403:
          *        description: FORBIDDEN - User is not whitelisted, please use a whitelisted certificate
          *      404:
-         *        description: NOT FOUND - Framework with id ${id} was not found, Guideline or standard with id ${id} was not found
+         *        description: NOT FOUND - Framework with id ${id} was not found
          */
         router.delete('/frameworks/:id', this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}`));
 

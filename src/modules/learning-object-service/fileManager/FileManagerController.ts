@@ -1,7 +1,7 @@
 import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../../interfaces/Controller";
-import { FILE_UPLOAD_ROUTES, LEARNING_OBJECT_ROUTES } from "../../../routes";
+import { LEARNING_OBJECT_ROUTES } from "../../../routes";
 
 const LEARNING_OBJECT_SERVICE_URI =
   process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
@@ -12,9 +12,9 @@ export class FileManagerController implements Controller {
 
     /**
      * @swagger
-     * /{username}/learning-objects/{cuid}/versions/{version}/bundle:
+     * /users/{username}/learning-objects/{id}/bundle:
      *  get:
-     *    description: Download a object
+     *    description: Download object's zip from S3
      *    tags:
      *      - Learning Object Service
      *    parameters:
@@ -25,17 +25,11 @@ export class FileManagerController implements Controller {
      *        required: true
      *        description: The username of the author
      *      - in: path
-     *        name: cuid
+     *        name: id
      *        schema:
      *            type: string
      *        required: true
-     *        description: The cuid of the object to download
-     *      - in: path
-     *        name: version
-     *        schema:
-     *            type: number
-     *        required: true
-     *        description: The version number of the object
+     *        description: The id of the object to download
      *    responses:
      *      200:
      *        description: OK - Downloads a zip file
@@ -45,14 +39,50 @@ export class FileManagerController implements Controller {
      *              type: string
      *              format: binary
      *      401:
-     *        description: UNAUTHENTICATED - User is not logged in
+     *        description: UNAUTHENTICATED - Invalid access. You must have a valid token to access this resource.
      *      403:
-     *        description: UNAUTHORIZED - User is trying to access an in review object as a unprivileged user
+     *        description: UNAUTHORIZED - User {username} does not have access to download the requested Learning Object
      *      404:
-     *        description: NOT FOUND - Object not found
+     *        description: NOT FOUND - Author of learning object not found, Learning Object not found
+     *      425:
+     *        description: 
      */
-    router.route('/users/:username/learning-objects/:cuid/versions/:version/bundle').get(this.proxyLearningObjectRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.cuid)}/versions/${encodeURIComponent(req.params.version)}/bundle`));
+    router.route('/users/:username/learning-objects/:id/bundle').get(this.proxyLearningObjectRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/bundle`));
     
+    /**
+     * @swagger
+     * /users/{username}/learning-objects/{id}/bundle:
+     *  post:
+     *    description: Bundles a learning object
+     *    tags:
+     *      - Learning Object Service
+     *    parameters:
+     *      - in: path
+     *        name: username
+     *        schema:
+     *            type: string
+     *        required: true
+     *        description: The username of the author
+     *      - in: path
+     *        name: id
+     *        schema:
+     *            type: string
+     *        required: true
+     *        description: The id of the object to bundle
+     *    responses:
+     *      200:
+     *        description: OK - Creates Bundling Document and Initializes a CloudWatch event
+     *      401:
+     *        description: UNAUTHENTICATED - Invalid access. You must have a valid token to access this resource.
+     *      403:
+     *        description: UNAUTHORIZED - User {username} does not have access to download the requested Learning Object
+     *      404:
+     *        description: NOT FOUND - Author of learning object not found, Learning Object not found 
+     *      500:
+     *        description: SERVICE ERROR - CloudWatchEvents Client Error
+     */
+    router.route('/users/:username/learning-objects/:id/bundle').post(this.proxyLearningObjectRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/bundle`));
+
     /**
      * @swagger
      * /users/{username}/learning-objects/{learningObjectId}/materials/files/{fileId}:

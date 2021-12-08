@@ -106,7 +106,7 @@ export class UtilityServiceController implements Controller {
          */
         router.get(
             '/outages',
-            this.proxyRequest((req: Request) => `/outages?pastIssues=${encodeURIComponent(req.query.pastIssues)}`)
+            this.proxyRequest((req: Request) => `/outages?pastIssues=${encodeURIComponent(req.query.pastIssues as string)}`)
         );
         return router;
     }
