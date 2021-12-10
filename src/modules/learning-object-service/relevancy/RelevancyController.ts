@@ -323,7 +323,7 @@ export class RelevancyController implements Controller {
 
     /**
      * @swagger
-     * /users/:username/evaluations:
+     * /users/:username/evaluations?status:
      *  get:
      *    description: Gets evaluator's assigned learning objects
      *    tags: 
@@ -335,11 +335,11 @@ export class RelevancyController implements Controller {
      *          type: string
      *        required: true
      *        description: The evaluator's username
-     *      - in: path
+     *      - in: query
      *        name: status
      *        schema:
      *          type: string
-     *        required: true
+     *        required: false
      *        description: The requested status of evaluated learning objects
      *    responses:
      *      200:
