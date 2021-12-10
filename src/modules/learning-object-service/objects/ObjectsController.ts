@@ -323,7 +323,7 @@ export class ObjectsController implements Controller {
 
     /**
      * @swagger
-     * /learning-objects:
+     * /learning-objects?assigned:
      *  get:
      *    description: Gets learning objects
      *    tags:
@@ -347,6 +347,12 @@ export class ObjectsController implements Controller {
      *          type: string
      *        required: true
      *        description: The query to search for
+     *      - in: query
+     *        name: assigned
+     *        schema: 
+     *           type: string
+     *        required: false
+     *        description: Boolean to determine if only the objects that were assigned to them should be returned
      *    responses:
      *      200:
      *        description: OK
