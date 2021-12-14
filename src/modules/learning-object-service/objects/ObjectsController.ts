@@ -323,7 +323,7 @@ export class ObjectsController implements Controller {
 
     /**
      * @swagger
-     * /learning-objects?assigned:
+     * /learning-objects:
      *  get:
      *    description: Gets learning objects
      *    tags:
