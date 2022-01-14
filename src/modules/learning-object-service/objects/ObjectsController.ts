@@ -342,7 +342,7 @@ export class ObjectsController implements Controller {
      *        required: true
      *        description: The object return limit
      *      - in: query
-     *        name: query
+     *        name: text
      *        schema:
      *          type: string
      *        required: true
