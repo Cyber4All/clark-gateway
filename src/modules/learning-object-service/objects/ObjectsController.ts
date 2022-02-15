@@ -642,7 +642,7 @@ export class ObjectsController implements Controller {
      *        schema:
      *          type: string
      *        required: true
-     *        description: The user id of the object author
+     *        description: The username of the object's author
      *      - in: path
      *        name: id
      *        schema:
