@@ -43,9 +43,9 @@ jobs:
       - install-docker
       - setup_remote_docker
       - setup-aws-cli:
-          aws-access-key-id: AWS_EB_AccessKey
+          aws-access-key-id: MACHINE_AWS_EB_AccessKey
           aws-region: AWS_REGION_N_VA
-          aws-secret-access-key: AWS_EB_SecretKey
+          aws-secret-access-key: MACHINE_AWS_EB_SecretKey
       - run: 
           name: Login to docker
           command: docker login -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
