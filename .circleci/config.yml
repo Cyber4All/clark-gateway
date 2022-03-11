@@ -16,6 +16,9 @@ jobs:
     <<: *defaults
     steps:
       - run:
+          name: Install GCC
+          command: apk add build-base
+      - run:
           name: Install OpenSSH 8.1p1
           command: |
             exec apk update
