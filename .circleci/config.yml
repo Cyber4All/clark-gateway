@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/clark-gateway
   docker:
-    - image: cyber4all/circleci-aws:node-alpine
+    - image: cimg/node:16.13.2
 orbs:
   node: circleci/node@3.0.0
   docker: circleci/docker@1.4.0
@@ -15,15 +15,6 @@ jobs:
   build:
     <<: *defaults
     steps:
-      - run:
-          name: Install OpenSSH 8.1p1
-          command: |
-            sudo apt-get update
-            mkdir ~/tempdownload; 
-            cd ~/tempdownload; 
-            wget https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.1p1.tar.gz; 
-            tar zxvf openssh-8.1p1.tar.gz; 
-            cd openssh-8.1p1 && ./configure && make && sudo make install
       - checkout
       - install-docker
       - setup_remote_docker
@@ -48,15 +39,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/clark-gateway
-      - run:
-          name: Install OpenSSH 8.1p1
-          command: |
-            sudo apt-get update
-            mkdir ~/tempdownload; 
-            cd ~/tempdownload; 
-            wget https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.1p1.tar.gz; 
-            tar zxvf openssh-8.1p1.tar.gz; 
-            cd openssh-8.1p1 && ./configure && make && sudo make install
       - checkout
       - install-docker
       - setup_remote_docker
