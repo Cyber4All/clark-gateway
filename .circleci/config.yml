@@ -78,7 +78,7 @@ workflows:
             - DockerHub
           filters:
             branches:
-              ignore: /master/
+              ignore: /main/
   deploy:
     jobs:
       - build:
@@ -86,7 +86,7 @@ workflows:
             - DockerHub
           filters:
             branches:
-              only: /master/
+              only: /releases/
       - deploy-production:
           requires:
             - build
@@ -95,4 +95,4 @@ workflows:
             - AWS
           filters:
             branches:
-              only: /master/
+              only: /releases/
