@@ -186,31 +186,6 @@ export class UserServiceController implements Controller {
 
         /**
          * @swagger
-         * /users/update:
-         *  get:
-         *      description: Gets a user's information
-         *      tags:
-         *          - User Service
-         *      parameters:
-         *          - in: query
-         *            name: username
-         *            schema:
-         *                type: string
-         *            required: true
-         *            description: The user's username
-         *      responses:
-         *          200:
-         *              description: OK
-         *              content:
-         *                  application/json:
-         *                      schema:
-         *                          type: object
-         *                          $ref: '#/components/schemas/User'
-         */
-        router.get('/users/update', this.proxyRequest((req: Request) => `/users/update?${querystring.stringify(req.query)}`));
-
-        /**
-         * @swagger
          * /collections/{collectionName}/members:
          *  get:
          *      description: Gets a list of collection reviewers
@@ -587,32 +562,6 @@ export class UserServiceController implements Controller {
          *              description: UNAUTHORIZED - User not an admin
          */
         router.route('/users/:username').delete(this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}`));
-
-        /**
-         * @swagger
-         * /users/organizations:
-         *  get:
-         *      description: Searches for an organization
-         *      tags:
-         *          - User Service
-         *      parameters:
-         *          - in: query
-         *            name: query
-         *            schema:
-         *                type: string
-         *            required: true
-         *            description: The search query
-         *      responses:
-         *          200:
-         *              description: OK
-         *              content:
-         *                  application/json:
-         *                      schema:
-         *                          type: array
-         *                          items:
-         *                              $ref: '#/components/schemas/Organization'
-         */
-        router.route('/users/organizations').get(this.proxyRequest((req: Request) => `/users/organizations?${querystring.stringify(req.query)}`));
 
         /**
          * @swagger
