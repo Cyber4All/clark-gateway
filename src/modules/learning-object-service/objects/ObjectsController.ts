@@ -216,6 +216,47 @@ export class ObjectsController implements Controller {
 
     /**
      * @swagger
+     * /learning-objects/{username}/{learningObjectName}/children:
+     *  patch:
+     *    description: Removes a child of a particular object
+     *    tags:
+     *      - Learning Object Service
+     *    parameters:
+     *      - in: path
+     *        name: username
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The object author's username
+     *      - in: path
+     *        name: learningObjectName
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The object's id
+     *    requestBody:
+     *      content:
+     *        application/json:
+     *          schema:
+     *            type: object
+     *            properties:
+     *              id:
+     *                type: string
+     *                description: The id of the child to remove
+     *    responses:
+     *      200:
+     *        description: OK
+     *      401:
+     *        description: UNAUTHENTICATED - User not logged in
+     *      403:
+     *        description: UNAUTHORIZED - User not object author and object is unreleased or user is not privileged
+     *      404:
+     *        description: NOT FOUND - Object not found
+     */
+     router.patch('/learning-objects/:username/:learningObjectName/children', this.proxyRequest((req: Request) => `/learning-objects/${req.params.username}/${req.params.learningObjectName}/children`));
+
+    /**
+     * @swagger
      * /users/{username}/learning-objects:
      *  get:
      *    description: Searches a user's objects

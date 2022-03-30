@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/clark-gateway
   docker:
-    - image: cyber4all/circleci-aws:node-alpine
+    - image: cimg/node:16.13.2
 orbs:
   node: circleci/node@3.0.0
   docker: circleci/docker@1.4.0
@@ -78,7 +78,7 @@ workflows:
             - DockerHub
           filters:
             branches:
-              ignore: /master/
+              ignore: /main/
   deploy:
     jobs:
       - build:
@@ -86,7 +86,7 @@ workflows:
             - DockerHub
           filters:
             branches:
-              only: /master/
+              only: /releases/
       - deploy-production:
           requires:
             - build
@@ -95,4 +95,4 @@ workflows:
             - AWS
           filters:
             branches:
-              only: /master/
+              only: /releases/
