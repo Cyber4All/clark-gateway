@@ -7,7 +7,6 @@ orbs:
   docker: circleci/docker@1.4.0
   aws-cli: circleci/aws-cli@2.0.6
 commands:
-  install-aws: aws-cli/install
   setup-aws-cli: aws-cli/setup
   install-docker: docker/install-docker
 version: 2.1
@@ -42,6 +41,11 @@ jobs:
       - checkout
       - install-docker
       - setup_remote_docker
+      - run:
+          name: Install pip
+          command: |
+            sudo apt update
+            sudo apt install -y python3-pip python-dev
       - setup-aws-cli:
           aws-access-key-id: MACHINE_AWS_EB_AccessKey
           aws-region: AWS_REGION_N_VA
@@ -62,8 +66,8 @@ jobs:
             docker push "${DOCKER_USER_ORG}/clark-gateway:latest"
       - run: 
           name: Install and init eb cli
-          command: | 
-            pip install awsebcli
+          command: |
+            sudo pip3 install awsebcli
             eb init --region us-east-1 CLARK-Gateway -p docker
       - run:
           name: Deploy to Elastic Beanstalk
