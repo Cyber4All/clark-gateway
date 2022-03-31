@@ -43,7 +43,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Install pip
-          command: sudo apt install python3-pip
+          command: sudo apt install python3
       - setup-aws-cli:
           aws-access-key-id: MACHINE_AWS_EB_AccessKey
           aws-region: AWS_REGION_N_VA
