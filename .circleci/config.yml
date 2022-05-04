@@ -11,10 +11,6 @@ workflows:
           dockerfiles: "Dockerfile:Dockerfile.dev"
           executor-class: medium
 
-      - cyber4all/lint-app:
-          docker-image: cimg/node:18.0.0
-          isNode: true
-
       - cyber4all/publish-docker:
           image: "$CIRCLE_PROJECT_REPONAME"
           tag: $(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
@@ -22,8 +18,6 @@ workflows:
           filters:
             branches:
               ignore: releases
-
-      # Test app was removed since clark-gateway does not have testing
 
   deploy-production:
     jobs:
