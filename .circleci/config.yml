@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  cyber4all: cyber4all/orb@1.0.4
+  cyber4all: cyber4all/orb@1.0
   docker: circleci/docker@2.0.3
 
 workflows:
