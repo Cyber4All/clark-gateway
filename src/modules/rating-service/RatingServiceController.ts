@@ -2,7 +2,7 @@ import { Request, Router } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../interfaces/Controller";
 
-const RATING_API = process.env.RATING_API || 'localhost:3004';
+const RATING_API = process.env.RATING_API || "localhost:3004";
 
 export class RatingServiceController implements Controller {
     buildRouter(): Router {
@@ -58,7 +58,7 @@ export class RatingServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - Learning object not found
          */
-        router.route('/users/:username/learning-objects/:CUID/version/:version/ratings').get(
+        router.route("/users/:username/learning-objects/:CUID/version/:version/ratings").get(
             this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.CUID)}/version/${encodeURIComponent(req.params.version)}/ratings`)
         );
   
@@ -87,7 +87,7 @@ export class RatingServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - Rating was not found
          */
-        router.route('/ratings/:ratingId').get(
+        router.route("/ratings/:ratingId").get(
             this.proxyRequest((req: Request) => `/ratings/${encodeURIComponent(req.params.ratingId)}`)
         );
 
@@ -141,7 +141,7 @@ export class RatingServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - Rating or object was not found
          */
-        router.route('/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID').patch(
+        router.route("/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID").patch(
             this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.CUID)}/version/${encodeURIComponent(req.params.version)}/ratings/${encodeURIComponent(req.params.ratingID)}`)
         );
 
@@ -187,7 +187,7 @@ export class RatingServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - Rating or object was not found
          */
-        router.route('/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID').delete(
+        router.route("/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID").delete(
             this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.CUID)}/version/${encodeURIComponent(req.params.version)}/ratings/${encodeURIComponent(req.params.ratingID)}`)
         );
 
@@ -235,7 +235,7 @@ export class RatingServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - Learning object was not found
          */
-        router.route('/users/:username/learning-objects/:CUID/version/:version/ratings').post(
+        router.route("/users/:username/learning-objects/:CUID/version/:version/ratings").post(
             this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.CUID)}/version/${encodeURIComponent(req.params.version)}/ratings`)
         );
   
@@ -289,7 +289,7 @@ export class RatingServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - Learning object or rating was not found
          */
-        router.route('/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/flags').post(
+        router.route("/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/flags").post(
             this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.CUID)}/version/${encodeURIComponent(req.params.version)}/ratings/${encodeURIComponent(req.params.ratingID)}/flags`)
         );
   
@@ -343,7 +343,7 @@ export class RatingServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - Learning object or rating was not found
          */
-        router.route('/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses').post(
+        router.route("/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses").post(
             this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.CUID)}/version/${encodeURIComponent(req.params.version)}/ratings/${encodeURIComponent(req.params.ratingID)}/responses`)
         );
   
@@ -395,7 +395,7 @@ export class RatingServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - Learning object, rating, or response was not found
          */
-        router.route('/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses/:responseID').delete(
+        router.route("/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses/:responseID").delete(
             this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.CUID)}/version/${encodeURIComponent(req.params.version)}/ratings/${encodeURIComponent(req.params.ratingID)}/responses/${encodeURIComponent(req.params.responseID)}`)
         );
   
@@ -455,14 +455,14 @@ export class RatingServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - Learning object, rating, or response was not found
          */
-        router.route('/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses/:responseID').patch(
+        router.route("/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses/:responseID").patch(
             this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.CUID)}/version/${encodeURIComponent(req.params.version)}/ratings/${encodeURIComponent(req.params.ratingID)}/responses/${encodeURIComponent(req.params.responseID)}`)
         );
 
         return router;
     }
 
-    private proxyRequest(callback: Function) {
+    private proxyRequest(callback: any) {
         return proxy(RATING_API, {
             proxyReqPathResolver: req => {
                 return callback(req);

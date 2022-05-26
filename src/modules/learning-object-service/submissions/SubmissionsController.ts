@@ -1,10 +1,10 @@
 import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../../interfaces/Controller";
-import { ADMIN_LEARNING_OBJECT_ROUTES, LEARNING_OBJECT_ROUTES } from "../../../routes";
+import { LEARNING_OBJECT_ROUTES } from "../../../routes";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class SubmissionsController implements Controller {
   buildRouter(): Router {
@@ -127,12 +127,12 @@ export class SubmissionsController implements Controller {
      *      409:
      *        description: CONFLICT - Object is not in waiting
      */
-    router.all('/users/:userId/learning-objects/:learningObjectId/submissions', this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.SUBMIT_FOR_REVIEW(req.params.userId, req.params.learningObjectId, req.query)));
+    router.all("/users/:userId/learning-objects/:learningObjectId/submissions", this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.SUBMIT_FOR_REVIEW(req.params.userId, req.params.learningObjectId, req.query)));
 
     return router;
   }
 
-  private proxyRequest(callback: Function) {
+  private proxyRequest(callback: any) {
     return proxy(LEARNING_OBJECT_SERVICE_URI, {
       proxyReqPathResolver: req => {
         return callback(req);

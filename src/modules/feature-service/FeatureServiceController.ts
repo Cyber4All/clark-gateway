@@ -2,7 +2,7 @@ import { Request, Router } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../interfaces/Controller";
 
-const FEATURED_API = process.env.FEATURED_API || 'localhost:3002';
+const FEATURED_API = process.env.FEATURED_API || "localhost:3002";
 
 export class FeatureServiceController implements Controller {
     buildRouter(): Router {
@@ -25,7 +25,7 @@ export class FeatureServiceController implements Controller {
          *                          items:
          *                              $ref: '#/components/schemas/LearningObject'
          */
-        router.route('/featured/learning-objects').get(this.proxyRequest((req: Request) => `/featured/learning-objects`));
+        router.route("/featured/learning-objects").get(this.proxyRequest((req: Request) => "/featured/learning-objects"));
 
         /**
          * @swagger
@@ -59,7 +59,7 @@ export class FeatureServiceController implements Controller {
          *          403:
          *              description: UNAUTHORIZED - User does not have privilege to update featured objects
          */
-        router.route('/featured/learning-objects').patch(this.proxyRequest((req: Request) => `/featured/learning-objects`));
+        router.route("/featured/learning-objects").patch(this.proxyRequest((req: Request) => "/featured/learning-objects"));
 
         /**
          * @swagger
@@ -82,11 +82,11 @@ export class FeatureServiceController implements Controller {
          *          404:
          *              description: NOT FOUND - The desired collection does not exist
          */
-        router.route('/featured/learning-objects/:collection').get(this.proxyRequest((req: Request) => `/featured/learning-objects/${encodeURIComponent(req.params.collection)}`));
+        router.route("/featured/learning-objects/:collection").get(this.proxyRequest((req: Request) => `/featured/learning-objects/${encodeURIComponent(req.params.collection)}`));
         return router;
     }
 
-    private proxyRequest(callback: Function) {
+    private proxyRequest(callback: any) {
         return proxy(FEATURED_API, {
             proxyReqPathResolver: req => {
                 return callback(req);

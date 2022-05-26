@@ -2,7 +2,7 @@ import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../../interfaces/Controller";
 
-const STANDARD_GUIDELINES_API = process.env.STANDARD_GUIDELINES_API || 'localhost:8888';
+const STANDARD_GUIDELINES_API = process.env.STANDARD_GUIDELINES_API || "localhost:8888";
 
 export class FrameworkController implements Controller {
     buildRouter(): Router {
@@ -34,7 +34,7 @@ export class FrameworkController implements Controller {
          *      404:
          *        description: NOT FOUND - Framework with id ${id} was not found
          */
-        router.get('/frameworks/:id', this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}`));
+        router.get("/frameworks/:id", this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}`));
         
         /**
          * @swagger
@@ -79,7 +79,7 @@ export class FrameworkController implements Controller {
          *      403:
          *        description: FORBIDDEN - User is not whitelisted, please use a whitelisted certificate
          */
-        router.post('/frameworks', this.proxyRequest((req: Request) => `/frameworks`));
+        router.post("/frameworks", this.proxyRequest((req: Request) => "/frameworks"));
 
         /**
          * @swagger
@@ -133,7 +133,7 @@ export class FrameworkController implements Controller {
          *      404:
          *        description: NOT FOUND - Framework with id ${id} was not found, Guideline or standard with id ${id} was not found
          */
-        router.patch('/frameworks/:id', this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}`));
+        router.patch("/frameworks/:id", this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}`));
 
         /**
          * @swagger
@@ -163,7 +163,7 @@ export class FrameworkController implements Controller {
          *      409:
          *        description: CONFLICT - Framework is already deprecated
          */
-        router.patch('/frameworks/:id/deprecate', this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}/deprecate`));
+        router.patch("/frameworks/:id/deprecate", this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}/deprecate`));
 
         /**
          * @swagger
@@ -191,12 +191,12 @@ export class FrameworkController implements Controller {
          *      404:
          *        description: NOT FOUND - Framework with id ${id} was not found
          */
-        router.delete('/frameworks/:id', this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}`));
+        router.delete("/frameworks/:id", this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}`));
 
         return router;
     }
 
-    private proxyRequest(callback: Function) {
+    private proxyRequest(callback: any) {
         return proxy(STANDARD_GUIDELINES_API, {
             proxyReqPathResolver: req => {
                 return callback(req);

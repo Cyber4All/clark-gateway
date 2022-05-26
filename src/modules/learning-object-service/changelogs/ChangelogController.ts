@@ -4,7 +4,7 @@ import { Controller } from "../../../interfaces/Controller";
 import { LEARNING_OBJECT_ROUTES } from "../../../routes";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class ChangelogController implements Controller {
   buildRouter(): Router {
@@ -53,7 +53,7 @@ export class ChangelogController implements Controller {
      *        404:
      *            description: NOT FOUND - Learning object or user not found
      */
-    router.post('/users/:userId/learning-objects/:cuid/changelog', this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.CREATE_CHANGELOG(req.params.userId, req.params.cuid)));
+    router.post("/users/:userId/learning-objects/:cuid/changelog", this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.CREATE_CHANGELOG(req.params.userId, req.params.cuid)));
     
     /**
      * @swagger
@@ -84,12 +84,12 @@ export class ChangelogController implements Controller {
      *              type: object
      *              $ref: '#/components/schemas/Changelog'
      */
-    router.get('/users/:userId/learning-objects/:cuid/changelogs', this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.GET_ALL_CHANGELOGS(req.params.userId, req.params.cuid, req.query)));
+    router.get("/users/:userId/learning-objects/:cuid/changelogs", this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.GET_ALL_CHANGELOGS(req.params.userId, req.params.cuid, req.query)));
 
     return router;
   }
 
-  private proxyRequest(callback: Function) {
+  private proxyRequest(callback: any) {
     return proxy(LEARNING_OBJECT_SERVICE_URI, {
       proxyReqPathResolver: req => {
         return callback(req);

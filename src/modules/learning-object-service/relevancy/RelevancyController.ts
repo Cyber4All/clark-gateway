@@ -1,10 +1,9 @@
 import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../../interfaces/Controller";
-import { LEARNING_OBJECT_ROUTES } from "../../../routes";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class RelevancyController implements Controller {
   buildRouter(): Router {
@@ -53,7 +52,7 @@ export class RelevancyController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object not found
      */
-    router.patch('/users/:username/learning-objects/:id/relevancy-check', this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/relevancy-check`));
+    router.patch("/users/:username/learning-objects/:id/relevancy-check", this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/relevancy-check`));
 
     /**
      * @swagger
@@ -72,7 +71,7 @@ export class RelevancyController implements Controller {
      *              items:
      *                $ref: '#/components/schemas/Topic'
      */
-    router.get('/topics', this.proxyRequest((req: Request) => `/topics`));
+    router.get("/topics", this.proxyRequest((req: Request) => "/topics"));
 
     /**
      * @swagger
@@ -123,7 +122,7 @@ export class RelevancyController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object not found, Guidelines not found, Outcome not found
      */
-    router.patch('/users/:username/learning-objects/:id/learning-outcomes/:outcomeId/guidelines', this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/learning-outcomes/${encodeURIComponent(req.params.outcomeId)}/guidelines`));
+    router.patch("/users/:username/learning-objects/:id/learning-outcomes/:outcomeId/guidelines", this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/learning-outcomes/${encodeURIComponent(req.params.outcomeId)}/guidelines`));
 
     /**
      * @swagger
@@ -169,7 +168,7 @@ export class RelevancyController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object or topic not found
      */
-    router.patch('/users/:username/learning-objects/:id/topics', this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${req.params.id}/topics`));
+    router.patch("/users/:username/learning-objects/:id/topics", this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${req.params.id}/topics`));
 
     /**
      * @swagger
@@ -209,7 +208,7 @@ export class RelevancyController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object or topic not found
      */
-    router.delete('/users/:username/learning-objects/:id/topics/:topicId', this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${req.params.id}/topics/${req.params.topicId}`));
+    router.delete("/users/:username/learning-objects/:id/topics/:topicId", this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${req.params.id}/topics/${req.params.topicId}`));
 
     /**
      * @swagger
@@ -250,7 +249,7 @@ export class RelevancyController implements Controller {
      *      409:
      *        description: CONFLICT - A given user has already been assigned to one or more cuids
      */
-    router.post('/learning-objects/evaluators', this.proxyRequest((req: Request) => `/learning-objects/evaluators`));
+    router.post("/learning-objects/evaluators", this.proxyRequest((req: Request) => "/learning-objects/evaluators"));
 
     /**
      * @swagger
@@ -282,7 +281,7 @@ export class RelevancyController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object was not found
      */
-    router.patch('/users/:username/learning-objects/:cuid/evaluation', this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${req.params.cuid}/evaluation`));
+    router.patch("/users/:username/learning-objects/:cuid/evaluation", this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${req.params.cuid}/evaluation`));
     
     /**
      * @swagger
@@ -319,7 +318,7 @@ export class RelevancyController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning objects or users were not found
      */
-    router.patch('/learning-objects/evaluators', this.proxyRequest((req: Request) => `/learning-objects/evaluators`));
+    router.patch("/learning-objects/evaluators", this.proxyRequest((req: Request) => "/learning-objects/evaluators"));
 
     /**
      * @swagger
@@ -351,12 +350,12 @@ export class RelevancyController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning objects or users were not found
      */
-    router.get('/users/:username/evaluations', this.proxyRequest((req: Request) => '/users/:username/evaluations'))
+    router.get("/users/:username/evaluations", this.proxyRequest((req: Request) => "/users/:username/evaluations"))
 
     return router;
   }
 
-  private proxyRequest(callback: Function) {
+  private proxyRequest(callback: any) {
     return proxy(LEARNING_OBJECT_SERVICE_URI, {
       proxyReqPathResolver: req => {
         return callback(req);

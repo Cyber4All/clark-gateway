@@ -1,4 +1,4 @@
-import { Server } from 'socket.io';
+import { Server } from "socket.io";
 
 export class SocketInteractor {
     private static instance: SocketInteractor;
@@ -15,7 +15,7 @@ export class SocketInteractor {
         if (!this.instance && server) {
             this.instance = new SocketInteractor(server);
         } else if (!this.instance) {
-            throw Error('You must initialize this singleton class with a Socket.io Server!');
+            throw Error("You must initialize this singleton class with a Socket.io Server!");
         }
 
         return this.instance;
@@ -29,7 +29,7 @@ export class SocketInteractor {
     connectUser(username: string, clientID: string): void {
         if (!this.connectedUsers.has(username)) {
             this.connectedUsers.set(username, clientID);
-            console.log(username + ' connected!');
+            console.log(username + " connected!");
         }
     }
 
@@ -42,7 +42,7 @@ export class SocketInteractor {
             this.connectedUsers.forEach((v, k) => {
                 if (v === clientID) {
                     this.connectedUsers.delete(k);
-                    console.log(k + ' disconnected!');
+                    console.log(k + " disconnected!");
                 }
             });
         }
@@ -54,7 +54,7 @@ export class SocketInteractor {
      * @param message String message
      */
     sendMessage(users: Array<string> | string, message: string) {
-        const namespace = this.server.of('/');
+        const namespace = this.server.of("/");
 
         if (!Array.isArray(users)) {
             users = [users];
@@ -62,9 +62,9 @@ export class SocketInteractor {
 
         for (let i = 0; i < users.length; i++) {
             namespace.use(async (socket, next) => {
-                let s = socket.connected[this.connectedUsers.get(users[i])];
+                const s = socket.connected[this.connectedUsers.get(users[i])];
                 if (s) {
-                    s.emit('message', message);
+                    s.emit("message", message);
                 }
                 next();
             });

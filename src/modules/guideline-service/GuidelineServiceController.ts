@@ -2,7 +2,7 @@ import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../interfaces/Controller";
 
-const OUTCOME_API = process.env.OUTCOME_API || 'localhost:7000';
+const OUTCOME_API = process.env.OUTCOME_API || "localhost:7000";
 
 export class GuidelineServiceController implements Controller {
     buildRouter(): Router {
@@ -50,7 +50,7 @@ export class GuidelineServiceController implements Controller {
          *          403:
          *              description: UNAUTHORIZED - Another user is trying to access a author's outcome on a object
          */
-        router.delete('/users/:username/learning-objects/:learningObjectId/outcomes/:outcomeId/mappings/:mappingId', this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.learningObjectId)}/outcomes/${encodeURIComponent(req.params.outcomeId)}/mappings/${encodeURIComponent(req.params.mappingId)}`));
+        router.delete("/users/:username/learning-objects/:learningObjectId/outcomes/:outcomeId/mappings/:mappingId", this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.learningObjectId)}/outcomes/${encodeURIComponent(req.params.outcomeId)}/mappings/${encodeURIComponent(req.params.mappingId)}`));
       
         /**
          * @swagger
@@ -80,12 +80,12 @@ export class GuidelineServiceController implements Controller {
          *                                  required: true
          *                                  example: 30
          */
-        router.get('/outcomes/stats', this.proxyRequest((req: Request) => `/outcomes/stats`));
+        router.get("/outcomes/stats", this.proxyRequest((req: Request) => "/outcomes/stats"));
 
         return router;
     }
 
-    private proxyRequest(callback: Function) {
+    private proxyRequest(callback: any) {
         return proxy(OUTCOME_API, {
             proxyReqPathResolver: req => {
                 return callback(req);
