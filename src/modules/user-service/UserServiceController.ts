@@ -1045,6 +1045,61 @@ export class UserServiceController implements Controller {
          */
         router.get('/keys', this.proxyRequest((req: Request) => '/keys'));
 
+        /**
+         * @swagger
+         * /google:
+         *  get:
+         *      description: Redirects to Google sign in
+         *      tags:
+         *          - User Service
+         *      responses:
+         *          302:
+         *              description: Redirect
+         *              
+         */
+        router.get('/google', this.proxyRequest((req: Request) => '/google'));
+
+        /**
+         * @swagger
+         * /google/redirect:
+         *  get:
+         *      description: Gets Google user information 
+         *      tags:
+         *          - User Service
+         *      responses:
+         *          200:
+         *              description: OK
+         *              content:
+         *                  application/json:
+         *                      schema:
+         *                          type: object
+         *                          properties:
+         *                              user:
+         *                                  type: object
+         *                                  $ref: '#/components/schemas/UserBody'
+         *                              tokens:
+         *                                  type: object
+         *                                  properties:
+         *                                      bearer:
+         *                                          type: string
+         *                                          required: true
+         *                                          description: Bearer token
+         *                                      openId:
+         *                                          type: string
+         *                                          required: true
+         *                                          description: The cognito id
+         *                                      user:
+         *                                          type: object
+         *                                          $ref: '#/components/schemas/UserBody'
+         *          400:
+         *              description: BAD REQUEST - Google sign in incomplete
+         *          404:
+         *              description: BAD REQUEST - Email not found in the database
+         * 
+         *              
+         */
+         router.get('/google/redirect', this.proxyRequest((req: Request) => '/google/redirect'));
+
         return router;
     }
 
