@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars --
+    This disable is added to ignore the 'req' in this.proxyRequest */
 import { Router } from "express";
 import proxy = require("express-http-proxy");
 import { Request } from "express";

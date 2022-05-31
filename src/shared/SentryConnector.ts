@@ -14,6 +14,7 @@ let _reportError: (e: Error) => void;
 
 switch (environment) {
   case "development":
+    // eslint-disable-next-line no-console
     _reportError = console.error;
     break;
   case "production":

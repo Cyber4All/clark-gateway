@@ -2,6 +2,7 @@ import { Response } from "express";
 import * as fs from "fs";
 import * as swaggerJsdoc from "swagger-jsdoc";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = process.env.NODE_ENV !== "production" ? require("../../../package.json").version : "";
 
 export class SwaggerDriver {
@@ -96,6 +97,7 @@ export class SwaggerDriver {
             // Write specs object out as a swagger.json file
             fs.writeFile("docs/swagger.json", JSON.stringify(specs), (err: any) => {
                 if (err) {
+                    // eslint-disable-next-line no-console
                     console.error(err);
                 }
             });

@@ -16,7 +16,7 @@
       "quotes": ["error", "double"],
       "curly": "error",
       "no-irregular-whitespace": "error",
-      "no-unused-vars": "warn",
+      "no-unused-vars": "off",
       "camelcase": "warn",
       "no-console": "warn"
     }

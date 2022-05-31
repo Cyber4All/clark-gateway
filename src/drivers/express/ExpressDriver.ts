@@ -18,8 +18,7 @@ import { RatingServiceController } from "../../modules/rating-service/RatingServ
 import { UserServiceController } from "../../modules/user-service/UserServiceController";
 import { UtilityServiceController } from "../../modules/utility-service/UtilityServiceController";
 import { StandardGuidelineServiceController } from "../../modules/standard-guidelines/StandardGuidelinesController";
-
-const url = require("url");
+const url = require("url"); // eslint-disable-line @typescript-eslint/no-var-requires
 
 dotenv.config();
 
@@ -58,8 +57,7 @@ export class ExpressDriver {
     this.app.use(function(
       error: Error,
       req: express.Request,
-      res: express.Response,
-      next: express.NextFunction,
+      res: express.Response
     ) {
       if (error.name === "UnauthorizedError") {
         res.status(401).send("Invalid Access Token");
@@ -117,6 +115,7 @@ export class ExpressDriver {
       });
 
       socket.on("disconnect", (reason: any) => {
+        // eslint-disable-next-line no-console
         console.log("Unexpected disconnect! Reason: ", reason);
         socketInteractor.disconnectClient(socket.conn.id);
       });
@@ -126,6 +125,7 @@ export class ExpressDriver {
      * Listen on provided port, on all network interfaces.
      */
     server.listen(port, () =>
+      // eslint-disable-next-line no-console
       console.log(`CLARK Gateway API running on localhost:${port}`),
     );
 

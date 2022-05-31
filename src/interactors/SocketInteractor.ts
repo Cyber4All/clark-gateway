@@ -29,6 +29,7 @@ export class SocketInteractor {
     connectUser(username: string, clientID: string): void {
         if (!this.connectedUsers.has(username)) {
             this.connectedUsers.set(username, clientID);
+            // eslint-disable-next-line no-console
             console.log(username + " connected!");
         }
     }
@@ -42,6 +43,7 @@ export class SocketInteractor {
             this.connectedUsers.forEach((v, k) => {
                 if (v === clientID) {
                     this.connectedUsers.delete(k);
+                    // eslint-disable-next-line no-console
                     console.log(k + " disconnected!");
                 }
             });
