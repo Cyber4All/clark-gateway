@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  cyber4all: cyber4all/orb@1.0
+  cyber4all: cyber4all/orb@1
   docker: circleci/docker@2.0.3
 
 workflows:
@@ -21,15 +21,6 @@ workflows:
 
   deploy-production:
     jobs:
-      - cyber4all/scan-docker:
-          context:
-            [DockerHub, AWS, Slack, Synk]
-          image: clark-gateway
-          tag: $(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-          filters:
-            branches:
-              only: releases
-
       - cyber4all/publish-docker:
           context:
             - DockerHub
