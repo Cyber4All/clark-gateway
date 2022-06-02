@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars --
+    This disable is added to ignore the 'req' in this.proxyRequest */
 import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../../interfaces/Controller";
 
-const STANDARD_GUIDELINES_API = process.env.STANDARD_GUIDELINES_API || 'localhost:8888';
+const STANDARD_GUIDELINES_API = process.env.STANDARD_GUIDELINES_API || "localhost:8888";
 
 export class AuthController implements Controller {
     buildRouter(): Router {
@@ -23,12 +25,12 @@ export class AuthController implements Controller {
          *      403:
          *        description: FORBIDDEN - User is not whitelisted, please use a whitelisted certificate
          */
-        router.get("/authenticate", this.proxyRequest((req: Request) => `/authenticate`));
+        router.get("/authenticate", this.proxyRequest((req: Request) => "/authenticate"));
 
         return router;
     }
 
-    private proxyRequest(callback: Function) {
+    private proxyRequest(callback: any) {
         return proxy(STANDARD_GUIDELINES_API, {
             proxyReqPathResolver: req => {
                 return callback(req);

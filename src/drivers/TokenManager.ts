@@ -1,4 +1,4 @@
-import * as jwt from 'jsonwebtoken';
+import * as jwt from "jsonwebtoken";
 
 /**
  * Accepts a JWT and verifies that the token has been properly issued
@@ -9,12 +9,12 @@ import * as jwt from 'jsonwebtoken';
 export function verifyJWT(
   token: string,
   res: any,
-  callback: Function,
+  callback: any,
 ): boolean {
   try {
     const decoded = jwt.verify(token, process.env.KEY, {});
 
-    if (typeof callback === 'function') {
+    if (typeof callback === "function") {
       callback(status, decoded);
     }
 
