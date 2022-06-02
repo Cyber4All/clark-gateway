@@ -1059,7 +1059,7 @@ export class UserServiceController implements Controller {
          *              description: Redirect
          *              
          */
-        router.get('/google', this.proxyRequest((req: Request) => '/google'));
+        router.get("/google", this.proxyRequest((req: Request) => "/google"));
 
         /**
          * @swagger
@@ -1100,7 +1100,7 @@ export class UserServiceController implements Controller {
          * 
          *              
          */
-         router.get('/google/redirect', this.proxyRequest((req: Request) => '/google/redirect'));
+         router.get("/google/redirect", this.proxyRequest((req: Request) => "/google/redirect"));
 
         return router;
     }
