@@ -68,7 +68,7 @@ export class ExpressDriver {
     // Welcome message
     this.app.get("/", function(req, res) {
       res.json({
-        message: "Welcome to the C.L.A.R.K. Gateway API",
+        message: "Welcome to the C.L.A.R.K. Gateway API, we were missing a next",
       });
     });
 
