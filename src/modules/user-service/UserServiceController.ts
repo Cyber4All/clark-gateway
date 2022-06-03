@@ -4,7 +4,7 @@ import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../interfaces/Controller";
 import * as querystring from "querystring";
-import { ADMIN_MAILER_ROUTES, ADMIN_USER_ROUTES, STATS_ROUTE, USER_ROUTES } from "../../routes";
+import { ADMIN_USER_ROUTES, STATS_ROUTE, USER_ROUTES } from "../../routes";
 import { SocketInteractor } from "../../interactors/SocketInteractor";
 
 const USERS_API = process.env.USERS_API || "localhost:4000";
@@ -149,42 +149,6 @@ export class UserServiceController implements Controller {
          *              description: NOT FOUND - Collection not found
          */
         router.get("/users/curators/:collection", this.proxyRequest((req: Request) => USER_ROUTES.FETCH_COLLECTION_CURATORS(req.params.collection)));
-
-        /**
-         * @swagger
-         * /users/password:
-         *  post:
-         *      description: Check if password matches
-         *      tags:
-         *          - User Service
-         *      requestBody:
-         *          description: The typed password
-         *          required: true
-         *          content:
-         *              application/json:
-         *                  schema:
-         *                      type: object
-         *                      properties:
-         *                          password:
-         *                              type: string
-         *                              description: The user typed password
-         *                              example: M0ckPa$$word
-         *                              required: true
-         *      responses:
-         *          200:
-         *              description: OK
-         *              content:
-         *                  application/json:
-         *                      schema:
-         *                          type: object
-         *                          properties:
-         *                              isMatch:
-         *                                  type: boolean
-         *                                  description: True if the username matches the provided password, false otherwise
-         *                                  example: true
-         *                                  required: true
-         */
-        router.post("/users/password", this.proxyRequest((req: Request) => "/users/password"));
 
         /**
          * @swagger
@@ -543,30 +507,6 @@ export class UserServiceController implements Controller {
 
         /**
          * @swagger
-         * /users/{username}:
-         *  delete:
-         *      description: Deletes a user by their id
-         *      tags:
-         *          - User Service
-         *      parameters:
-         *          - in: path
-         *            name: username
-         *            schema:
-         *                type: string
-         *            required: true
-         *            description: The user's id
-         *      responses:
-         *          200:
-         *              description: OK
-         *          401:
-         *              description: UNAUTHENTICATED - User not logged in
-         *          403:
-         *              description: UNAUTHORIZED - User not an admin
-         */
-        router.route("/users/:username").delete(this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}`));
-
-        /**
-         * @swagger
          * /users/tokens:
          *  get:
          *      description: Gets the current user object
@@ -907,124 +847,6 @@ export class UserServiceController implements Controller {
          *              description: UNAUTHORIZED - User not an admin
          */
         router.get("/users", this.proxyRequest((req: Request) => ADMIN_USER_ROUTES.FETCH_USERS_WITH_FILTER(req.query)));
-
-        /**
-         * @swagger
-         * /users/{id}:
-         *  delete:
-         *      description: Deletes a user by id
-         *      tags:
-         *          - User Service
-         *      parameters:
-         *          - in: path
-         *            name: id
-         *            schema:
-         *                type: string
-         *            required: false
-         *            description: The id of the user
-         *      responses:
-         *          200:
-         *              description: OK
-         *          401:
-         *              description: UNAUTHENTICATED - User not logged in
-         *          403:
-         *              description: UNAUTHORIZED - User not an admin
-         */
-        router.delete("/users/:id", this.proxyRequest((req: Request) => ADMIN_USER_ROUTES.DELETE_USER(req.params.id)));
-
-        /**
-         * @swagger
-         * /admin/mail:
-         *  post:
-         *      description: Sends a simple email
-         *      tags:
-         *          - User Service
-         *      requestBody:
-         *          required: true
-         *          content:
-         *              application/json:
-         *                  schema:
-         *                      type: object
-         *                      properties:
-         *                          subject:
-         *                              type: string
-         *                              required: true
-         *                              description: The email subject
-         *                              example: Hello World
-         *                          message:
-         *                              type: string
-         *                              required: true
-         *                              description: The email message
-         *                              example: This is a message body
-         *                          email:
-         *                              type: string
-         *                              required: true
-         *                              description: The email to send to
-         *                              example: jdoe1@gmail.com
-         *      responses:
-         *          200:
-         *              description: OK
-         */
-        router.post("/admin/mail", this.proxyRequest((req: Request) => ADMIN_MAILER_ROUTES.SEND_BASIC_EMAIL));
-
-        /**
-         * @swagger
-         * /admin/mail/templates:
-         *  get:
-         *      description: Gets the different types of templates
-         *      tags:
-         *          - User Service
-         *      responses:
-         *          200:
-         *              description: OK
-         *              content:
-         *                  application/json:
-         *                      schema:
-         *                          type: array
-         *                          items:
-         *                              $ref: '#/components/schemas/MailTemplate'
-         *          401:
-         *              description: UNAUTHENTICATED - User not logged in
-         *          403:
-         *              description: UNAUTHORIZED - User not an admin
-         *  post:
-         *      description: Sends a templated email to a user
-         *      tags:
-         *          - User Service
-         *      requestBody:
-         *          required: true
-         *          content:
-         *              application/json:
-         *                  schema:
-         *                      type: object
-         *                      properties:
-         *                          subject:
-         *                              type: string
-         *                              required: true
-         *                              description: The email subject
-         *                              example: Hello World
-         *                          template:
-         *                              type: object
-         *                              required: true
-         *                              $ref: '#/components/schemas/MailTemplate'
-         *                          email:
-         *                              type: string
-         *                              required: true
-         *                              description: The email to send to
-         *                              example: jdoe1@gmail.com
-         *      responses:
-         *          200:
-         *              description: OK
-         *          400:
-         *              description: BAD CONTENT - Invalid template name
-         *          401:
-         *              description: UNAUTHENTICATED - User not logged in
-         *          403:
-         *              description: UNAUTHORIZED - User not an admin
-         */
-        router.route("/admin/mail/templates")
-            .get(this.proxyRequest((req: Request) => ADMIN_MAILER_ROUTES.GET_AVAILABLE_TEMPLATES))
-            .post(this.proxyRequest((req: Request) => ADMIN_MAILER_ROUTES.SEND_TEMPLATE_EMAIL));
 
         /**
          * @swagger
