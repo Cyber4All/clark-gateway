@@ -57,7 +57,8 @@ export class ExpressDriver {
     this.app.use(function(
       error: Error,
       req: express.Request,
-      res: express.Response
+      res: express.Response,
+      next: express.NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
     ) {
       if (error.name === "UnauthorizedError") {
         res.status(401).send("Invalid Access Token");

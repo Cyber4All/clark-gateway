@@ -12,7 +12,8 @@
     "lint": "eslint . --ext .ts",
     "pack": "npm run build && cp ./package.json ./dist && cd ./dist && zip -r ../dist.zip  ./* & cd ..",
     "zip": "cp ./package.json ./dist && cd ./dist && zip -r ../dist.zip  ./* & cd ..",
-    "deploy": "eb deploy CLARK-Gateway-Production --label CLARK-Gateway-v$(node -p \"require('./package.json').version\")"
+    "deploy": "eb deploy CLARK-Gateway-Production --label CLARK-Gateway-v$(node -p \"require('./package.json').version\")",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
