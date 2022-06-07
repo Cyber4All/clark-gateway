@@ -1,102 +1,45 @@
-defaults: &defaults
-  working_directory: ~/clark-gateway
-  docker:
-    - image: cimg/node:16.13.2
-orbs:
-  node: circleci/node@3.0.0
-  docker: circleci/docker@1.4.0
-  aws-cli: circleci/aws-cli@2.0.6
-commands:
-  setup-aws-cli: aws-cli/setup
-  install-docker: docker/install-docker
 version: 2.1
-jobs:
-  build:
-    <<: *defaults
-    steps:
-      - checkout
-      - install-docker
-      - setup_remote_docker
-      - run:
-          name: Install dependencies
-          command: |
-            npm install
-      - run:
-          name: Build Image
-          command: | 
-            docker build -t clark-gateway:$CIRCLE_SHA1 -f Dockerfile.prod .
-      - run: 
-          name: Login to docker
-          command: docker login -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
-      - run: 
-          name: Publish Image
-          command: | 
-            docker build -t "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" -f Dockerfile.prod .
-            docker push "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}"
-  deploy-production:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/clark-gateway
-      - checkout
-      - install-docker
-      - setup_remote_docker
-      - run:
-          name: Install pip
-          command: |
-            sudo apt update
-            sudo apt install -y python3-pip python-dev
-      - setup-aws-cli:
-          aws-access-key-id: MACHINE_AWS_EB_AccessKey
-          aws-region: AWS_REGION_N_VA
-          aws-secret-access-key: MACHINE_AWS_EB_SecretKey
-      - run: 
-          name: Login to docker
-          command: docker login -u ${DOCKER_USERNAME} -p "${DOCKER_PASSWORD}"
-      - run: 
-          name: Pull image
-          command: docker pull "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}"
-      - run: 
-          name: Publish image
-          command: |
-            export SEMVER=$(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-            docker tag "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" "${DOCKER_USER_ORG}/clark-gateway:${SEMVER}"
-            docker tag "${DOCKER_USER_ORG}/clark-gateway:${CIRCLE_SHA1}" "${DOCKER_USER_ORG}/clark-gateway:latest"
-            docker push "${DOCKER_USER_ORG}/clark-gateway:${SEMVER}"
-            docker push "${DOCKER_USER_ORG}/clark-gateway:latest"
-      - run: 
-          name: Install and init eb cli
-          command: |
-            sudo pip3 install awsebcli
-            eb init --region us-east-1 CLARK-Gateway -p docker
-      - run:
-          name: Deploy to Elastic Beanstalk
-          command: |
-            eb deploy clark-gateway-production --verbose --label clark-gateway-v$(node -p "require('./package.json').version")
+
+orbs:
+  cyber4all: cyber4all/orb@1
+  docker: circleci/docker@2.0.3
+
 workflows:
-  version: 2.1
-  build:
+  integration-testing:
     jobs:
-      - build:
-          context:
-            - DockerHub
+      - docker/hadolint:
+          dockerfiles: "Dockerfile:Dockerfile.dev"
+          executor-class: medium
+
+      - cyber4all/publish-docker:
+          image: clark-gateway
+          tag: $(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+          deploy: false # explicitly shows in develeopment (won't login i.e doesn't need context)
           filters:
             branches:
-              ignore: /main/
-  deploy:
+              ignore: releases
+
+  deploy-production:
     jobs:
-      - build:
+      - cyber4all/publish-docker:
           context:
             - DockerHub
+          image: clark-gateway
+          tag: $(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+          deploy: true
           filters:
             branches:
-              only: /releases/
-      - deploy-production:
+              only: releases
+
+      - cyber4all/deploy-eb:
           requires:
-            - build
+            - cyber4all/publish-docker
           context:
-            - DockerHub
-            - AWS
+            [AWS, Slack]
+          application-name: CLARK-Gateway
+          environment-name: clark-gateway-production
+          version: $(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+          isDocker: true # deploy to eb as a docker image
           filters:
             branches:
-              only: /releases/
+              only: releases

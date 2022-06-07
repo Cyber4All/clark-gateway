@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars --
+    This disable is added to ignore the 'req' in this.proxyRequest */
 import { Router } from "express";
 import proxy = require("express-http-proxy");
 import { Request } from "express";
 import { Controller } from "../../interfaces/Controller";
 
-const UTILITY_API = process.env.UTILITY_URI || 'localhost:9000';
+const UTILITY_API = process.env.UTILITY_URI || "localhost:9000";
 
 export class UtilityServiceController implements Controller {
     buildRouter(): Router {
@@ -25,8 +27,8 @@ export class UtilityServiceController implements Controller {
          *                              $ref: '#/components/schemas/Status'
          */
         router.get(
-            '/status',
-            this.proxyRequest((req: Request) => '/status')
+            "/status",
+            this.proxyRequest((req: Request) => "/status")
         );
 
         /**
@@ -43,8 +45,8 @@ export class UtilityServiceController implements Controller {
          *                  
          */
         router.get(
-            `/maintenance`,
-            this.proxyRequest((req: Request) => '/maintenance')
+            "/maintenance",
+            this.proxyRequest((req: Request) => "/maintenance")
         );
 
          /**
@@ -72,7 +74,7 @@ export class UtilityServiceController implements Controller {
          *              description: INTERNAL - Could not recover the client version
          */
         router.get(
-            '/clientversion/:clientVersion',
+            "/clientversion/:clientVersion",
             this.proxyRequest((req: Request) => `/clientversion/${encodeURIComponent(req.params.clientVersion)}`)
         );
         
@@ -105,13 +107,13 @@ export class UtilityServiceController implements Controller {
          *              description: INTERNAL - Unable to get system outages
          */
         router.get(
-            '/outages',
+            "/outages",
             this.proxyRequest((req: Request) => `/outages?pastIssues=${encodeURIComponent(req.query.pastIssues as string)}`)
         );
         return router;
     }
 
-    private proxyRequest(callback: Function) {
+    private proxyRequest(callback: any) {
         return proxy(UTILITY_API, {
             proxyReqPathResolver: req => {
                 return callback(req);

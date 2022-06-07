@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars --
+    This disable is added to ignore the 'req' in this.proxyRequest */
 import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../../interfaces/Controller";
 
-const STANDARD_GUIDELINES_API = process.env.STANDARD_GUIDELINES_API || 'localhost:8888';
+const STANDARD_GUIDELINES_API = process.env.STANDARD_GUIDELINES_API || "localhost:8888";
 
 export class GuidelineController implements Controller {
     buildRouter(): Router {
@@ -32,7 +34,7 @@ export class GuidelineController implements Controller {
          *      400:
          *        description: BAD REQUEST - The provided id is not a valid mongo id, Missing property ${property} in Framework
          */
-        router.get('/frameworks/:id/guidelines', this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}/guidelines`));
+        router.get("/frameworks/:id/guidelines", this.proxyRequest((req: Request) => `/frameworks/${encodeURIComponent(req.params.id)}/guidelines`));
         
         /**
          * @swagger
@@ -60,7 +62,7 @@ export class GuidelineController implements Controller {
          *      404:
          *        description: NOT FOUND - Guideline or standard with id ${id} was not found
          */
-        router.get('/guidelines/:id', this.proxyRequest((req: Request) => `/guidelines/${encodeURIComponent(req.params.id)}`));
+        router.get("/guidelines/:id", this.proxyRequest((req: Request) => `/guidelines/${encodeURIComponent(req.params.id)}`));
 
         /**
          * @swagger
@@ -112,7 +114,7 @@ export class GuidelineController implements Controller {
          *      409:
          *        description: CONFLICT - Search item already exists for guideline id ${id}
          */
-        router.post('/guidelines', this.proxyRequest((req: Request) => `/guidelines`));
+        router.post("/guidelines", this.proxyRequest((req: Request) => "/guidelines"));
 
         /**
          * @swagger
@@ -171,7 +173,7 @@ export class GuidelineController implements Controller {
          *      404:
          *        description: NOT FOUND - Guideline or standard with id ${id} was not found, Framework with id ${id} was not found, Search item with guideline id ${id} was not found
          */
-        router.patch('/guidelines/:id', this.proxyRequest((req: Request) => `/guidelines/${encodeURIComponent(req.params.id)}`));
+        router.patch("/guidelines/:id", this.proxyRequest((req: Request) => `/guidelines/${encodeURIComponent(req.params.id)}`));
 
         /**
          * @swagger
@@ -199,12 +201,12 @@ export class GuidelineController implements Controller {
          *      404:
          *        description: NOT FOUND - Guideline or standard with id ${id} was not found, Search item with guideline id ${id} was not found
          */
-        router.delete('/guidelines/:id', this.proxyRequest((req: Request) => `/guidelines/${encodeURIComponent(req.params.id)}`));
+        router.delete("/guidelines/:id", this.proxyRequest((req: Request) => `/guidelines/${encodeURIComponent(req.params.id)}`));
 
         return router;
     }
 
-    private proxyRequest(callback: Function) {
+    private proxyRequest(callback: any) {
         return proxy(STANDARD_GUIDELINES_API, {
             proxyReqPathResolver: req => {
                 return callback(req);

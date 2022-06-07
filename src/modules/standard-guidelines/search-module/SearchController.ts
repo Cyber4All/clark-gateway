@@ -1,9 +1,9 @@
 import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../../interfaces/Controller";
-import * as querystring from 'querystring';
+import * as querystring from "querystring";
 
-const STANDARD_GUIDELINES_API = process.env.STANDARD_GUIDELINES_API || 'localhost:8888';
+const STANDARD_GUIDELINES_API = process.env.STANDARD_GUIDELINES_API || "localhost:8888";
 
 export class SearchController implements Controller {
     buildRouter(): Router {
@@ -67,7 +67,7 @@ export class SearchController implements Controller {
          *            schema:
          *              $ref: '#/components/schemas/FrameworkSearchResults'
          */
-        router.get('/frameworks', this.proxyRequest((req: Request) => `/frameworks?${req.query ? querystring.stringify(req.query) : ''}`));
+        router.get("/frameworks", this.proxyRequest((req: Request) => `/frameworks?${req.query ? querystring.stringify(req.query) : ""}`));
 
         /**
          * @swagger
@@ -127,12 +127,12 @@ export class SearchController implements Controller {
          *            schema:
          *              $ref: '#/components/schemas/SearchResults'
          */
-        router.get('/guidelines', this.proxyRequest((req: Request) => `/guidelines?${req.query ? querystring.stringify(req.query) : ''}`));
+        router.get("/guidelines", this.proxyRequest((req: Request) => `/guidelines?${req.query ? querystring.stringify(req.query) : ""}`));
 
         return router;
     }
 
-    private proxyRequest(callback: Function) {
+    private proxyRequest(callback: any) {
         return proxy(STANDARD_GUIDELINES_API, {
             proxyReqPathResolver: req => {
                 return callback(req);
