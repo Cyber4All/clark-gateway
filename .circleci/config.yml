@@ -37,7 +37,7 @@ workflows:
           context:
             - DockerHub
           image: "$CIRCLE_PROJECT_REPONAME"
-          tag: lastest
+          tag: latest
           check-version: false
           deploy: true
           filters:
