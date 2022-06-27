@@ -22,10 +22,23 @@ workflows:
   deploy-production:
     jobs:
       - cyber4all/publish-docker:
+          name: cyber4all/publish-docker:semver
           context:
             - DockerHub
-          image: clark-gateway
+          image: "$CIRCLE_PROJECT_REPONAME"
           tag: $(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+          deploy: true
+          filters:
+            branches:
+              only: releases
+
+      - cyber4all/publish-docker:
+          name: cyber4all/publish-docker:latest
+          context:
+            - DockerHub
+          image: "$CIRCLE_PROJECT_REPONAME"
+          tag: latest
+          check-version: false
           deploy: true
           filters:
             branches:
@@ -33,7 +46,7 @@ workflows:
 
       - cyber4all/deploy-eb:
           requires:
-            - cyber4all/publish-docker
+            - cyber4all/publish-docker:semver
           context:
             [AWS, Slack]
           application-name: CLARK-Gateway
