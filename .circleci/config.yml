@@ -25,7 +25,7 @@ workflows:
           name: cyber4all/publish-docker:semver
           context:
             - DockerHub
-          image: "$CIRCLE_PROJECT_REPONAME"
+          image: "clark-gateway"
           tag: $(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
           deploy: true
           filters:
@@ -36,7 +36,7 @@ workflows:
           name: cyber4all/publish-docker:latest
           context:
             - DockerHub
-          image: "$CIRCLE_PROJECT_REPONAME"
+          image: "clark-gateway"
           tag: latest
           check-version: false
           deploy: true
