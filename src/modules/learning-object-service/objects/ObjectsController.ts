@@ -244,9 +244,9 @@ export class ObjectsController implements Controller {
      *              length:
      *                type: string
      *                description: The length of the learning object
-     *              status:
+     *              collection:
      *                type: string
-     *                description: The desired status of the learning object
+     *                description: The collection the learning object needs to be added to
      *    responses:
      *      200:
      *        description: OK
