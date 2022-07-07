@@ -247,6 +247,9 @@ export class ObjectsController implements Controller {
      *              collection:
      *                type: string
      *                description: The collection the learning object needs to be added to
+     *              contributors:
+     *                type: string
+     *                description: The ids of the contributors of the learning object
      *    responses:
      *      200:
      *        description: OK
