@@ -472,6 +472,32 @@ export class UserServiceController implements Controller {
 
         /**
          * @swagger
+         * /users/{username}/collections:
+         *  get:
+         *      description: Gets an array of user learning object metadata for collection, version, cuid, and status of all affiliated learning objects
+         *      tags:
+         *          - User Service
+         *      parameters:
+         *          - in: path
+         *            name: username
+         *            schema:
+         *                type: string
+         *            required: true
+         *            description: The user's username of profile being viewed
+         *      responses:
+         *          200:
+         *              description: OK
+         *              content:
+         *                  application/json:
+         *                      schema:
+         *                          type: array
+         *                          items:
+         *                              $ref: '#/components/schemas/User'
+         */
+        router.route("/users/:username/collections").get(this.proxyRequest((req: Request) => `/users/${req.params.username}/collections`));
+
+        /**
+         * @swagger
          * /users/tokens/refresh:
          *  get:
          *      description: Refreshes a user's token
