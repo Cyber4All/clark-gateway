@@ -110,6 +110,36 @@ export class UtilityServiceController implements Controller {
             "/outages",
             this.proxyRequest((req: Request) => `/outages?pastIssues=${encodeURIComponent(req.query.pastIssues as string)}`)
         );
+
+        /**
+         * @swagger
+         * /blogs:
+         *  get:
+         *      description: Gets the blogs to display to the user
+         *      tags:
+         *          - Utility Service
+         *      parameters:
+         *          - in: query
+         *            name: recent
+         *            schema:
+         *              type: boolean
+         *            required: false
+         *            description: Whether the most recent blog should be returned or all blogs should be returned
+         *      responses:
+         *          200:
+         *              description: OK - Returns array of blog(s)
+         *              content:
+         *                  application/json:
+         *                      type: array
+         *                      items:
+         *                          $ref: '#/components/schemas/Blog'
+         *          500:
+         *              description: INTERNAL - Unable to get blogs
+         */
+        router.get(
+            "/blogs",
+            this.proxyRequest((req: Request) => `/blogs?recent=${encodeURIComponent(req.query.recent as string)}`)
+        )
         return router;
     }
 
