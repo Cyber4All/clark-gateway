@@ -328,6 +328,7 @@ export class FileManagerController implements Controller {
      */
     router.route("/users/:username/learning-objects/:id/materials/files").post(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.ADD_MATERIALS(req.params.username, req.params.id)));
 
+    router.route("/users/:username/learning-objects/:id/files/bundle").patch(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.TOGGLE_FILES_TO_BUNDLE(req.params.username, req.params.id)))
     return router;
   }
 
