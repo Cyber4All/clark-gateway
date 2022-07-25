@@ -352,7 +352,7 @@ export class RelevancyController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning objects or users were not found
      */
-    router.get("/users/:username/evaluations", this.proxyRequest((req: Request) => "/users/:username/evaluations"))
+    router.get("/users/:username/evaluations", this.proxyRequest((req: Request) => "/users/:username/evaluations"));
 
     return router;
   }
