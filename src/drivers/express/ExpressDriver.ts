@@ -6,7 +6,6 @@ import * as cors from "cors";
 import * as cookieParser from "cookie-parser";
 import { Server } from "socket.io";
 import { SocketInteractor } from "../../interactors/SocketInteractor";
-import { config, errorHandler, requestHandler } from "raven";
 import * as dotenv from "dotenv";
 import { SwaggerDriver } from "../swagger/SwaggerDriver";
 import { FeatureServiceController } from "../../modules/feature-service/FeatureServiceController";
@@ -32,15 +31,6 @@ export class ExpressDriver {
   static connectedClients = new Map<string, string>();
 
   static start() {
-    if (process.env.NODE_ENV === "production") {
-      // Configure error handler - MUST BE THE FIRST ERROR HANDLER IN CALL ORDER
-      config(process.env.SENTRY_URI).install();
-      this.app.use(errorHandler());
-
-      // Configure Sentry Route Handler - MUST BE FIRST ROUTE HANDLER
-      this.app.use(requestHandler());
-    }
-
     // Configure app to log requests
     this.app.use(logger("dev"));
 
@@ -57,7 +47,8 @@ export class ExpressDriver {
     this.app.use(function(
       error: Error,
       req: express.Request,
-      res: express.Response
+      res: express.Response,
+      next: express.NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
     ) {
       if (error.name === "UnauthorizedError") {
         res.status(401).send("Invalid Access Token");

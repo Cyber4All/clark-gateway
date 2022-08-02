@@ -263,9 +263,6 @@ export const ADMIN_USER_ROUTES = {
   FETCH_USERS_WITH_FILTER(query: any) {
     return `/admin/users?${querystring.stringify(query)}`;
   },
-  DELETE_USER(id: string) {
-    return `/admin/users/${id}`;
-  },
   FETCH_COLLECTION_MEMBERS(collectionName: string, query: string) {
     return `/collections/${encodeURIComponent(
       collectionName,
