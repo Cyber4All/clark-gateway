@@ -139,7 +139,7 @@ export class UtilityServiceController implements Controller {
         router.get(
             "/blogs",
             this.proxyRequest((req: Request) => `/blogs?recent=${encodeURIComponent(req.query.recent as string)}`)
-        )
+        );
         return router;
     }
 

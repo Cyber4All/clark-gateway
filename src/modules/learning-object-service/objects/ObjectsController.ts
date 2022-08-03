@@ -216,6 +216,52 @@ export class ObjectsController implements Controller {
      */
     router.post("/learning-objects/:username/:learningObjectName/children", this.proxyRequest((req: Request) => `/learning-objects/${req.params.username}/${req.params.learningObjectName}/children`));
 
+
+        /**
+     * @swagger
+     * /learning-objects/{username}/hierarchy-object:
+     *  post:
+     *    description: Creates a learning object for a hierarchy
+     *    tags:
+     *      - Learning Object Service
+     *    parameters:
+     *      - in: path
+     *        name: username
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: The object author's username
+     *
+     *    requestBody:
+     *      content:
+     *        application/json:
+     *          schema:
+     *            type: object
+     *            properties:
+     *              name:
+     *                type: string
+     *                description: The name of the learning object
+     *              length:
+     *                type: string
+     *                description: The length of the learning object
+     *              collection:
+     *                type: string
+     *                description: The collection the learning object needs to be added to
+     *              contributors:
+     *                type: string
+     *                description: The ids of the contributors of the learning object
+     *    responses:
+     *      200:
+     *        description: OK
+     *      400:
+     *        description: BAD_REQUEST - Object name is not more than 2 characters, length is not valid, or status is not valid
+     *      401:
+     *        description: UNAUTHENTICATED - User not logged in
+     *      403:
+     *        description: UNAUTHORIZED - User not object author, admin, or editor
+     */
+    router.post("/users/:username/hierarchy-object", this.proxyRequest((req: Request) => `/users/${req.params.username}/hierarchy-object`));
+
     /**
      * @swagger
      * /learning-objects/{username}/{learningObjectName}/children:

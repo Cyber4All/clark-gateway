@@ -310,4 +310,4 @@ export const ADMIN_LAMBDA_ROUTES = {
       userId,
     )}/learning-objects/${encodeURIComponent(learningObjectId)}/change-author`;
   },
-}
+};
