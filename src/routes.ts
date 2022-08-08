@@ -171,6 +171,13 @@ export const LEARNING_OBJECT_ROUTES = {
       learningObjectID,
     )}/children/summary`;
   },
+  TOGGLE_FILES_TO_BUNDLE(username: string, learningObjectID: string) {
+    return `/users/${encodeURIComponent(
+      username,
+    )}/learning-objects/${encodeURIComponent(
+      learningObjectID,
+    )}/files/bundle`;
+  }
 };
 
 export const FILE_UPLOAD_ROUTES = {
