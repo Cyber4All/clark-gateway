@@ -328,6 +328,49 @@ export class FileManagerController implements Controller {
      */
     router.route("/users/:username/learning-objects/:id/materials/files").post(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.ADD_MATERIALS(req.params.username, req.params.id)));
 
+    /**
+     * @swagger
+     * /users/{username}/learning-objects/{id}/files/bundle:
+     *  patch:
+     *    description: Toggles a file to be included/excluded in a bundle
+     *    tags:
+     *      - Learning Object Service
+     *    parameters:
+     *      - in: path
+     *        name: username
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: the username of the author
+     *      - in: path
+     *        name: id
+     *        schema:
+     *          type: string
+     *        required: true
+     *        description: the learning object ID of the files to be bundled
+     *    requestBody:
+     *      content:
+     *        application/json:
+     *          schema:
+     *            type: object
+     *            properties:
+     *              selected:
+     *                type: array
+     *                items:
+     *                  $ref: '#/components/schemas/File/properties/id'
+     *    responses:
+     *      200:
+     *        description: OK, files selected/deselected successfully from the bundle
+     *      400:
+     *        description: BAD REQUEST - A File ID appears in both selected and deselected arrays or a file ID is an invalid mongo ID
+     *      401:
+     *        description: UNAUTHENTICATED - User is not logged in
+     *      403:
+     *        description: UNAUTHORIZED - User is not an admin or an editor
+     *      404:
+     *        description: NOT FOUND - File(s) not found in database
+     */
+    router.route("/users/:username/learning-objects/:id/files/bundle").patch(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.TOGGLE_FILES_TO_BUNDLE(req.params.username, req.params.id)));
     return router;
   }
 
