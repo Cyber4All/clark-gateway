@@ -370,7 +370,7 @@ export class FileManagerController implements Controller {
      *      404:
      *        description: NOT FOUND - File(s) not found in database
      */
-    router.route("/users/:username/learning-objects/:id/files/bundle").patch(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.TOGGLE_FILES_TO_BUNDLE(req.params.username, req.params.id)))
+    router.route("/users/:username/learning-objects/:id/files/bundle").patch(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.TOGGLE_FILES_TO_BUNDLE(req.params.username, req.params.id)));
     return router;
   }
 
