@@ -164,7 +164,7 @@ export class FileManagerController implements Controller {
     
     /**
      * @swagger
-     * /users/{username}/learning-objects/{id}/pdf:
+     * /learning-objects/{id}/pdf:
      *  patch:
      *    description: Update a object's README pdf
      *    tags:
@@ -192,7 +192,7 @@ export class FileManagerController implements Controller {
      *      404:
      *        description: NOT FOUND - Object not found
      */
-    router.patch("/users/:username/learning-objects/:id/pdf", this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.UPDATE_PDF(req.params.id)));
+    router.patch("/learning-objects/:id/pdf", this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.UPDATE_PDF(req.params.id)));
     
     /**
      * @swagger
