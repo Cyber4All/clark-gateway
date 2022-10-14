@@ -44,6 +44,15 @@ workflows:
             branches:
               only: releases
 
+      - cyber4all/sbom:
+          context: [Shortcut]
+          language: node
+          filters:
+            branches:
+              only:
+                - releases
+                - chore/sc-14941/add-sbom-on-releases
+
       - cyber4all/deploy-eb:
           requires:
             - cyber4all/publish-docker:semver
