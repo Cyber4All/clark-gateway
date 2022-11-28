@@ -177,6 +177,9 @@ export const LEARNING_OBJECT_ROUTES = {
     )}/learning-objects/${encodeURIComponent(
       learningObjectID,
     )}/files/bundle`;
+  },
+  CHANGE_HIERARCHY_STATUS(learningObjectID: string) {
+    return `/learning-objects/${encodeURIComponent(learningObjectID)}/status`;
   }
 };
 
@@ -236,6 +239,7 @@ export const ADMIN_LEARNING_OBJECT_ROUTES = {
       username,
     )}/learning-objects/${encodeURIComponent(learningObjectName)}/publish`;
   },
+
   UNPUBLISH_LEARNING_OBJECT(username: string, learningObjectName: string) {
     return `/admin/users/${encodeURIComponent(
       username,
