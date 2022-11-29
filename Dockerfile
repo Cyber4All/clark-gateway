@@ -1,5 +1,5 @@
 # Anything beyond local dev should pin this to a specific version at https://hub.docker.com/_/node/
-FROM node:10-alpine as builder
+FROM node:lts-alpine as builder
 
 RUN mkdir -p /opt/app
 
@@ -8,7 +8,7 @@ RUN mkdir -p /opt/app
 
 # install dependencies in a different location for easier app bind mounting for local development
 WORKDIR /opt
-COPY package.json package-lock.json* ./
+COPY package.json package-lock.json* tsconfig.json ./
 RUN npm install && npm cache clean --force
 ENV PATH /opt/node_modules/.bin:$PATH
 
@@ -19,7 +19,7 @@ COPY . /opt/app
 # Build source and clean up
 RUN npm run build
 
-FROM node:10-alpine
+FROM node:lts-alpine
 # Defaults the node environment to production, however compose will override this to use development
 # when working locally
 ARG NODE_ENV=production
@@ -34,7 +34,7 @@ COPY --from=builder /opt/ .
 
 # Uninstall dev dependencies for the production image
 WORKDIR /opt
-RUN npm uninstall --only=dev
+RUN npm uninstall dev-dependencies
 
 WORKDIR /opt/app/dist
 # Run the container! Using the node command instead of npm allows for better passing of signals
