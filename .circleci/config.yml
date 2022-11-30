@@ -11,6 +11,8 @@ workflows:
           dockerfiles: "Dockerfile:Dockerfile.dev"
           executor-class: medium
 
+      - cyber4all/build-app
+
   deploy-production:
     jobs:
       - cyber4all/sbom:
