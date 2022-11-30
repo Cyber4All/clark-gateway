@@ -11,8 +11,7 @@ workflows:
           dockerfiles: "Dockerfile:Dockerfile.dev"
           executor-class: medium
 
-      - cyber4all/build-app:
-          docker-image: cimg/node@sha256:9e7dff70aee20446a146e374367c3fddc58df1e39cca318dbd4993e625892880
+      - cyber4all/build-app
 
   deploy-production:
     jobs:
@@ -25,7 +24,6 @@ workflows:
                 - releases
 
       - cyber4all/build-app:
-          docker-image: cimg/node@sha256:9e7dff70aee20446a146e374367c3fddc58df1e39cca318dbd4993e625892880
           filters:
             branches:
               only: releases
