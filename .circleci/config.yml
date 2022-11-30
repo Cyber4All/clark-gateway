@@ -28,6 +28,7 @@ workflows:
             branches:
               only: releases
 
+
       - cyber4all/deploy-eb:
           context:
             [AWS, Slack]
