@@ -26,6 +26,9 @@ workflows:
 
       - cyber4all/build-app:
           docker-image: cimg/node@sha256:9e7dff70aee20446a146e374367c3fddc58df1e39cca318dbd4993e625892880
+          filters:
+            branches:
+              only: releases
 
       - cyber4all/deploy-eb:
           context:
