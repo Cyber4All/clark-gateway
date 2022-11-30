@@ -26,8 +26,6 @@ workflows:
       - cyber4all/build-app
 
       - cyber4all/deploy-eb:
-          requires:
-            - cyber4all/publish-docker:semver
           context:
             [AWS, Slack]
           application-name: CLARK-Gateway
