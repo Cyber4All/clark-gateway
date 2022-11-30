@@ -23,7 +23,10 @@ workflows:
               only:
                 - releases
 
-      - cyber4all/build-app
+      - cyber4all/build-app:
+          filters:
+            branches:
+              only: releases
 
       - cyber4all/deploy-eb:
           context:
