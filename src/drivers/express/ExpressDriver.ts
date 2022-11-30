@@ -17,7 +17,7 @@ import { RatingServiceController } from "../../modules/rating-service/RatingServ
 import { UserServiceController } from "../../modules/user-service/UserServiceController";
 import { UtilityServiceController } from "../../modules/utility-service/UtilityServiceController";
 import { StandardGuidelineServiceController } from "../../modules/standard-guidelines/StandardGuidelinesController";
-import { HierarchyServiceController } from "../../modules/hierarchy-service/hierarchyServiceController";
+import { HierarchyServiceController } from "../../modules/hierarchy-service/HierarchyServiceController";
 const url = require("url"); // eslint-disable-line @typescript-eslint/no-var-requires
 
 dotenv.config();
