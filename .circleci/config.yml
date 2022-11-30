@@ -11,10 +11,39 @@ workflows:
           dockerfiles: "Dockerfile:Dockerfile.dev"
           executor-class: medium
 
-      - cyber4all/build-app
+      - cyber4all/publish-docker:
+          image: clark-gateway
+          tag: $(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+          deploy: false # explicitly shows in develeopment (won't login i.e doesn't need context)
+          filters:
+            branches:
+              ignore: releases
 
   deploy-production:
     jobs:
+      - cyber4all/publish-docker:
+          name: cyber4all/publish-docker:semver
+          context:
+            - DockerHub
+          image: "clark-gateway"
+          tag: $(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
+          deploy: true
+          filters:
+            branches:
+              only: releases
+
+      - cyber4all/publish-docker:
+          name: cyber4all/publish-docker:latest
+          context:
+            - DockerHub
+          image: "clark-gateway"
+          tag: latest
+          check-version: false
+          deploy: true
+          filters:
+            branches:
+              only: releases
+
       - cyber4all/sbom:
           context: [Shortcut]
           language: node
@@ -23,18 +52,15 @@ workflows:
               only:
                 - releases
 
-      - cyber4all/build-app:
-          filters:
-            branches:
-              only: releases
-
       - cyber4all/deploy-eb:
+          requires:
+            - cyber4all/publish-docker:semver
           context:
             [AWS, Slack]
           application-name: CLARK-Gateway
           environment-name: clark-gateway-production
           version: $(cat ./package.json | grep version | head -1 | awk -F= "{ print $2 }" | sed 's/[version:,\",]//g' | tr -d '[[:space:]]')
-          isDocker: false # deploy to eb as a docker image
+          isDocker: true # deploy to eb as a docker image
           filters:
             branches:
               only: releases
