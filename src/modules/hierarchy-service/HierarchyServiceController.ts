@@ -3,7 +3,7 @@ import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { LEARNING_OBJECT_ROUTES } from "../../routes";
 
-const HIERARCHY_API = process.env.HIERARCHY_API || "10.128.143.144:6000";
+const HIERARCHY_API = process.env.HIERARCHY_API || "localhost:6000";
 
 export class HierarchyServiceController implements Controller {
     buildRouter(): Router {
