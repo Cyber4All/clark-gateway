@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  cyber4all: cyber4all/orb@1
+  cyber4all: cyber4all/orb@1.3.0
   docker: circleci/docker@2.0.3
 
 workflows:
@@ -43,6 +43,14 @@ workflows:
           filters:
             branches:
               only: releases
+
+      - cyber4all/sbom:
+          context: [Shortcut]
+          language: node
+          filters:
+            branches:
+              only:
+                - releases
 
       - cyber4all/deploy-eb:
           requires:
