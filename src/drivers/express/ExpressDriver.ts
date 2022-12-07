@@ -16,6 +16,7 @@ import { RatingServiceController } from "../../modules/rating-service/RatingServ
 import { UserServiceController } from "../../modules/user-service/UserServiceController";
 import { UtilityServiceController } from "../../modules/utility-service/UtilityServiceController";
 import { StandardGuidelineServiceController } from "../../modules/standard-guidelines/StandardGuidelinesController";
+import { HierarchyServiceController } from "../../modules/hierarchy-service/HierarchyServiceController";
 const url = require("url"); // eslint-disable-line @typescript-eslint/no-var-requires
 
 dotenv.config();
@@ -74,6 +75,7 @@ export class ExpressDriver {
     this.app.use(new StandardGuidelineServiceController().buildRouter());
     this.app.use(new UserServiceController().buildRouter());
     this.app.use(new UtilityServiceController().buildRouter());
+    this.app.use(new HierarchyServiceController().buildRouter());
 
     /**
      * Get port from environment and store in Express.
