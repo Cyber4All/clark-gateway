@@ -29,6 +29,7 @@ FROM base as dev
 ENV NODE_ENV=development
 
 COPY nodemon.json ./
+COPY tsconfig.json ./
 
 RUN npm i -g nodemon \
     && npm i --ignore-scripts --only=development
