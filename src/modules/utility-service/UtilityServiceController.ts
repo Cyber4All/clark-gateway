@@ -29,7 +29,7 @@ export class UtilityServiceController implements Controller {
          */
         router.get(
             "/downtime",
-            this.proxyRequestToLambda((req: Request) => "/downtime")
+            this.proxyRequestToLambda((req: Request) => `/downtime?service=${encodeURIComponent(req.query.service as string)}`)
         );
 
          /**

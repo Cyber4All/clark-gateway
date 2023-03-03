@@ -54,7 +54,8 @@ export const enforceTokenAccess = jwt({
     "/favicon.ico",
     "/google",
     "/google/redirect",
-    "/blogs"
+    "/blogs",
+    "/downtime"
   ],
 }); // register // all ota-code routes do their own verification outsides of JWT // login
 // TODO: Whitelist user routes
