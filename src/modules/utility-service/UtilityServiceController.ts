@@ -6,30 +6,47 @@ import { Request } from "express";
 import { Controller } from "../../interfaces/Controller";
 
 const UTILITY_API = process.env.UTILITY_URI || "localhost:9000";
-const DOWNTIME_LAMBDA = process.env.DOWNTIME_LAMBDA_URI;
 
 export class UtilityServiceController implements Controller {
     buildRouter(): Router {
         const router = Router();
+        
+        /**
+         * @swagger
+         * /status:
+         *  get:
+         *      description: Gets the status for the banner
+         *      tags:
+         *          - Utility Service
+         *      responses:
+         *          200:
+         *              description: OK - Returns status report
+         *              content:
+         *                  application/json:
+         *                          schema:
+         *                              $ref: '#/components/schemas/Status'
+         */
+        router.get(
+            "/status",
+            this.proxyRequest((req: Request) => "/status")
+        );
 
         /**
          * @swagger
-         * /downtime:
+         * /maintenance:
          *  get:
-         *     description: Gets the downtime status for clark
-         *     tags:
-         *        - Secured Downtime Service
-         *     responses:
-         *       200:
-         *        description: OK - Returns the downtime status as an object with message and isDown
-         *        content:
-         *          application/json:
-         *              schema:
-         *                  $ref: '#/components/schemas/Downtime'
+         *      description: Gets the maintenance status for maintenance page
+         *      tags:
+         *          - Utility Service
+         *      responses:
+         *          200:
+         *              description: OK - Returns the maintenance status as a boolean from the mongodb downtime collection
+         *                      
+         *                  
          */
         router.get(
-            "/downtime",
-            this.proxyRequestToLambda((req: Request) => `/downtime?service=${encodeURIComponent(req.query.service as string)}`)
+            "/maintenance",
+            this.proxyRequest((req: Request) => "/maintenance")
         );
 
          /**
@@ -131,14 +148,6 @@ export class UtilityServiceController implements Controller {
             proxyReqPathResolver: req => {
                 return callback(req);
             },
-        });
-    }
-
-    private proxyRequestToLambda(callback: any) {
-        return proxy(DOWNTIME_LAMBDA, {
-            proxyReqPathResolver: req => {
-                return callback(req);
-            }
         });
     }
 }

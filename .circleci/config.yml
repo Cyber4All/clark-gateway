@@ -8,9 +8,8 @@ workflows:
   integration-testing:
     jobs:
       - docker/hadolint:
-          dockerfiles: "Dockerfile"
+          dockerfiles: "Dockerfile:Dockerfile.dev"
           executor-class: medium
-          ignore-rules: DL3018
 
       - cyber4all/publish-docker:
           image: clark-gateway

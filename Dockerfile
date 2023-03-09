@@ -1,69 +1,42 @@
-# syntax=docker/dockerfile:1
+# Anything beyond local dev should pin this to a specific version at https://hub.docker.com/_/node/
+FROM node:lts-alpine as builder
 
-# ----------------------------------------------------------------
-# Base Stage
-#
-# Prepares production layer
-# ----------------------------------------------------------------
-FROM node:16-alpine3.16@sha256:15dd66f723aab8b367abc7ac6ed25594ca4653f2ce49ad1505bfbe740ad5190e as base
+RUN mkdir -p /opt/app
 
+# check every 30s to ensure this service returns HTTP 200
+# HEALTHCHECK CMD curl -fs http://localhost:$PORT/healthz || exit 1
+
+# install dependencies in a different location for easier app bind mounting for local development
+WORKDIR /opt
+COPY package.json package-lock.json* tsconfig.json ./
+RUN npm install && npm cache clean --force
+ENV PATH /opt/node_modules/.bin:$PATH
+
+# copy source code last, since it changes the most often this better utilizes Docker's caching of layers
 WORKDIR /opt/app
+COPY . /opt/app
 
-RUN apk --no-cache add dumb-init>1.2.5-r2
-
-ENV NODE_ENV=production
-
-COPY package*.json /opt/app/
-
-RUN npm cache clean --force \
-    && npm ci --ignore-scripts --omit=dev
-
-# ----------------------------------------------------------------
-# Dev Stage
-#
-# Target for docker-compose development environments
-# Requires mounting or volume of ./src to /opt/app/src
-# ----------------------------------------------------------------
-FROM base as dev
-
-ENV NODE_ENV=development
-
-COPY nodemon.json tsconfig.json ./
-
-RUN npm i -g nodemon \
-    && npm i --ignore-scripts --only=development
-
-HEALTHCHECK --start-period=10s --retries=5 --timeout=10s \
-    CMD curl --fail http://localhost:3001 || exit 1   
-
-CMD ["dumb-init", "nodemon"]
-
-# ----------------------------------------------------------------
-# Source Stage
-#
-# Builds the dist directory
-# ----------------------------------------------------------------
-FROM dev as source
-
-COPY . /opt/app/
-
+# Build source and clean up
 RUN npm run build
 
-# ----------------------------------------------------------------
-# Prod Stage
-#
-# Default stage
-# ----------------------------------------------------------------
-FROM base as prod
+FROM node:lts-alpine
+# Defaults the node environment to production, however compose will override this to use development
+# when working locally
+ARG NODE_ENV=production
+ENV NODE_ENV $NODE_ENV
+# Default to port 80 for node, and 5858 or 9229 for debug
+ARG PORT=80
+ENV PORT $PORT
+EXPOSE $PORT 5858 9229
 
-LABEL org.opencontainers.image.authors="chirstopher.wagner@secured.team"
-LABEL org.opencontainers.image.title="CLARK-Gateway"
+WORKDIR /opt
+COPY --from=builder /opt/ .
 
-COPY --from=source --chown=node:node /opt/app/dist /opt/app/dist
+# Uninstall dev dependencies for the production image
+WORKDIR /opt
+RUN npm uninstall dev-dependencies
 
-USER node
-
-ENTRYPOINT [ "dumb-init" ]
-CMD ["node", "-r", "/opt/app/dist/app.js"]
-
-EXPOSE 3001
+WORKDIR /opt/app/dist
+# Run the container! Using the node command instead of npm allows for better passing of signals
+# and graceful shutdown. Further examination would be useful here.
+CMD [ "node", "app.js" ] 
