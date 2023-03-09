@@ -9,7 +9,6 @@ import { SocketInteractor } from "../../interactors/SocketInteractor";
 import * as dotenv from "dotenv";
 import { SwaggerDriver } from "../swagger/SwaggerDriver";
 import { FeatureServiceController } from "../../modules/feature-service/FeatureServiceController";
-import { GuidelineServiceController } from "../../modules/guideline-service/GuidelineServiceController";
 import { LearningObjectServiceController } from "../../modules/learning-object-service/LearningObjectServiceController";
 import { LibraryServiceController } from "../../modules/library-service/LibraryServiceController";
 import { NotificationServiceController } from "../../modules/notification-service/NotificationServiceController";
@@ -69,7 +68,6 @@ export class ExpressDriver {
 
     // Set up the different controllers
     this.app.use(new FeatureServiceController().buildRouter());
-    this.app.use(new GuidelineServiceController().buildRouter());
     this.app.use(new LearningObjectServiceController().buildRouter());
     this.app.use(new LibraryServiceController().buildRouter());
     this.app.use(new NotificationServiceController().buildRouter());
@@ -82,7 +80,7 @@ export class ExpressDriver {
     /**
      * Get port from environment and store in Express.
      */
-    const port = process.env.PORT || "3000";
+    const port = process.env.PORT || "3001";
     this.app.set("port", port);
 
     SwaggerDriver.buildDocs(this.app);
