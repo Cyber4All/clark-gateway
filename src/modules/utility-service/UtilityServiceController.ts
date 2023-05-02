@@ -63,39 +63,6 @@ export class UtilityServiceController implements Controller {
         
         /**
          * @swagger
-         * /outages:
-         *  get:
-         *      description: Gets the maintenance status for maintenance page
-         *      tags:
-         *          - Utility Service
-         *      parameters:
-         *          - in: query
-         *            name: pastIssues
-         *            schema:
-         *                type: boolean
-         *            required: false
-         *            description: Whether past or active outages should be returned
-         *      responses:
-         *          200:
-         *              description: OK - Returns arrray of outages
-         *              content:
-         *                  application/json:
-         *                      schema:
-         *                          type: array
-         *                          items:
-         *                              $ref: '#/components/schemas/Outage'
-         *                          
-         *                      
-         *          500:
-         *              description: INTERNAL - Unable to get system outages
-         */
-        router.get(
-            "/outages",
-            this.proxyRequest((req: Request) => `/outages?pastIssues=${encodeURIComponent(req.query.pastIssues as string)}`)
-        );
-
-        /**
-         * @swagger
          * /blogs:
          *  get:
          *      description: Gets the blogs to display to the user
