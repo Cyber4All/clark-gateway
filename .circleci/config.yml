@@ -23,6 +23,6 @@ workflows:
       - cyber4all/elasticbeanstalk:
           requires: [cyber4all/publish]
           context: [AWS, Slack]
-          application: clark-gateway
-          environment: Clarkgateway-env
+          application: CLARK-Gateway
+          environment: clark-gateway-production
           role-session-name: elasticbeanstalk
