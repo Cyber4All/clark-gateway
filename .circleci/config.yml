@@ -6,6 +6,8 @@ orbs:
 workflows:
   integration-testing:
     jobs:
+      - cyber4all/publish:
+          deploy: false
 
       - cyber4all/lint
 
