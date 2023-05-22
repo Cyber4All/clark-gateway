@@ -7,6 +7,7 @@ workflows:
   integration-testing:
     jobs:
       - cyber4all/publish:
+          image: "clark-gateway"
           deploy: false
 
       - cyber4all/lint
