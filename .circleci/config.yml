@@ -5,9 +5,7 @@ orbs:
 
 workflows:
   integration-testing:
-    jobs:      
-      - cyber4all/publish:
-          deploy: false
+    jobs:
 
       - cyber4all/lint
 
@@ -25,6 +23,6 @@ workflows:
       - cyber4all/elasticbeanstalk:
           requires: [cyber4all/publish]
           context: [AWS, Slack]
-          application: clark-change-authorship-service
-          environment: Clarkchangeauthorshipservice-env
+          application: clark-gateway
+          environment: Clarkgateway-env
           role-session-name: elasticbeanstalk
