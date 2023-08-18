@@ -322,3 +322,7 @@ export const ADMIN_LAMBDA_ROUTES = {
     )}/learning-objects/${encodeURIComponent(learningObjectId)}/change-author`;
   },
 };
+
+export const REPORTS_ROUTES = {
+  GET_REPORTS: "/reports",
+};
