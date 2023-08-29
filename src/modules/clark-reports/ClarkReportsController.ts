@@ -23,7 +23,7 @@ export class ClarkReportsController implements Controller {
      *            description: INVALID - Invalid request
      */
     router
-      .route('/reports')
+      .route("/reports")
       .get(
         this.proxyLambdaRequest((req: Request) => REPORTS_ROUTES.GET_REPORTS),
       );
