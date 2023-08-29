@@ -9,8 +9,21 @@ export class ClarkReportsController implements Controller {
   buildRouter(): Router {
     const router = Router();
 
+    /**
+     * @swagger
+     * /reports:
+     * patch:
+     *    description: Get all reports
+     *    tags:
+     *      - Clark Reports
+     *    responses:
+     *        200:
+     *            description: OK
+     *        400:
+     *            description: INVALID - Invalid request
+     */
     router
-      .route("/reports")
+      .route('/reports')
       .get(
         this.proxyLambdaRequest((req: Request) => REPORTS_ROUTES.GET_REPORTS),
       );
