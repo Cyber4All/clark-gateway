@@ -20,7 +20,7 @@ export class ClarkReportsController implements Controller {
      *        200:
      *            description: OK
      *        400:
-     *            description: INVALID - Invalid request
+     *            description: INVALID - Invalid request for Missing email or name in body
      */
     router
       .route("/reports")
