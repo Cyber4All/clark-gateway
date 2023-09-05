@@ -3,7 +3,7 @@ import proxy = require("express-http-proxy");
 import { Controller } from "../../interfaces/Controller";
 import { REPORTS_ROUTES } from "../../routes";
 
-const CLARK_REPORTS_API = process.env.CLARK_REPORTS_LAMBDA_URI;
+const CLARK_REPORTS_API = process.env.CLARK_REPORTS_LAMBDA_URI || "localhost:3008";
 
 export class ClarkReportsController implements Controller {
   buildRouter(): Router {
