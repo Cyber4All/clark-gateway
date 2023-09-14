@@ -24,7 +24,7 @@ export class ClarkReportsController implements Controller {
      */
     router
       .route("/reports")
-      .get(
+      .post(
         this.proxyLambdaRequest((req: Request) => REPORTS_ROUTES.GET_REPORTS),
       );
 
