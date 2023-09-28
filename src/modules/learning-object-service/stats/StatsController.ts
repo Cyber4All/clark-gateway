@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars --
     This disable is added to ignore the 'req' in this.proxyRequest */
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../../interfaces/Controller';
-import { STATS_ROUTE } from '../../../routes';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../../interfaces/Controller";
+import { STATS_ROUTE } from "../../../routes";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class StatsController implements Controller {
   buildRouter(): Router {
@@ -28,7 +28,7 @@ export class StatsController implements Controller {
      *                          $ref: '#/components/schemas/LearningObjectStats'
      */
     router.get(
-      '/learning-objects/stats',
+      "/learning-objects/stats",
       this.proxyRequest((req: Request) => STATS_ROUTE.LEARNING_OBJECT_STATS),
     );
 

@@ -1,10 +1,10 @@
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../../interfaces/Controller';
-import { LEARNING_OBJECT_ROUTES } from '../../../routes';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../../interfaces/Controller";
+import { LEARNING_OBJECT_ROUTES } from "../../../routes";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class SubmissionsController implements Controller {
   buildRouter(): Router {
@@ -128,7 +128,7 @@ export class SubmissionsController implements Controller {
      *        description: CONFLICT - Object is not in waiting
      */
     router.all(
-      '/users/:userId/learning-objects/:learningObjectId/submissions',
+      "/users/:userId/learning-objects/:learningObjectId/submissions",
       this.proxyRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.SUBMIT_FOR_REVIEW(
           req.params.userId,

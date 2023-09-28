@@ -1,9 +1,9 @@
-import { Controller } from '../../interfaces/Controller';
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { LEARNING_OBJECT_ROUTES } from '../../routes';
+import { Controller } from "../../interfaces/Controller";
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { LEARNING_OBJECT_ROUTES } from "../../routes";
 
-const HIERARCHY_API = process.env.HIERARCHY_API || 'localhost:6000';
+const HIERARCHY_API = process.env.HIERARCHY_API || "localhost:6000";
 
 export class HierarchyServiceController implements Controller {
   buildRouter(): Router {
@@ -54,7 +54,7 @@ export class HierarchyServiceController implements Controller {
      *            description: NOT FOUND - 	Learning object not found
      */
     router.patch(
-      '/learning-objects/:id/status',
+      "/learning-objects/:id/status",
       this.proxyRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.CHANGE_HIERARCHY_STATUS(req.params.id),
       ),

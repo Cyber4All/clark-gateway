@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import { Controller } from '../../interfaces/Controller';
-import { AuthController } from './auth-module/AuthController';
-import { FrameworkController } from './framework-module/FrameworkController';
-import { GuidelineController } from './guideline-module/GuidelineController';
-import { SearchController } from './search-module/SearchController';
+import { Router } from "express";
+import { Controller } from "../../interfaces/Controller";
+import { AuthController } from "./auth-module/AuthController";
+import { FrameworkController } from "./framework-module/FrameworkController";
+import { GuidelineController } from "./guideline-module/GuidelineController";
+import { SearchController } from "./search-module/SearchController";
 
 export class StandardGuidelineServiceController implements Controller {
   buildRouter(): Router {

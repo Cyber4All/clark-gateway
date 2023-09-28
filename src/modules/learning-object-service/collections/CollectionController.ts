@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars --
     This disable is added to ignore the 'req' in this.proxyRequest */
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../../interfaces/Controller';
-import { LEARNING_OBJECT_ROUTES } from '../../../routes';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../../interfaces/Controller";
+import { LEARNING_OBJECT_ROUTES } from "../../../routes";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class CollectionController implements Controller {
   buildRouter(): Router {
@@ -37,7 +37,7 @@ export class CollectionController implements Controller {
      *        description: INTERNAL SERVICE ERROR - Collection not found
      */
     router
-      .route('/:collection/metrics')
+      .route("/:collection/metrics")
       .get(
         this.proxyRequest(
           (req: Request) =>
@@ -70,7 +70,7 @@ export class CollectionController implements Controller {
      *        description: NOT FOUND - Collection not found
      */
     router.get(
-      '/collections/:name/meta',
+      "/collections/:name/meta",
       this.proxyRequest(
         (req: Request) =>
           `/collections/${encodeURIComponent(req.params.name)}/meta`,
@@ -110,7 +110,7 @@ export class CollectionController implements Controller {
      *                    description: True if the collection has a logo
      */
     router.get(
-      '/collections',
+      "/collections",
       this.proxyRequest(
         (req: Request) => LEARNING_OBJECT_ROUTES.GET_COLLECTIONS,
       ),
@@ -145,7 +145,7 @@ export class CollectionController implements Controller {
      *        description: UNAUTHENTICATED - User is not logged in
      */
     router.patch(
-      '/learning-objects/:learningObjectId/collections',
+      "/learning-objects/:learningObjectId/collections",
       this.proxyRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.ADD_LEARNING_OBJECT_TO_COLLECTION(
           req.params.learningObjectId,
@@ -199,7 +199,7 @@ export class CollectionController implements Controller {
      *        description: NOT FOUND - Learning object or collection not found
      */
     router.patch(
-      '/users/:username/learning-objects/:cuid/collection',
+      "/users/:username/learning-objects/:cuid/collection",
       this.proxyRequest(
         (req: Request) =>
           `/users/${req.params.username}/learning-objects/${req.params.cuid}/collection`,

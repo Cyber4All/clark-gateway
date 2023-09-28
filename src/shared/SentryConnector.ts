@@ -5,19 +5,19 @@
  *
  * @module shared/SentryConnector
  */
-import * as Sentry from '@sentry/node';
-import * as express from 'express';
+import * as Sentry from "@sentry/node";
+import * as express from "express";
 
 const environment = process.env.NODE_ENV;
 
 let _reportError: (e: Error) => void;
 
 switch (environment) {
-  case 'development':
+  case "development":
     // eslint-disable-next-line no-console
     _reportError = console.error;
     break;
-  case 'production':
+  case "production":
     // Note: The DSN is not needed for local development since we only want to report production errors
     Sentry.init({ dsn: process.env.SENTRY_DSN });
     _reportError = Sentry.captureException;

@@ -1,10 +1,10 @@
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../../interfaces/Controller';
-import { LEARNING_OBJECT_ROUTES } from '../../../routes';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../../interfaces/Controller";
+import { LEARNING_OBJECT_ROUTES } from "../../../routes";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class FileManagerController implements Controller {
   buildRouter(): Router {
@@ -48,7 +48,7 @@ export class FileManagerController implements Controller {
      *        description:
      */
     router
-      .route('/users/:username/learning-objects/:id/bundle')
+      .route("/users/:username/learning-objects/:id/bundle")
       .get(
         this.proxyLearningObjectRequest(
           (req: Request) =>
@@ -91,7 +91,7 @@ export class FileManagerController implements Controller {
      *        description: SERVICE ERROR - CloudWatchEvents Client Error
      */
     router
-      .route('/users/:username/learning-objects/:id/bundle')
+      .route("/users/:username/learning-objects/:id/bundle")
       .post(
         this.proxyLearningObjectRequest(
           (req: Request) =>
@@ -178,7 +178,7 @@ export class FileManagerController implements Controller {
      */
     router
       .route(
-        '/users/:username/learning-objects/:learningObjectId/materials/files/:fileId',
+        "/users/:username/learning-objects/:learningObjectId/materials/files/:fileId",
       )
       .patch(
         this.proxyLearningObjectRequest((req: Request) =>
@@ -230,7 +230,7 @@ export class FileManagerController implements Controller {
      *        description: NOT FOUND - Object not found
      */
     router.patch(
-      '/learning-objects/:id/pdf',
+      "/learning-objects/:id/pdf",
       this.proxyLearningObjectRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.UPDATE_PDF(req.params.id),
       ),
@@ -278,7 +278,7 @@ export class FileManagerController implements Controller {
      *        description: NOT FOUND - Object or file not found
      */
     router.get(
-      '/users/:username/learning-objects/:id/files/:fileId/download',
+      "/users/:username/learning-objects/:id/files/:fileId/download",
       this.proxyLearningObjectRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.DOWNLOAD_FILE({
           username: req.params.username,
@@ -327,7 +327,7 @@ export class FileManagerController implements Controller {
      *      404:
      *        description: NOT FOUND - Object not found
      */
-    router.route('/users/:username/learning-objects/:id/materials').get(
+    router.route("/users/:username/learning-objects/:id/materials").get(
       this.proxyLearningObjectRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.GET_MATERIALS({
           username: req.params.username,
@@ -387,7 +387,7 @@ export class FileManagerController implements Controller {
      *        description: NOT FOUND - Object not found
      */
     router
-      .route('/users/:username/learning-objects/:id/materials/files')
+      .route("/users/:username/learning-objects/:id/materials/files")
       .post(
         this.proxyLearningObjectRequest((req: Request) =>
           LEARNING_OBJECT_ROUTES.ADD_MATERIALS(
@@ -440,7 +440,7 @@ export class FileManagerController implements Controller {
      *        description: NOT FOUND - File(s) not found in database
      */
     router
-      .route('/users/:username/learning-objects/:id/files/bundle')
+      .route("/users/:username/learning-objects/:id/files/bundle")
       .patch(
         this.proxyLearningObjectRequest((req: Request) =>
           LEARNING_OBJECT_ROUTES.TOGGLE_FILES_TO_BUNDLE(

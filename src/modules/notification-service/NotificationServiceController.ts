@@ -1,9 +1,9 @@
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../interfaces/Controller';
-import * as querystring from 'querystring';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../interfaces/Controller";
+import * as querystring from "querystring";
 
-const NOTIFICATION_API = process.env.NOTIFICATION_API || 'localhost:8000';
+const NOTIFICATION_API = process.env.NOTIFICATION_API || "localhost:8000";
 
 export class NotificationServiceController implements Controller {
   buildRouter(): Router {
@@ -62,7 +62,7 @@ export class NotificationServiceController implements Controller {
      *              description: NOT FOUND - User not found
      */
     router
-      .route('/users/:username/notifications')
+      .route("/users/:username/notifications")
       .get(
         this.proxyRequest(
           (req: Request) =>
@@ -103,7 +103,7 @@ export class NotificationServiceController implements Controller {
      *              description: NOT FOUND - User or notification not found
      */
     router
-      .route('/users/:username/notifications/:id')
+      .route("/users/:username/notifications/:id")
       .delete(
         this.proxyRequest(
           (req: Request) =>
@@ -152,7 +152,7 @@ export class NotificationServiceController implements Controller {
      *              description: NOT FOUND - Learning object not found
      */
     router.post(
-      '/users/:username/learning-objects/:cuid/notifications',
+      "/users/:username/learning-objects/:cuid/notifications",
       this.proxyRequest(
         (req: Request) =>
           `/learning-objects/${encodeURIComponent(

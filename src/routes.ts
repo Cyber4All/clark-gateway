@@ -1,4 +1,4 @@
-import * as querystring from 'querystring';
+import * as querystring from "querystring";
 
 export const USER_ROUTES = {
   FETCH_USER(username: string) {
@@ -67,14 +67,14 @@ export const LEARNING_OBJECT_ROUTES = {
       authorUsername,
     )}/learning-objects/${encodeURIComponent(id)}`;
   },
-  PUBLISH_LEARNING_OBJECT: '/learning-objects/publish',
-  UNPUBLISH_LEARNING_OBJECT: '/learning-objects/unpublish',
+  PUBLISH_LEARNING_OBJECT: "/learning-objects/publish",
+  UNPUBLISH_LEARNING_OBJECT: "/learning-objects/unpublish",
   DELETE_MULTIPLE_LEARNING_OBJECTS(learningObjectNames: string[]) {
     return `/learning-objects/${encodeURIComponent(
       learningObjectNames.toString(),
     )}/multiple`;
   },
-  FETCH_LEARNING_OBJECTS: '/learning-objects',
+  FETCH_LEARNING_OBJECTS: "/learning-objects",
   FETCH_USERS_LEARNING_OBJECTS(username: string) {
     return `/users/${encodeURIComponent(username)}/learning-objects`;
   },
@@ -86,7 +86,7 @@ export const LEARNING_OBJECT_ROUTES = {
     )}/submissions?${querystring.stringify(query)}`;
   },
 
-  UPLOAD_MATERIALS: '/files',
+  UPLOAD_MATERIALS: "/files",
   UPDATE_FILE({
     username,
     learningObjectId,
@@ -113,11 +113,11 @@ export const LEARNING_OBJECT_ROUTES = {
       fileId,
     )}`;
   },
-  FETCH_MULTIPLE_LEARNING_OBJECTS: '/learning-objects/multiple',
+  FETCH_MULTIPLE_LEARNING_OBJECTS: "/learning-objects/multiple",
   ADD_LEARNING_OBJECT_TO_COLLECTION(id: string) {
     return `/learning-objects/${encodeURIComponent(id)}/collections`;
   },
-  GET_COLLECTIONS: '/collections',
+  GET_COLLECTIONS: "/collections",
   UPDATE_PDF(id: string) {
     return `/learning-objects/${id}/pdf`;
   },
@@ -222,12 +222,12 @@ export const BUSINESS_CARD_ROUTES = {
 };
 
 export const ADMIN_LEARNING_OBJECT_ROUTES = {
-  FETCH_LEARNING_OBJECTS: '/admin/learning-objects',
+  FETCH_LEARNING_OBJECTS: "/admin/learning-objects",
   FETCH_LEARNING_OBJECTS_WITH_FILTER(query: any) {
     return `/admin/learning-objects?${querystring.stringify(query)}`;
   },
   UPDATE_OBJECT() {
-    return '/admin/learning-objects';
+    return "/admin/learning-objects";
   },
   GET_FULL_OBJECT(learningObjectId: string) {
     return `/admin/learning-objects/${encodeURIComponent(learningObjectId)}`;
@@ -298,19 +298,19 @@ export const ADMIN_USER_ROUTES = {
 };
 
 export const ADMIN_MAILER_ROUTES = {
-  SEND_BASIC_EMAIL: '/admin/mail',
-  GET_AVAILABLE_TEMPLATES: '/admin/mail/templates',
-  SEND_TEMPLATE_EMAIL: '/admin/mail/templates',
+  SEND_BASIC_EMAIL: "/admin/mail",
+  GET_AVAILABLE_TEMPLATES: "/admin/mail/templates",
+  SEND_TEMPLATE_EMAIL: "/admin/mail/templates",
 };
 
 export const STATS_ROUTE = {
-  USER_STATS: '/users/stats',
-  LEARNING_OBJECT_STATS: '/learning-objects/stats',
+  USER_STATS: "/users/stats",
+  LEARNING_OBJECT_STATS: "/learning-objects/stats",
 };
 
 export const UTILITY_ROUTES = {
-  MAINTENANCE: '/maintenance',
-  STATUS: '/status',
+  MAINTENANCE: "/maintenance",
+  STATUS: "/status",
 };
 
 export const ADMIN_LAMBDA_ROUTES = {
@@ -322,5 +322,5 @@ export const ADMIN_LAMBDA_ROUTES = {
 };
 
 export const REPORTS_ROUTES = {
-  GET_REPORTS: '/reports',
+  GET_REPORTS: "/reports",
 };

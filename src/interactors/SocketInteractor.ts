@@ -1,4 +1,4 @@
-import { Server } from 'socket.io';
+import { Server } from "socket.io";
 
 export class SocketInteractor {
   private static instance: SocketInteractor;
@@ -16,7 +16,7 @@ export class SocketInteractor {
       this.instance = new SocketInteractor(server);
     } else if (!this.instance) {
       throw Error(
-        'You must initialize this singleton class with a Socket.io Server!',
+        "You must initialize this singleton class with a Socket.io Server!",
       );
     }
 
@@ -32,7 +32,7 @@ export class SocketInteractor {
     if (!this.connectedUsers.has(username)) {
       this.connectedUsers.set(username, clientID);
       // eslint-disable-next-line no-console
-      console.log(username + ' connected!');
+      console.log(username + " connected!");
     }
   }
 
@@ -46,7 +46,7 @@ export class SocketInteractor {
         if (v === clientID) {
           this.connectedUsers.delete(k);
           // eslint-disable-next-line no-console
-          console.log(k + ' disconnected!');
+          console.log(k + " disconnected!");
         }
       });
     }
@@ -58,7 +58,7 @@ export class SocketInteractor {
    * @param message String message
    */
   sendMessage(users: Array<string> | string, message: string) {
-    const namespace = this.server.of('/');
+    const namespace = this.server.of("/");
 
     if (!Array.isArray(users)) {
       users = [users];
@@ -68,7 +68,7 @@ export class SocketInteractor {
       namespace.use(async (socket, next) => {
         const s = socket.connected[this.connectedUsers.get(users[i])];
         if (s) {
-          s.emit('message', message);
+          s.emit("message", message);
         }
         next();
       });

@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars --
     This disable is added to ignore the 'req' in this.proxyRequest */
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../../interfaces/Controller';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../../interfaces/Controller";
 import {
   ADMIN_LAMBDA_ROUTES,
   ADMIN_LEARNING_OBJECT_ROUTES,
   LEARNING_OBJECT_ROUTES,
-} from '../../../routes';
-import * as querystring from 'querystring';
+} from "../../../routes";
+import * as querystring from "querystring";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
-const COA_API = process.env.COA_SERVICE || 'localhost:8500';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
+const COA_API = process.env.COA_SERVICE || "localhost:8500";
 
 export class ObjectsController implements Controller {
   buildRouter(): Router {
@@ -110,14 +110,14 @@ export class ObjectsController implements Controller {
      *        description: NOT FOUND - Object not found
      */
     router
-      .route('/users/:username/learning-objects/:id')
+      .route("/users/:username/learning-objects/:id")
       .all(
         this.proxyRequest(
           (req: Request) =>
             `/users/${encodeURIComponent(
               req.params.username,
             )}/learning-objects/${encodeURIComponent(req.params.id)}?${
-              req.query ? querystring.stringify(req.query) : ''
+              req.query ? querystring.stringify(req.query) : ""
             }`,
         ),
       );
@@ -155,7 +155,7 @@ export class ObjectsController implements Controller {
      *        description: NOT FOUND - Object not found
      */
     router.get(
-      '/users/:username/learning-objects/:id/children',
+      "/users/:username/learning-objects/:id/children",
       this.proxyRequest(
         (req: Request) =>
           `/users/:username/learning-objects/${encodeURIComponent(
@@ -197,7 +197,7 @@ export class ObjectsController implements Controller {
      *        description: NOT FOUND - Object not found
      */
     router.get(
-      '/users/:username/learning-objects/:id/parents',
+      "/users/:username/learning-objects/:id/parents",
       this.proxyRequest(
         (req: Request) =>
           `/users/${req.params.username}/learning-objects/${encodeURIComponent(
@@ -246,7 +246,7 @@ export class ObjectsController implements Controller {
      *        description: NOT FOUND - Object not found
      */
     router.post(
-      '/learning-objects/:username/:learningObjectName/children',
+      "/learning-objects/:username/:learningObjectName/children",
       this.proxyRequest(
         (req: Request) =>
           `/learning-objects/${req.params.username}/${req.params.learningObjectName}/children`,
@@ -297,7 +297,7 @@ export class ObjectsController implements Controller {
      *        description: UNAUTHORIZED - User not object author, admin, or editor
      */
     router.post(
-      '/users/:username/hierarchy-object',
+      "/users/:username/hierarchy-object",
       this.proxyRequest(
         (req: Request) => `/users/${req.params.username}/hierarchy-object`,
       ),
@@ -343,7 +343,7 @@ export class ObjectsController implements Controller {
      *        description: NOT FOUND - Object not found
      */
     router.patch(
-      '/learning-objects/:username/:learningObjectName/children',
+      "/learning-objects/:username/:learningObjectName/children",
       this.proxyRequest(
         (req: Request) =>
           `/learning-objects/${req.params.username}/${req.params.learningObjectName}/children`,
@@ -410,14 +410,14 @@ export class ObjectsController implements Controller {
      *        description: CONFLICT - Object with same name exists under the same author
      */
     router
-      .route('/users/:username/learning-objects')
+      .route("/users/:username/learning-objects")
       .get(
         this.proxyRequest(
           (req: Request) =>
             LEARNING_OBJECT_ROUTES.LOAD_LEARNING_OBJECT_SUMMARY(
               req.params.username,
             ) +
-            '?' +
+            "?" +
             querystring.stringify(req.query),
         ),
       )
@@ -446,7 +446,7 @@ export class ObjectsController implements Controller {
      *        description: MOVED PERMENENTLY - Redirects to GET /users/:username/learning-objects
      */
     router.get(
-      '/users/:username/learning-objects/profile',
+      "/users/:username/learning-objects/profile",
       this.proxyRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.LOAD_USER_PROFILE(
           encodeURIComponent(req.params.username),
@@ -477,10 +477,10 @@ export class ObjectsController implements Controller {
      *        description: UNAUTHORIZED - User is not author or is trying to delete a in review/released object
      */
     router.delete(
-      '/learning-objects/multiple/:names',
+      "/learning-objects/multiple/:names",
       this.proxyRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.DELETE_MULTIPLE_LEARNING_OBJECTS(
-          req.params.names.split(','),
+          req.params.names.split(","),
         ),
       ),
     );
@@ -538,7 +538,7 @@ export class ObjectsController implements Controller {
      *                    $ref: '#/components/schemas/LearningObject'
      */
     router.get(
-      '/learning-objects',
+      "/learning-objects",
       this.proxyRequest(
         (req: Request) =>
           `${
@@ -576,7 +576,7 @@ export class ObjectsController implements Controller {
      *        description: NOT FOUND - Object is not found
      */
     router
-      .route('/learning-objects/:learningObjectId')
+      .route("/learning-objects/:learningObjectId")
       .get(
         this.proxyRequest(
           (req: Request) =>
@@ -617,7 +617,7 @@ export class ObjectsController implements Controller {
      *        description: NOT FOUND - Object is not found
      */
     router.get(
-      '/learning-objects/:id/children/summary',
+      "/learning-objects/:id/children/summary",
       this.proxyRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.GET_LEARNING_OBJECT_CHILDREN(req.params.id),
       ),
@@ -658,7 +658,7 @@ export class ObjectsController implements Controller {
      *        description: UNAUTHORIZED - User is not privileged
      */
     router.get(
-      '/admin/learning-objects',
+      "/admin/learning-objects",
       this.proxyRequest(
         (req: Request) =>
           `${
@@ -694,7 +694,7 @@ export class ObjectsController implements Controller {
      *        description: UNAUTHORIZED - User is not privileged
      */
     router.patch(
-      '/admin/learning-objects',
+      "/admin/learning-objects",
       this.proxyRequest((req: Request) =>
         ADMIN_LEARNING_OBJECT_ROUTES.UPDATE_OBJECT(),
       ),
@@ -723,7 +723,7 @@ export class ObjectsController implements Controller {
      *        description: UNAUTHORIZED - User is not privileged
      */
     router.get(
-      '/admin/learning-objects/:learningObjectId',
+      "/admin/learning-objects/:learningObjectId",
       this.proxyRequest((req: Request) =>
         ADMIN_LEARNING_OBJECT_ROUTES.GET_FULL_OBJECT(
           req.params.learningObjectId,
@@ -760,7 +760,7 @@ export class ObjectsController implements Controller {
      *        description: UNAUTHORIZED - User is not privileged
      */
     router.delete(
-      '/admin/users/:username/learning-objects/:learningObjectName',
+      "/admin/users/:username/learning-objects/:learningObjectName",
       this.proxyRequest((req: Request) =>
         ADMIN_LEARNING_OBJECT_ROUTES.DELETE_LEARNING_OBJECT(
           req.params.username,
@@ -798,7 +798,7 @@ export class ObjectsController implements Controller {
      *        description: UNAUTHORIZED - User is not privileged
      */
     router.delete(
-      '/admin/users/:username/learning-objects/multiple/:learningObjectIDs',
+      "/admin/users/:username/learning-objects/multiple/:learningObjectIDs",
       this.proxyRequest((req: Request) =>
         ADMIN_LEARNING_OBJECT_ROUTES.DELETE_MULTIPLE_LEARNING_OBJECTS(
           req.params.username,
@@ -849,7 +849,7 @@ export class ObjectsController implements Controller {
      *        description: NOT FOUND - User or object not found
      */
     router
-      .route('/users/:userId/learning-objects/:learningObjectId/change-author')
+      .route("/users/:userId/learning-objects/:learningObjectId/change-author")
       .post(
         this.proxyLambdaRequest((req: Request) =>
           ADMIN_LAMBDA_ROUTES.CHANGE_AUTHOR(
@@ -903,7 +903,7 @@ export class ObjectsController implements Controller {
      *        description: NOT FOUND - User or object not found
      */
     router.post(
-      '/users/:username/learning-objects/:id/status',
+      "/users/:username/learning-objects/:id/status",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(
@@ -944,7 +944,7 @@ export class ObjectsController implements Controller {
      *        description: NOT FOUND - Object was not found for given name
      */
     router.get(
-      '/learning-objects/:username/:learningObjectName',
+      "/learning-objects/:username/:learningObjectName",
       this.proxyRequest(
         (req: Request) =>
           `/learning-objects/${encodeURIComponent(

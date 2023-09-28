@@ -1,14 +1,14 @@
-import { Router } from 'express';
-import { Controller } from '../../interfaces/Controller';
-import { ChangelogController } from './changelogs/ChangelogController';
-import { CollectionController } from './collections/CollectionController';
-import { FileManagerController } from './fileManager/FileManagerController';
-import { ObjectsController } from './objects/ObjectsController';
-import { OutcomesController } from './outcomes/OutcomesController';
-import { RelevancyController } from './relevancy/RelevancyController';
-import { RevisionsController } from './revisions/RevisionsController';
-import { StatsController } from './stats/StatsController';
-import { SubmissionsController } from './submissions/SubmissionsController';
+import { Router } from "express";
+import { Controller } from "../../interfaces/Controller";
+import { ChangelogController } from "./changelogs/ChangelogController";
+import { CollectionController } from "./collections/CollectionController";
+import { FileManagerController } from "./fileManager/FileManagerController";
+import { ObjectsController } from "./objects/ObjectsController";
+import { OutcomesController } from "./outcomes/OutcomesController";
+import { RelevancyController } from "./relevancy/RelevancyController";
+import { RevisionsController } from "./revisions/RevisionsController";
+import { StatsController } from "./stats/StatsController";
+import { SubmissionsController } from "./submissions/SubmissionsController";
 
 export class LearningObjectServiceController implements Controller {
   buildRouter(): Router {

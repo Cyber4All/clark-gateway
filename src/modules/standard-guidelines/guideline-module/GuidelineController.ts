@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars --
     This disable is added to ignore the 'req' in this.proxyRequest */
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../../interfaces/Controller';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../../interfaces/Controller";
 
 const STANDARD_GUIDELINES_API =
-  process.env.STANDARD_GUIDELINES_API || 'localhost:8888';
+  process.env.STANDARD_GUIDELINES_API || "localhost:8888";
 
 export class GuidelineController implements Controller {
   buildRouter(): Router {
@@ -36,7 +36,7 @@ export class GuidelineController implements Controller {
      *        description: BAD REQUEST - The provided id is not a valid mongo id, Missing property ${property} in Framework
      */
     router.get(
-      '/frameworks/:id/guidelines',
+      "/frameworks/:id/guidelines",
       this.proxyRequest(
         (req: Request) =>
           `/frameworks/${encodeURIComponent(req.params.id)}/guidelines`,
@@ -70,7 +70,7 @@ export class GuidelineController implements Controller {
      *        description: NOT FOUND - Guideline or standard with id ${id} was not found
      */
     router.get(
-      '/guidelines/:id',
+      "/guidelines/:id",
       this.proxyRequest(
         (req: Request) => `/guidelines/${encodeURIComponent(req.params.id)}`,
       ),
@@ -127,8 +127,8 @@ export class GuidelineController implements Controller {
      *        description: CONFLICT - Search item already exists for guideline id ${id}
      */
     router.post(
-      '/guidelines',
-      this.proxyRequest((req: Request) => '/guidelines'),
+      "/guidelines",
+      this.proxyRequest((req: Request) => "/guidelines"),
     );
 
     /**
@@ -189,7 +189,7 @@ export class GuidelineController implements Controller {
      *        description: NOT FOUND - Guideline or standard with id ${id} was not found, Framework with id ${id} was not found, Search item with guideline id ${id} was not found
      */
     router.patch(
-      '/guidelines/:id',
+      "/guidelines/:id",
       this.proxyRequest(
         (req: Request) => `/guidelines/${encodeURIComponent(req.params.id)}`,
       ),
@@ -222,7 +222,7 @@ export class GuidelineController implements Controller {
      *        description: NOT FOUND - Guideline or standard with id ${id} was not found, Search item with guideline id ${id} was not found
      */
     router.delete(
-      '/guidelines/:id',
+      "/guidelines/:id",
       this.proxyRequest(
         (req: Request) => `/guidelines/${encodeURIComponent(req.params.id)}`,
       ),

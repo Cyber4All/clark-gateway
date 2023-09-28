@@ -1,25 +1,25 @@
-import * as express from 'express';
-import * as logger from 'morgan';
-import * as http from 'http';
-import { enforceTokenAccess } from '../middleware/jwt.config';
-import * as cors from 'cors';
-import * as cookieParser from 'cookie-parser';
-import { Server } from 'socket.io';
-import { SocketInteractor } from '../../interactors/SocketInteractor';
-import * as dotenv from 'dotenv';
-import { SwaggerDriver } from '../swagger/SwaggerDriver';
-import { FeatureServiceController } from '../../modules/feature-service/FeatureServiceController';
-import { LearningObjectServiceController } from '../../modules/learning-object-service/LearningObjectServiceController';
-import { LibraryServiceController } from '../../modules/library-service/LibraryServiceController';
-import { NotificationServiceController } from '../../modules/notification-service/NotificationServiceController';
-import { RatingServiceController } from '../../modules/rating-service/RatingServiceController';
-import { UserServiceController } from '../../modules/user-service/UserServiceController';
-import { UtilityServiceController } from '../../modules/utility-service/UtilityServiceController';
-import { StandardGuidelineServiceController } from '../../modules/standard-guidelines/StandardGuidelinesController';
-import { HierarchyServiceController } from '../../modules/hierarchy-service/HierarchyServiceController';
-import { ClarkReportsController } from '../../modules/clark-reports/ClarkReportsController';
+import * as express from "express";
+import * as logger from "morgan";
+import * as http from "http";
+import { enforceTokenAccess } from "../middleware/jwt.config";
+import * as cors from "cors";
+import * as cookieParser from "cookie-parser";
+import { Server } from "socket.io";
+import { SocketInteractor } from "../../interactors/SocketInteractor";
+import * as dotenv from "dotenv";
+import { SwaggerDriver } from "../swagger/SwaggerDriver";
+import { FeatureServiceController } from "../../modules/feature-service/FeatureServiceController";
+import { LearningObjectServiceController } from "../../modules/learning-object-service/LearningObjectServiceController";
+import { LibraryServiceController } from "../../modules/library-service/LibraryServiceController";
+import { NotificationServiceController } from "../../modules/notification-service/NotificationServiceController";
+import { RatingServiceController } from "../../modules/rating-service/RatingServiceController";
+import { UserServiceController } from "../../modules/user-service/UserServiceController";
+import { UtilityServiceController } from "../../modules/utility-service/UtilityServiceController";
+import { StandardGuidelineServiceController } from "../../modules/standard-guidelines/StandardGuidelinesController";
+import { HierarchyServiceController } from "../../modules/hierarchy-service/HierarchyServiceController";
+import { ClarkReportsController } from "../../modules/clark-reports/ClarkReportsController";
 
-const url = require('url'); // eslint-disable-line @typescript-eslint/no-var-requires
+const url = require("url"); // eslint-disable-line @typescript-eslint/no-var-requires
 
 dotenv.config();
 
@@ -34,7 +34,7 @@ export class ExpressDriver {
 
   static start() {
     // Configure app to log requests
-    this.app.use(logger('dev'));
+    this.app.use(logger("dev"));
 
     // configure app to use bodyParser()
     this.app.use(express.json());
@@ -52,19 +52,19 @@ export class ExpressDriver {
       res: express.Response,
       next: express.NextFunction, // eslint-disable-line @typescript-eslint/no-unused-vars
     ) {
-      if (error.name === 'UnauthorizedError') {
-        res.status(401).send('Invalid Access Token');
+      if (error.name === "UnauthorizedError") {
+        res.status(401).send("Invalid Access Token");
       }
     });
 
     // Welcome message
-    this.app.get('/', function (req, res) {
+    this.app.get("/", function (req, res) {
       res.json({
-        message: 'Welcome to the C.L.A.R.K. Gateway API',
+        message: "Welcome to the C.L.A.R.K. Gateway API",
       });
     });
 
-    this.app.get('/favicon.ico', function (req, res) {
+    this.app.get("/favicon.ico", function (req, res) {
       res.sendStatus(204);
     });
 
@@ -83,8 +83,8 @@ export class ExpressDriver {
     /**
      * Get port from environment and store in Express.
      */
-    const port = process.env.PORT || '3001';
-    this.app.set('port', port);
+    const port = process.env.PORT || "3001";
+    this.app.set("port", port);
 
     SwaggerDriver.buildDocs(this.app);
 
@@ -99,18 +99,18 @@ export class ExpressDriver {
     const io = new Server(server, { pingInterval: 2000, pingTimeout: 5000 });
     const socketInteractor = SocketInteractor.init(io);
 
-    io.on('connect', (socket: any) => {
+    io.on("connect", (socket: any) => {
       const query = url.parse(socket.request.url, true).query;
       socketInteractor.connectUser(query.user, socket.conn.id);
 
-      socket.on('close', () => {
+      socket.on("close", () => {
         socket.disconnect(true);
         socketInteractor.disconnectClient(socket.conn.id);
       });
 
-      socket.on('disconnect', (reason: any) => {
+      socket.on("disconnect", (reason: any) => {
         // eslint-disable-next-line no-console
-        console.log('Unexpected disconnect! Reason: ', reason);
+        console.log("Unexpected disconnect! Reason: ", reason);
         socketInteractor.disconnectClient(socket.conn.id);
       });
     });

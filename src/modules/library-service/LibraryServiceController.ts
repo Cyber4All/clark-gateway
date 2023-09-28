@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars --
     This disable is added to ignore the 'req' in this.proxyRequest */
-import { Request, Router } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../interfaces/Controller';
-import * as querystring from 'querystring';
+import { Request, Router } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../interfaces/Controller";
+import * as querystring from "querystring";
 
-const CART_API = process.env.CART_API || 'localhost:3006';
+const CART_API = process.env.CART_API || "localhost:3006";
 
 export class LibraryServiceController implements Controller {
   buildRouter(): Router {
@@ -29,8 +29,8 @@ export class LibraryServiceController implements Controller {
      *              description: NOT FOUND - No metrics were found
      */
     router.get(
-      '/learning-objects/metrics',
-      this.proxyRequest((req: Request) => '/learning-objects/metrics'),
+      "/learning-objects/metrics",
+      this.proxyRequest((req: Request) => "/learning-objects/metrics"),
     );
 
     /**
@@ -73,7 +73,7 @@ export class LibraryServiceController implements Controller {
      *              description: NOT FOUND - No metrics were found for the specific username and cuid
      */
     router.get(
-      '/users/:username/learning-objects/:cuid/metrics',
+      "/users/:username/learning-objects/:cuid/metrics",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(
@@ -133,7 +133,7 @@ export class LibraryServiceController implements Controller {
      *              description: UNAUTHORIZED - User is trying to access another user's library
      */
     router.get(
-      '/users/:username/library/learning-objects',
+      "/users/:username/library/learning-objects",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(
@@ -173,7 +173,7 @@ export class LibraryServiceController implements Controller {
      *              description: UNAUTHORIZED - User is trying to access and modify another user's library
      */
     router.delete(
-      '/users/:username/library/learning-objects/:cuid',
+      "/users/:username/library/learning-objects/:cuid",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(
@@ -232,7 +232,7 @@ export class LibraryServiceController implements Controller {
      *              description: UNAUTHORIZED - User is trying to access and modify another user's library
      */
     router.post(
-      '/users/:username/library/learning-objects',
+      "/users/:username/library/learning-objects",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(

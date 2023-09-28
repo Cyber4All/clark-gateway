@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars --
     This disable is added to ignore the 'req' in this.proxyRequest */
-import { Router } from 'express';
-import proxy = require('express-http-proxy');
-import { Request } from 'express';
-import { Controller } from '../../interfaces/Controller';
+import { Router } from "express";
+import proxy = require("express-http-proxy");
+import { Request } from "express";
+import { Controller } from "../../interfaces/Controller";
 
-const UTILITY_API = process.env.UTILITY_URI || 'localhost:9000';
+const UTILITY_API = process.env.UTILITY_URI || "localhost:9000";
 const DOWNTIME_LAMBDA = process.env.DOWNTIME_LAMBDA_URI;
 
 export class UtilityServiceController implements Controller {
@@ -28,7 +28,7 @@ export class UtilityServiceController implements Controller {
      *                  $ref: '#/components/schemas/Downtime'
      */
     router.get(
-      '/downtime',
+      "/downtime",
       this.proxyRequestToLambda(
         (req: Request) =>
           `/downtime?service=${encodeURIComponent(
@@ -62,7 +62,7 @@ export class UtilityServiceController implements Controller {
      *              description: INTERNAL - Could not recover the client version
      */
     router.get(
-      '/clientversion/:clientVersion',
+      "/clientversion/:clientVersion",
       this.proxyRequest(
         (req: Request) =>
           `/clientversion/${encodeURIComponent(req.params.clientVersion)}`,
@@ -95,7 +95,7 @@ export class UtilityServiceController implements Controller {
      *              description: INTERNAL - Unable to get blogs
      */
     router.get(
-      '/blogs',
+      "/blogs",
       this.proxyRequest(
         (req: Request) =>
           `/blogs?recent=${encodeURIComponent(req.query.recent as string)}`,

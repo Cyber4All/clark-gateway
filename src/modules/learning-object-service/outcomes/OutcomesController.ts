@@ -1,9 +1,9 @@
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../../interfaces/Controller';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../../interfaces/Controller";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class OutcomesController implements Controller {
   buildRouter(): Router {
@@ -52,7 +52,7 @@ export class OutcomesController implements Controller {
      *        description: NOT FOUND - Outcome not found
      */
     router.post(
-      '/learning-objects/:learningObjectId/learning-outcomes',
+      "/learning-objects/:learningObjectId/learning-outcomes",
       this.proxyRequest(
         (req: Request) =>
           `/learning-objects/${encodeURIComponent(
@@ -106,7 +106,7 @@ export class OutcomesController implements Controller {
      *        description: NOT FOUND - Outcome or object not found
      */
     router.patch(
-      '/learning-objects/:learningObjectId/learning-outcomes/:outcomeId',
+      "/learning-objects/:learningObjectId/learning-outcomes/:outcomeId",
       this.proxyRequest(
         (req: Request) =>
           `/learning-objects/${encodeURIComponent(
@@ -146,7 +146,7 @@ export class OutcomesController implements Controller {
      *        description: NOT FOUND - Outcome or object not found
      */
     router.delete(
-      '/learning-objects/:learningObjectId/learning-outcomes/:outcomeId',
+      "/learning-objects/:learningObjectId/learning-outcomes/:outcomeId",
       this.proxyRequest(
         (req: Request) =>
           `/learning-objects/${encodeURIComponent(
@@ -188,7 +188,7 @@ export class OutcomesController implements Controller {
      *        description: NOT FOUND - Learning object not found
      */
     router.get(
-      '/users/:username/learning-objects/:learningObjectId/outcomes',
+      "/users/:username/learning-objects/:learningObjectId/outcomes",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(

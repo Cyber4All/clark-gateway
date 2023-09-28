@@ -1,10 +1,10 @@
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../../interfaces/Controller';
-import { LEARNING_OBJECT_ROUTES } from '../../../routes';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../../interfaces/Controller";
+import { LEARNING_OBJECT_ROUTES } from "../../../routes";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class RevisionsController implements Controller {
   buildRouter(): Router {
@@ -52,7 +52,7 @@ export class RevisionsController implements Controller {
      *        description: NOT FOUND - Learning object not found
      */
     router.post(
-      '/users/:username/learning-objects/:cuid/versions',
+      "/users/:username/learning-objects/:cuid/versions",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(
@@ -102,7 +102,7 @@ export class RevisionsController implements Controller {
      *        description: NOT FOUND - Revision not found
      */
     router.get(
-      '/users/:username/learning-objects/:learningObjectId/revisions/:revisionId',
+      "/users/:username/learning-objects/:learningObjectId/revisions/:revisionId",
       this.proxyRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.GET_LEARNING_OBJECT_REVISION({
           username: req.params.username,
@@ -146,7 +146,7 @@ export class RevisionsController implements Controller {
      *        description: NOT FOUND - Learning object not found or Learning Object revision not found
      */
     router.delete(
-      '/users/:username/learning-objects/:cuid/versions/:version',
+      "/users/:username/learning-objects/:cuid/versions/:version",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(

@@ -1,10 +1,10 @@
-import { Request, Router } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../../interfaces/Controller';
-import { LEARNING_OBJECT_ROUTES } from '../../../routes';
+import { Request, Router } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../../interfaces/Controller";
+import { LEARNING_OBJECT_ROUTES } from "../../../routes";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class ChangelogController implements Controller {
   buildRouter(): Router {
@@ -54,7 +54,7 @@ export class ChangelogController implements Controller {
      *            description: NOT FOUND - Learning object or user not found
      */
     router.post(
-      '/users/:userId/learning-objects/:cuid/changelog',
+      "/users/:userId/learning-objects/:cuid/changelog",
       this.proxyRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.CREATE_CHANGELOG(
           req.params.userId,
@@ -93,7 +93,7 @@ export class ChangelogController implements Controller {
      *              $ref: '#/components/schemas/Changelog'
      */
     router.get(
-      '/users/:userId/learning-objects/:cuid/changelogs',
+      "/users/:userId/learning-objects/:cuid/changelogs",
       this.proxyRequest((req: Request) =>
         LEARNING_OBJECT_ROUTES.GET_ALL_CHANGELOGS(
           req.params.userId,

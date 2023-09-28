@@ -1,8 +1,8 @@
-import { Request, Router } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../interfaces/Controller';
+import { Request, Router } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../interfaces/Controller";
 
-const RATING_API = process.env.RATING_API || 'localhost:3004';
+const RATING_API = process.env.RATING_API || "localhost:3004";
 
 export class RatingServiceController implements Controller {
   buildRouter(): Router {
@@ -59,7 +59,7 @@ export class RatingServiceController implements Controller {
      *              description: NOT FOUND - Learning object not found
      */
     router
-      .route('/users/:username/learning-objects/:CUID/version/:version/ratings')
+      .route("/users/:username/learning-objects/:CUID/version/:version/ratings")
       .get(
         this.proxyRequest(
           (req: Request) =>
@@ -97,7 +97,7 @@ export class RatingServiceController implements Controller {
      *              description: NOT FOUND - Rating was not found
      */
     router
-      .route('/ratings/:ratingId')
+      .route("/ratings/:ratingId")
       .get(
         this.proxyRequest(
           (req: Request) =>
@@ -157,7 +157,7 @@ export class RatingServiceController implements Controller {
      */
     router
       .route(
-        '/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID',
+        "/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID",
       )
       .patch(
         this.proxyRequest(
@@ -216,7 +216,7 @@ export class RatingServiceController implements Controller {
      */
     router
       .route(
-        '/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID',
+        "/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID",
       )
       .delete(
         this.proxyRequest(
@@ -276,7 +276,7 @@ export class RatingServiceController implements Controller {
      *              description: NOT FOUND - Learning object was not found
      */
     router
-      .route('/users/:username/learning-objects/:CUID/version/:version/ratings')
+      .route("/users/:username/learning-objects/:CUID/version/:version/ratings")
       .post(
         this.proxyRequest(
           (req: Request) =>
@@ -340,7 +340,7 @@ export class RatingServiceController implements Controller {
      */
     router
       .route(
-        '/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/flags',
+        "/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/flags",
       )
       .post(
         this.proxyRequest(
@@ -407,7 +407,7 @@ export class RatingServiceController implements Controller {
      */
     router
       .route(
-        '/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses',
+        "/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses",
       )
       .post(
         this.proxyRequest(
@@ -472,7 +472,7 @@ export class RatingServiceController implements Controller {
      */
     router
       .route(
-        '/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses/:responseID',
+        "/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses/:responseID",
       )
       .delete(
         this.proxyRequest(
@@ -547,7 +547,7 @@ export class RatingServiceController implements Controller {
      */
     router
       .route(
-        '/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses/:responseID',
+        "/users/:username/learning-objects/:CUID/version/:version/ratings/:ratingID/responses/:responseID",
       )
       .patch(
         this.proxyRequest(

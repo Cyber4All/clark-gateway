@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars --
     This disable is added to ignore the 'req' in this.proxyRequest */
-import { Request, Router } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../interfaces/Controller';
+import { Request, Router } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../interfaces/Controller";
 
-const FEATURED_API = process.env.FEATURED_API || 'localhost:3002';
+const FEATURED_API = process.env.FEATURED_API || "localhost:3002";
 
 export class FeatureServiceController implements Controller {
   buildRouter(): Router {
@@ -28,8 +28,8 @@ export class FeatureServiceController implements Controller {
      *                              $ref: '#/components/schemas/LearningObject'
      */
     router
-      .route('/featured/learning-objects')
-      .get(this.proxyRequest((req: Request) => '/featured/learning-objects'));
+      .route("/featured/learning-objects")
+      .get(this.proxyRequest((req: Request) => "/featured/learning-objects"));
 
     /**
      * @swagger
@@ -64,8 +64,8 @@ export class FeatureServiceController implements Controller {
      *              description: UNAUTHORIZED - User does not have privilege to update featured objects
      */
     router
-      .route('/featured/learning-objects')
-      .patch(this.proxyRequest((req: Request) => '/featured/learning-objects'));
+      .route("/featured/learning-objects")
+      .patch(this.proxyRequest((req: Request) => "/featured/learning-objects"));
 
     /**
      * @swagger
@@ -89,7 +89,7 @@ export class FeatureServiceController implements Controller {
      *              description: NOT FOUND - The desired collection does not exist
      */
     router
-      .route('/featured/learning-objects/:collection')
+      .route("/featured/learning-objects/:collection")
       .get(
         this.proxyRequest(
           (req: Request) =>

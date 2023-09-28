@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars --
     This disable is added to ignore the 'req' in this.proxyRequest */
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../../interfaces/Controller';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../../interfaces/Controller";
 
 const LEARNING_OBJECT_SERVICE_URI =
-  process.env.LEARNING_OBJECT_SERVICE_URI || 'localhost:5000';
+  process.env.LEARNING_OBJECT_SERVICE_URI || "localhost:5000";
 
 export class RelevancyController implements Controller {
   buildRouter(): Router {
@@ -55,7 +55,7 @@ export class RelevancyController implements Controller {
      *        description: NOT FOUND - Learning object not found
      */
     router.patch(
-      '/users/:username/learning-objects/:id/relevancy-check',
+      "/users/:username/learning-objects/:id/relevancy-check",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(
@@ -84,8 +84,8 @@ export class RelevancyController implements Controller {
      *                $ref: '#/components/schemas/Topic'
      */
     router.get(
-      '/topics',
-      this.proxyRequest((req: Request) => '/topics'),
+      "/topics",
+      this.proxyRequest((req: Request) => "/topics"),
     );
 
     /**
@@ -138,7 +138,7 @@ export class RelevancyController implements Controller {
      *        description: NOT FOUND - Learning object not found, Guidelines not found, Outcome not found
      */
     router.patch(
-      '/users/:username/learning-objects/:id/learning-outcomes/:outcomeId/guidelines',
+      "/users/:username/learning-objects/:id/learning-outcomes/:outcomeId/guidelines",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(
@@ -196,7 +196,7 @@ export class RelevancyController implements Controller {
      *        description: NOT FOUND - Learning object or topic not found
      */
     router.patch(
-      '/users/:username/learning-objects/:id/topics',
+      "/users/:username/learning-objects/:id/topics",
       this.proxyRequest(
         (req: Request) =>
           `/users/${req.params.username}/learning-objects/${req.params.id}/topics`,
@@ -242,7 +242,7 @@ export class RelevancyController implements Controller {
      *        description: NOT FOUND - Learning object or topic not found
      */
     router.delete(
-      '/users/:username/learning-objects/:id/topics/:topicId',
+      "/users/:username/learning-objects/:id/topics/:topicId",
       this.proxyRequest(
         (req: Request) =>
           `/users/${req.params.username}/learning-objects/${req.params.id}/topics/${req.params.topicId}`,
@@ -289,8 +289,8 @@ export class RelevancyController implements Controller {
      *        description: CONFLICT - A given user has already been assigned to one or more cuids
      */
     router.post(
-      '/learning-objects/evaluators',
-      this.proxyRequest((req: Request) => '/learning-objects/evaluators'),
+      "/learning-objects/evaluators",
+      this.proxyRequest((req: Request) => "/learning-objects/evaluators"),
     );
 
     /**
@@ -324,7 +324,7 @@ export class RelevancyController implements Controller {
      *        description: NOT FOUND - Learning object was not found
      */
     router.patch(
-      '/users/:username/learning-objects/:cuid/evaluation',
+      "/users/:username/learning-objects/:cuid/evaluation",
       this.proxyRequest(
         (req: Request) =>
           `/users/${req.params.username}/learning-objects/${req.params.cuid}/evaluation`,
@@ -367,8 +367,8 @@ export class RelevancyController implements Controller {
      *        description: NOT FOUND - Learning objects or users were not found
      */
     router.patch(
-      '/learning-objects/evaluators',
-      this.proxyRequest((req: Request) => '/learning-objects/evaluators'),
+      "/learning-objects/evaluators",
+      this.proxyRequest((req: Request) => "/learning-objects/evaluators"),
     );
 
     /**
@@ -402,8 +402,8 @@ export class RelevancyController implements Controller {
      *        description: NOT FOUND - Learning objects or users were not found
      */
     router.get(
-      '/users/:username/evaluations',
-      this.proxyRequest((req: Request) => '/users/:username/evaluations'),
+      "/users/:username/evaluations",
+      this.proxyRequest((req: Request) => "/users/:username/evaluations"),
     );
 
     return router;

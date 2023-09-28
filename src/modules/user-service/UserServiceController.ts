@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars --
     This disable is added to ignore the 'req' in this.proxyRequest */
-import { Router, Request } from 'express';
-import proxy = require('express-http-proxy');
-import { Controller } from '../../interfaces/Controller';
-import * as querystring from 'querystring';
-import { ADMIN_USER_ROUTES, STATS_ROUTE, USER_ROUTES } from '../../routes';
-import { SocketInteractor } from '../../interactors/SocketInteractor';
+import { Router, Request } from "express";
+import proxy = require("express-http-proxy");
+import { Controller } from "../../interfaces/Controller";
+import * as querystring from "querystring";
+import { ADMIN_USER_ROUTES, STATS_ROUTE, USER_ROUTES } from "../../routes";
+import { SocketInteractor } from "../../interactors/SocketInteractor";
 
-const USERS_API = process.env.USERS_API || 'localhost:4000';
+const USERS_API = process.env.USERS_API || "localhost:4000";
 
 export class UserServiceController implements Controller {
   buildRouter(): Router {
@@ -35,8 +35,8 @@ export class UserServiceController implements Controller {
      *              description: UNAUTHORIZED - User not an admin
      */
     router
-      .route('/guidelines/members')
-      .get(this.proxyRequest((req: Request) => '/guidelines/members'));
+      .route("/guidelines/members")
+      .get(this.proxyRequest((req: Request) => "/guidelines/members"));
 
     /**
      * @swagger
@@ -65,7 +65,7 @@ export class UserServiceController implements Controller {
      *              description: NOT FOUND - User not found
      */
     router
-      .route('/guidelines/members/:memberId')
+      .route("/guidelines/members/:memberId")
       .put(
         this.proxyRequest(
           (req: Request) =>
@@ -100,7 +100,7 @@ export class UserServiceController implements Controller {
      *              description: NOT FOUND - User not found
      */
     router
-      .route('/guidelines/members/:memberId')
+      .route("/guidelines/members/:memberId")
       .delete(
         this.proxyRequest(
           (req: Request) =>
@@ -137,7 +137,7 @@ export class UserServiceController implements Controller {
      *                                  required: true
      */
     router.get(
-      '/users/identifiers/active',
+      "/users/identifiers/active",
       this.proxyRequest(
         (req: Request) =>
           `/users/identifiers/active?${querystring.stringify(req.query)}`,
@@ -171,7 +171,7 @@ export class UserServiceController implements Controller {
      *              description: NOT FOUND - Collection not found
      */
     router.get(
-      '/users/curators/:collection',
+      "/users/curators/:collection",
       this.proxyRequest((req: Request) =>
         USER_ROUTES.FETCH_COLLECTION_CURATORS(req.params.collection),
       ),
@@ -202,7 +202,7 @@ export class UserServiceController implements Controller {
      *                              $ref: '#/components/schemas/User'
      */
     router.get(
-      '/collections/:collectionName/members',
+      "/collections/:collectionName/members",
       this.proxyRequest((req: Request) =>
         ADMIN_USER_ROUTES.FETCH_COLLECTION_MEMBERS(
           req.params.collectionName as string,
@@ -242,7 +242,7 @@ export class UserServiceController implements Controller {
      *              description: NOT FOUND - User or collection not found
      */
     router.put(
-      '/collections/:collectionName/members/:memberId',
+      "/collections/:collectionName/members/:memberId",
       this.proxyRequest((req: Request) =>
         ADMIN_USER_ROUTES.ASSIGN_COLLECTION_MEMBERSHIP(
           req.params.collectionName,
@@ -282,7 +282,7 @@ export class UserServiceController implements Controller {
      *              description: NOT FOUND - User or collection not found
      */
     router.patch(
-      '/collections/:collectionName/members/:memberId',
+      "/collections/:collectionName/members/:memberId",
       this.proxyRequest((req: Request) =>
         ADMIN_USER_ROUTES.EDIT_COLLECTION_MEMBERSHIP(
           req.params.collectionName,
@@ -322,7 +322,7 @@ export class UserServiceController implements Controller {
      *              description: NOT FOUND - User or collection not found
      */
     router.delete(
-      '/collections/:collectionName/members/:memberId',
+      "/collections/:collectionName/members/:memberId",
       this.proxyRequest((req: Request) =>
         ADMIN_USER_ROUTES.REMOVE_COLLECTION_MEMBERSHIP(
           req.params.collectionName,
@@ -409,11 +409,11 @@ export class UserServiceController implements Controller {
      *              description: OK
      */
     router
-      .route('/users')
-      .get(this.proxyRequest((req: Request) => '/users'))
+      .route("/users")
+      .get(this.proxyRequest((req: Request) => "/users"))
       // Register
-      .post(this.proxyRequest((req: Request) => '/users'))
-      .patch(this.proxyRequest((req: Request) => '/users'));
+      .post(this.proxyRequest((req: Request) => "/users"))
+      .patch(this.proxyRequest((req: Request) => "/users"));
 
     /**
      * @swagger
@@ -449,7 +449,7 @@ export class UserServiceController implements Controller {
      *              description: INTERNAL SERVICE ERROR - Any error is thrown
      */
     router.get(
-      '/users/stats',
+      "/users/stats",
       this.proxyRequest((req: Request) => STATS_ROUTE.USER_STATS),
     );
 
@@ -506,8 +506,8 @@ export class UserServiceController implements Controller {
      *              description: BAD REQUEST - Incorrect login credentials
      */
     router.post(
-      '/users/tokens',
-      this.proxyRequest((req: Request) => '/users/tokens'),
+      "/users/tokens",
+      this.proxyRequest((req: Request) => "/users/tokens"),
     );
 
     /**
@@ -535,7 +535,7 @@ export class UserServiceController implements Controller {
      *                              $ref: '#/components/schemas/User'
      */
     router
-      .route('/users/:username/profile')
+      .route("/users/:username/profile")
       .get(
         this.proxyRequest(
           (req: Request) => `/users/${req.params.username}/profile`,
@@ -567,7 +567,7 @@ export class UserServiceController implements Controller {
      *                              $ref: '#/components/schemas/User'
      */
     router
-      .route('/users/:username/collections')
+      .route("/users/:username/collections")
       .get(
         this.proxyRequest(
           (req: Request) => `/users/${req.params.username}/collections`,
@@ -608,8 +608,8 @@ export class UserServiceController implements Controller {
      *                                          $ref: '#/components/schemas/UserBody'
      */
     router.get(
-      '/users/tokens/refresh',
-      this.proxyRequest((req: Request) => '/users/tokens/refresh'),
+      "/users/tokens/refresh",
+      this.proxyRequest((req: Request) => "/users/tokens/refresh"),
     );
 
     /**
@@ -632,8 +632,8 @@ export class UserServiceController implements Controller {
      *              description: UNAUTHENTICATED - User not logged in
      */
     router
-      .route('/users/tokens')
-      .get(this.proxyRequest((req: Request) => '/users/tokens'));
+      .route("/users/tokens")
+      .get(this.proxyRequest((req: Request) => "/users/tokens"));
 
     /**
      * @swagger
@@ -656,7 +656,7 @@ export class UserServiceController implements Controller {
      *              description: UNAUTHENTICATED - User not logged in
      */
     router.delete(
-      '/users/:username/tokens',
+      "/users/:username/tokens",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(req.params.username)}/tokens`,
@@ -734,20 +734,20 @@ export class UserServiceController implements Controller {
      *          200:
      *              description: OK
      */
-    router.route('/users/ota-codes').all(
+    router.route("/users/ota-codes").all(
       this.proxyRequestWithDecorator(
         (req: Request) =>
           `/users/ota-codes?${querystring.stringify(req.query)}`,
         (proxyRes: any, proxyResData: any, userReq: any, userRes: any) => {
           try {
-            const data = JSON.parse(proxyResData.toString('utf8'));
+            const data = JSON.parse(proxyResData.toString("utf8"));
             if (data.username) {
               SocketInteractor.init().sendMessage(
                 data.username,
-                'VERIFIED_EMAIL',
+                "VERIFIED_EMAIL",
               );
-              userRes.redirect('http://clark.center');
-              return '';
+              userRes.redirect("http://clark.center");
+              return "";
             } else {
               return proxyResData;
             }
@@ -813,10 +813,10 @@ export class UserServiceController implements Controller {
      *                              $ref: '#/components/schemas/User'
      */
     router.get(
-      '/users/search',
+      "/users/search",
       this.proxyRequest(
         (req: Request) =>
-          `/users?${req.query ? querystring.stringify(req.query) : ''}`,
+          `/users?${req.query ? querystring.stringify(req.query) : ""}`,
       ),
     );
 
@@ -839,7 +839,7 @@ export class UserServiceController implements Controller {
      *              description: OK
      */
     router.get(
-      '/validate-captcha',
+      "/validate-captcha",
       this.proxyRequest(
         (req: Request) =>
           `/validate-captcha?${querystring.stringify(req.query)}`,
@@ -877,7 +877,7 @@ export class UserServiceController implements Controller {
      *              description: NOT FOUND - Unable to find user
      */
     router.get(
-      '/users/:id/roles',
+      "/users/:id/roles",
       this.proxyRequest((req: Request) =>
         ADMIN_USER_ROUTES.FETCH_USER_ROLES(req.params.id),
       ),
@@ -921,7 +921,7 @@ export class UserServiceController implements Controller {
      *              description: NOT FOUND - Unable to find user
      */
     router.get(
-      '/users/:user',
+      "/users/:user",
       this.proxyRequest(
         (req: Request) =>
           `/users/${encodeURIComponent(
@@ -989,7 +989,7 @@ export class UserServiceController implements Controller {
      *              description: UNAUTHORIZED - User not an admin
      */
     router.get(
-      '/users',
+      "/users",
       this.proxyRequest((req: Request) =>
         ADMIN_USER_ROUTES.FETCH_USERS_WITH_FILTER(req.query),
       ),
@@ -1015,8 +1015,8 @@ export class UserServiceController implements Controller {
      *                                  description: The public key to encrypt with
      */
     router.get(
-      '/keys',
-      this.proxyRequest((req: Request) => '/keys'),
+      "/keys",
+      this.proxyRequest((req: Request) => "/keys"),
     );
 
     /**
@@ -1032,8 +1032,8 @@ export class UserServiceController implements Controller {
      *
      */
     router.get(
-      '/google',
-      this.proxyRequest((req: Request) => '/google'),
+      "/google",
+      this.proxyRequest((req: Request) => "/google"),
     );
 
     /**
@@ -1076,8 +1076,8 @@ export class UserServiceController implements Controller {
      *
      */
     router.get(
-      '/google/redirect',
-      this.proxyRequest((req: Request) => '/google/redirect'),
+      "/google/redirect",
+      this.proxyRequest((req: Request) => "/google/redirect"),
     );
 
     return router;
