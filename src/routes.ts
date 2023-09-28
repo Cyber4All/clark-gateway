@@ -1,3 +1,4 @@
+import { Request } from "express";
 import * as querystring from "querystring";
 
 export const USER_ROUTES = {
@@ -324,5 +325,7 @@ export const ADMIN_LAMBDA_ROUTES = {
 };
 
 export const REPORTS_ROUTES = {
-  GET_REPORTS: "/reports",
+  GET_REPORTS(req: Request) {
+    return `/reports?${querystring.stringify(req.query)}`;
+  }
 };
