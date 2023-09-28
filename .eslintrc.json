@@ -1,9 +1,7 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint"
-  ],
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -14,7 +12,6 @@
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-var-requires": "warn",
     "@typescript-eslint/no-namespace": "off",
-    "quotes": ["error", "double"],
     "curly": "error",
     "no-irregular-whitespace": "error",
     "no-unused-vars": "off",

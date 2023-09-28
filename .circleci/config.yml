@@ -7,7 +7,7 @@ workflows:
   integration-testing:
     jobs:
       - cyber4all/publish:
-          image: "cyber4all/clark-gateway"
+          image: 'cyber4all/clark-gateway'
           deploy: false
 
       - cyber4all/lint
@@ -21,7 +21,7 @@ workflows:
     jobs:
       - cyber4all/publish:
           context: [DockerHub]
-          image: "cyber4all/clark-gateway"
+          image: 'cyber4all/clark-gateway'
           tag: "$(jq -r '.version' package.json),latest"
 
       - cyber4all/elasticbeanstalk:
