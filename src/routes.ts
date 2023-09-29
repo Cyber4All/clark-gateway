@@ -175,13 +175,11 @@ export const LEARNING_OBJECT_ROUTES = {
   TOGGLE_FILES_TO_BUNDLE(username: string, learningObjectID: string) {
     return `/users/${encodeURIComponent(
       username,
-    )}/learning-objects/${encodeURIComponent(
-      learningObjectID,
-    )}/files/bundle`;
+    )}/learning-objects/${encodeURIComponent(learningObjectID)}/files/bundle`;
   },
   CHANGE_HIERARCHY_STATUS(learningObjectID: string) {
     return `/learning-objects/${encodeURIComponent(learningObjectID)}/status`;
-  }
+  },
 };
 
 export const FILE_UPLOAD_ROUTES = {
@@ -316,7 +314,7 @@ export const UTILITY_ROUTES = {
   STATUS: "/status",
 };
 
-export const ADMIN_LAMBDA_ROUTES = { 
+export const ADMIN_LAMBDA_ROUTES = {
   CHANGE_AUTHOR(userId: string, learningObjectId: string) {
     return `/users/${encodeURIComponent(
       userId,

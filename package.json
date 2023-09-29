@@ -1,6 +1,6 @@
 {
   "name": "clark-gateway",
-  "version": "3.7.8",
+  "version": "3.7.9",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "eslint": "^8.16.0",
     "husky": "^8.0.1",
+    "prettier": "^3.0.3",
     "ts-node": "^10.8.0",
     "tslint": "^5.20.1",
     "typescript": "^4.7.2"

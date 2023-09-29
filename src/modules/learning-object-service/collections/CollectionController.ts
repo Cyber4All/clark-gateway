@@ -36,8 +36,15 @@ export class CollectionController implements Controller {
      *      500:
      *        description: INTERNAL SERVICE ERROR - Collection not found
      */
-    router.route("/:collection/metrics").get(this.proxyRequest((req: Request) => `/${encodeURIComponent(req.params.collection)}/metrics`));
-    
+    router
+      .route("/:collection/metrics")
+      .get(
+        this.proxyRequest(
+          (req: Request) =>
+            `/${encodeURIComponent(req.params.collection)}/metrics`,
+        ),
+      );
+
     /**
      * @swagger
      * /collections/{name}/meta:
@@ -62,8 +69,14 @@ export class CollectionController implements Controller {
      *      404:
      *        description: NOT FOUND - Collection not found
      */
-    router.get("/collections/:name/meta", this.proxyRequest((req: Request) => `/collections/${encodeURIComponent(req.params.name)}/meta`));
-    
+    router.get(
+      "/collections/:name/meta",
+      this.proxyRequest(
+        (req: Request) =>
+          `/collections/${encodeURIComponent(req.params.name)}/meta`,
+      ),
+    );
+
     /**
      * @swagger
      * /collections:
@@ -96,11 +109,16 @@ export class CollectionController implements Controller {
      *                    required: true
      *                    description: True if the collection has a logo
      */
-    router.get("/collections", this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.GET_COLLECTIONS));
+    router.get(
+      "/collections",
+      this.proxyRequest(
+        (req: Request) => LEARNING_OBJECT_ROUTES.GET_COLLECTIONS,
+      ),
+    );
 
     /**
      * TODO: This will be deprecated
-     * 
+     *
      * @swagger
      * /learning-objects/{learningObjectId}/collections:
      *  patch:
@@ -126,7 +144,14 @@ export class CollectionController implements Controller {
      *      401:
      *        description: UNAUTHENTICATED - User is not logged in
      */
-    router.patch("/learning-objects/:learningObjectId/collections", this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.ADD_LEARNING_OBJECT_TO_COLLECTION(req.params.learningObjectId)));
+    router.patch(
+      "/learning-objects/:learningObjectId/collections",
+      this.proxyRequest((req: Request) =>
+        LEARNING_OBJECT_ROUTES.ADD_LEARNING_OBJECT_TO_COLLECTION(
+          req.params.learningObjectId,
+        ),
+      ),
+    );
 
     /**
      * @swagger
@@ -173,14 +198,20 @@ export class CollectionController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object or collection not found
      */
-    router.patch("/users/:username/learning-objects/:cuid/collection", this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${req.params.cuid}/collection`));
+    router.patch(
+      "/users/:username/learning-objects/:cuid/collection",
+      this.proxyRequest(
+        (req: Request) =>
+          `/users/${req.params.username}/learning-objects/${req.params.cuid}/collection`,
+      ),
+    );
 
     return router;
   }
 
   private proxyRequest(callback: any) {
     return proxy(LEARNING_OBJECT_SERVICE_URI, {
-      proxyReqPathResolver: req => {
+      proxyReqPathResolver: (req) => {
         return callback(req);
       },
     });

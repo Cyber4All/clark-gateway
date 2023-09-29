@@ -51,8 +51,16 @@ export class OutcomesController implements Controller {
      *      404:
      *        description: NOT FOUND - Outcome not found
      */
-    router.post("/learning-objects/:learningObjectId/learning-outcomes", this.proxyRequest((req: Request) => `/learning-objects/${encodeURIComponent(req.params.learningObjectId)}/learning-outcomes`));
-    
+    router.post(
+      "/learning-objects/:learningObjectId/learning-outcomes",
+      this.proxyRequest(
+        (req: Request) =>
+          `/learning-objects/${encodeURIComponent(
+            req.params.learningObjectId,
+          )}/learning-outcomes`,
+      ),
+    );
+
     /**
      * @swagger
      * /learning-objects/{learningObjectId}/learning-outcomes/{outcomeId}:
@@ -97,8 +105,16 @@ export class OutcomesController implements Controller {
      *      404:
      *        description: NOT FOUND - Outcome or object not found
      */
-    router.patch("/learning-objects/:learningObjectId/learning-outcomes/:outcomeId", this.proxyRequest((req: Request) => `/learning-objects/${encodeURIComponent(req.params.learningObjectId)}/learning-outcomes/${encodeURIComponent(req.params.outcomeId)}`));
-    
+    router.patch(
+      "/learning-objects/:learningObjectId/learning-outcomes/:outcomeId",
+      this.proxyRequest(
+        (req: Request) =>
+          `/learning-objects/${encodeURIComponent(
+            req.params.learningObjectId,
+          )}/learning-outcomes/${encodeURIComponent(req.params.outcomeId)}`,
+      ),
+    );
+
     /**
      * @swagger
      * /learning-objects/{learningObjectId}/learning-outcomes/{outcomeId}:
@@ -129,7 +145,15 @@ export class OutcomesController implements Controller {
      *      404:
      *        description: NOT FOUND - Outcome or object not found
      */
-    router.delete("/learning-objects/:learningObjectId/learning-outcomes/:outcomeId", this.proxyRequest((req: Request) => `/learning-objects/${encodeURIComponent(req.params.learningObjectId)}/learning-outcomes/${encodeURIComponent(req.params.outcomeId)}`));
+    router.delete(
+      "/learning-objects/:learningObjectId/learning-outcomes/:outcomeId",
+      this.proxyRequest(
+        (req: Request) =>
+          `/learning-objects/${encodeURIComponent(
+            req.params.learningObjectId,
+          )}/learning-outcomes/${encodeURIComponent(req.params.outcomeId)}`,
+      ),
+    );
 
     /**
      * @swagger
@@ -163,14 +187,24 @@ export class OutcomesController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object not found
      */
-    router.get("/users/:username/learning-objects/:learningObjectId/outcomes", this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.learningObjectId)}/outcomes`));
+    router.get(
+      "/users/:username/learning-objects/:learningObjectId/outcomes",
+      this.proxyRequest(
+        (req: Request) =>
+          `/users/${encodeURIComponent(
+            req.params.username,
+          )}/learning-objects/${encodeURIComponent(
+            req.params.learningObjectId,
+          )}/outcomes`,
+      ),
+    );
 
     return router;
   }
 
   private proxyRequest(callback: any) {
     return proxy(LEARNING_OBJECT_SERVICE_URI, {
-      proxyReqPathResolver: req => {
+      proxyReqPathResolver: (req) => {
         return callback(req);
       },
     });

@@ -46,11 +46,11 @@ export class ExpressDriver {
 
     // Set Validation Middleware
     this.app.use(enforceTokenAccess);
-    this.app.use(function(
+    this.app.use(function (
       error: Error,
       req: express.Request,
       res: express.Response,
-      next: express.NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
+      next: express.NextFunction, // eslint-disable-line @typescript-eslint/no-unused-vars
     ) {
       if (error.name === "UnauthorizedError") {
         res.status(401).send("Invalid Access Token");
@@ -58,15 +58,15 @@ export class ExpressDriver {
     });
 
     // Welcome message
-    this.app.get("/", function(req, res) {
+    this.app.get("/", function (req, res) {
       res.json({
         message: "Welcome to the C.L.A.R.K. Gateway API",
       });
     });
 
-    this.app.get("/favicon.ico", function(req, res) { 
-      res.sendStatus(204); 
-  });
+    this.app.get("/favicon.ico", function (req, res) {
+      res.sendStatus(204);
+    });
 
     // Set up the different controllers
     this.app.use(new FeatureServiceController().buildRouter());

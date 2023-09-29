@@ -45,10 +45,19 @@ export class FileManagerController implements Controller {
      *      404:
      *        description: NOT FOUND - Author of learning object not found, Learning Object not found
      *      425:
-     *        description: 
+     *        description:
      */
-    router.route("/users/:username/learning-objects/:id/bundle").get(this.proxyLearningObjectRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/bundle`));
-    
+    router
+      .route("/users/:username/learning-objects/:id/bundle")
+      .get(
+        this.proxyLearningObjectRequest(
+          (req: Request) =>
+            `/users/${encodeURIComponent(
+              req.params.username,
+            )}/learning-objects/${encodeURIComponent(req.params.id)}/bundle`,
+        ),
+      );
+
     /**
      * @swagger
      * /users/{username}/learning-objects/{id}/bundle:
@@ -77,11 +86,20 @@ export class FileManagerController implements Controller {
      *      403:
      *        description: UNAUTHORIZED - User {username} does not have access to download the requested Learning Object
      *      404:
-     *        description: NOT FOUND - Author of learning object not found, Learning Object not found 
+     *        description: NOT FOUND - Author of learning object not found, Learning Object not found
      *      500:
      *        description: SERVICE ERROR - CloudWatchEvents Client Error
      */
-    router.route("/users/:username/learning-objects/:id/bundle").post(this.proxyLearningObjectRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/bundle`));
+    router
+      .route("/users/:username/learning-objects/:id/bundle")
+      .post(
+        this.proxyLearningObjectRequest(
+          (req: Request) =>
+            `/users/${encodeURIComponent(
+              req.params.username,
+            )}/learning-objects/${encodeURIComponent(req.params.id)}/bundle`,
+        ),
+      );
 
     /**
      * @swagger
@@ -158,10 +176,29 @@ export class FileManagerController implements Controller {
      *      404:
      *        description: NOT FOUND - Object or file not found
      */
-    router.route("/users/:username/learning-objects/:learningObjectId/materials/files/:fileId")
-      .patch(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.UPDATE_FILE({username: req.params.username, learningObjectId: req.params.learningObjectId, fileId: req.params.fileId})))
-      .delete(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.UPDATE_FILE({username: req.params.username, learningObjectId: req.params.learningObjectId, fileId: req.params.fileId})));
-    
+    router
+      .route(
+        "/users/:username/learning-objects/:learningObjectId/materials/files/:fileId",
+      )
+      .patch(
+        this.proxyLearningObjectRequest((req: Request) =>
+          LEARNING_OBJECT_ROUTES.UPDATE_FILE({
+            username: req.params.username,
+            learningObjectId: req.params.learningObjectId,
+            fileId: req.params.fileId,
+          }),
+        ),
+      )
+      .delete(
+        this.proxyLearningObjectRequest((req: Request) =>
+          LEARNING_OBJECT_ROUTES.UPDATE_FILE({
+            username: req.params.username,
+            learningObjectId: req.params.learningObjectId,
+            fileId: req.params.fileId,
+          }),
+        ),
+      );
+
     /**
      * @swagger
      * /learning-objects/{id}/pdf:
@@ -192,8 +229,13 @@ export class FileManagerController implements Controller {
      *      404:
      *        description: NOT FOUND - Object not found
      */
-    router.patch("/learning-objects/:id/pdf", this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.UPDATE_PDF(req.params.id)));
-    
+    router.patch(
+      "/learning-objects/:id/pdf",
+      this.proxyLearningObjectRequest((req: Request) =>
+        LEARNING_OBJECT_ROUTES.UPDATE_PDF(req.params.id),
+      ),
+    );
+
     /**
      * @swagger
      * /users/{username}/learning-objects/{id}/files/{fileId}/download:
@@ -235,8 +277,18 @@ export class FileManagerController implements Controller {
      *      404:
      *        description: NOT FOUND - Object or file not found
      */
-    router.get("/users/:username/learning-objects/:id/files/:fileId/download", this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.DOWNLOAD_FILE({username: req.params.username, id: req.params.id, fileId: req.params.fileId, query: req.query})));
-    
+    router.get(
+      "/users/:username/learning-objects/:id/files/:fileId/download",
+      this.proxyLearningObjectRequest((req: Request) =>
+        LEARNING_OBJECT_ROUTES.DOWNLOAD_FILE({
+          username: req.params.username,
+          id: req.params.id,
+          fileId: req.params.fileId,
+          query: req.query,
+        }),
+      ),
+    );
+
     /**
      * @swagger
      * /users/{username}/learning-objects/{id}/materials:
@@ -275,8 +327,16 @@ export class FileManagerController implements Controller {
      *      404:
      *        description: NOT FOUND - Object not found
      */
-    router.route("/users/:username/learning-objects/:id/materials").get(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.GET_MATERIALS({username: req.params.username, id: req.params.id, query: req.query})));
-    
+    router.route("/users/:username/learning-objects/:id/materials").get(
+      this.proxyLearningObjectRequest((req: Request) =>
+        LEARNING_OBJECT_ROUTES.GET_MATERIALS({
+          username: req.params.username,
+          id: req.params.id,
+          query: req.query,
+        }),
+      ),
+    );
+
     /**
      * @swagger
      * /users/{username}/learning-objects/{id}/materials/files:
@@ -326,7 +386,16 @@ export class FileManagerController implements Controller {
      *      404:
      *        description: NOT FOUND - Object not found
      */
-    router.route("/users/:username/learning-objects/:id/materials/files").post(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.ADD_MATERIALS(req.params.username, req.params.id)));
+    router
+      .route("/users/:username/learning-objects/:id/materials/files")
+      .post(
+        this.proxyLearningObjectRequest((req: Request) =>
+          LEARNING_OBJECT_ROUTES.ADD_MATERIALS(
+            req.params.username,
+            req.params.id,
+          ),
+        ),
+      );
 
     /**
      * @swagger
@@ -370,13 +439,22 @@ export class FileManagerController implements Controller {
      *      404:
      *        description: NOT FOUND - File(s) not found in database
      */
-    router.route("/users/:username/learning-objects/:id/files/bundle").patch(this.proxyLearningObjectRequest((req: Request) => LEARNING_OBJECT_ROUTES.TOGGLE_FILES_TO_BUNDLE(req.params.username, req.params.id)));
+    router
+      .route("/users/:username/learning-objects/:id/files/bundle")
+      .patch(
+        this.proxyLearningObjectRequest((req: Request) =>
+          LEARNING_OBJECT_ROUTES.TOGGLE_FILES_TO_BUNDLE(
+            req.params.username,
+            req.params.id,
+          ),
+        ),
+      );
     return router;
   }
 
   private proxyLearningObjectRequest(callback: any) {
     return proxy(LEARNING_OBJECT_SERVICE_URI, {
-      proxyReqPathResolver: req => {
+      proxyReqPathResolver: (req) => {
         return callback(req);
       },
     });

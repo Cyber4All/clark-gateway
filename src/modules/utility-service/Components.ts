@@ -76,6 +76,6 @@
  *                      description: the URL of the blog
  *                      example: N/A
  *                      required: true
- * 
- * 
+ *
+ *
  */

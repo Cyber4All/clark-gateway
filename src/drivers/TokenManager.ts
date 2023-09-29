@@ -6,11 +6,7 @@ import * as jwt from "jsonwebtoken";
  * @param token the JWT as a string
  * @param callback the function to execute after verification
  */
-export function verifyJWT(
-  token: string,
-  res: any,
-  callback: any,
-): boolean {
+export function verifyJWT(token: string, res: any, callback: any): boolean {
   try {
     const decoded = jwt.verify(token, process.env.KEY, {});
 
