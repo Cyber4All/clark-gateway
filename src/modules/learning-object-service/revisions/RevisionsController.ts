@@ -51,7 +51,15 @@ export class RevisionsController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object not found
      */
-    router.post("/users/:username/learning-objects/:cuid/versions", this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.cuid)}/versions`));
+    router.post(
+      "/users/:username/learning-objects/:cuid/versions",
+      this.proxyRequest(
+        (req: Request) =>
+          `/users/${encodeURIComponent(
+            req.params.username,
+          )}/learning-objects/${encodeURIComponent(req.params.cuid)}/versions`,
+      ),
+    );
 
     /**
      * @swagger
@@ -93,10 +101,19 @@ export class RevisionsController implements Controller {
      *      404:
      *        description: NOT FOUND - Revision not found
      */
-    router.get("/users/:username/learning-objects/:learningObjectId/revisions/:revisionId", this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.GET_LEARNING_OBJECT_REVISION({username: req.params.username, learningObjectId: req.params.learningObjectId, revisionId: req.params.revisionId, query: req.query})));
+    router.get(
+      "/users/:username/learning-objects/:learningObjectId/revisions/:revisionId",
+      this.proxyRequest((req: Request) =>
+        LEARNING_OBJECT_ROUTES.GET_LEARNING_OBJECT_REVISION({
+          username: req.params.username,
+          learningObjectId: req.params.learningObjectId,
+          revisionId: req.params.revisionId,
+          query: req.query,
+        }),
+      ),
+    );
 
-
-        /**
+    /**
      * @swagger
      * /users/{username}/learning-objects/{cuid}/versions:
      *  delete:
@@ -128,14 +145,24 @@ export class RevisionsController implements Controller {
      *      404:
      *        description: NOT FOUND - Learning object not found or Learning Object revision not found
      */
-      router.delete("/users/:username/learning-objects/:cuid/versions/:version", this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.cuid)}/versions/${encodeURIComponent(req.params.version)}`));
-    
-      return router;
+    router.delete(
+      "/users/:username/learning-objects/:cuid/versions/:version",
+      this.proxyRequest(
+        (req: Request) =>
+          `/users/${encodeURIComponent(
+            req.params.username,
+          )}/learning-objects/${encodeURIComponent(
+            req.params.cuid,
+          )}/versions/${encodeURIComponent(req.params.version)}`,
+      ),
+    );
+
+    return router;
   }
 
   private proxyRequest(callback: any) {
     return proxy(LEARNING_OBJECT_SERVICE_URI, {
-      proxyReqPathResolver: req => {
+      proxyReqPathResolver: (req) => {
         return callback(req);
       },
     });

@@ -1,3 +1,4 @@
+import { Request } from "express";
 import * as querystring from "querystring";
 
 export const USER_ROUTES = {
@@ -174,13 +175,11 @@ export const LEARNING_OBJECT_ROUTES = {
   TOGGLE_FILES_TO_BUNDLE(username: string, learningObjectID: string) {
     return `/users/${encodeURIComponent(
       username,
-    )}/learning-objects/${encodeURIComponent(
-      learningObjectID,
-    )}/files/bundle`;
+    )}/learning-objects/${encodeURIComponent(learningObjectID)}/files/bundle`;
   },
   CHANGE_HIERARCHY_STATUS(learningObjectID: string) {
     return `/learning-objects/${encodeURIComponent(learningObjectID)}/status`;
-  }
+  },
 };
 
 export const FILE_UPLOAD_ROUTES = {
@@ -315,7 +314,7 @@ export const UTILITY_ROUTES = {
   STATUS: "/status",
 };
 
-export const ADMIN_LAMBDA_ROUTES = { 
+export const ADMIN_LAMBDA_ROUTES = {
   CHANGE_AUTHOR(userId: string, learningObjectId: string) {
     return `/users/${encodeURIComponent(
       userId,
@@ -324,5 +323,7 @@ export const ADMIN_LAMBDA_ROUTES = {
 };
 
 export const REPORTS_ROUTES = {
-  GET_REPORTS: "/reports",
+  GET_REPORTS(req: Request) {
+    return `/reports?${querystring.stringify(req.query)}`;
+  }
 };

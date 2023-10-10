@@ -11,20 +11,20 @@ import { StatsController } from "./stats/StatsController";
 import { SubmissionsController } from "./submissions/SubmissionsController";
 
 export class LearningObjectServiceController implements Controller {
-    buildRouter(): Router {
-        const router = Router();
+  buildRouter(): Router {
+    const router = Router();
 
-        // Routes go here
-        router.use(new ChangelogController().buildRouter());
-        router.use(new CollectionController().buildRouter());
-        router.use(new FileManagerController().buildRouter());
-        router.use(new ObjectsController().buildRouter());
-        router.use(new OutcomesController().buildRouter());
-        router.use(new RevisionsController().buildRouter());
-        router.use(new StatsController().buildRouter());
-        router.use(new SubmissionsController().buildRouter());
-        router.use(new RelevancyController().buildRouter());
+    // Routes go here
+    router.use(new ChangelogController().buildRouter());
+    router.use(new CollectionController().buildRouter());
+    router.use(new FileManagerController().buildRouter());
+    router.use(new ObjectsController().buildRouter());
+    router.use(new OutcomesController().buildRouter());
+    router.use(new RevisionsController().buildRouter());
+    router.use(new StatsController().buildRouter());
+    router.use(new SubmissionsController().buildRouter());
+    router.use(new RelevancyController().buildRouter());
 
-        return router;
-    }
+    return router;
+  }
 }

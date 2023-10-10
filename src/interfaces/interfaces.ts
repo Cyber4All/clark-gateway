@@ -1,6 +1,3 @@
-
 import { Responder } from "./Responder";
 
-export {
-  Responder,
-};
+export { Responder };

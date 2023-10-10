@@ -10,7 +10,7 @@ export const enforceTokenAccess = jwt({
   secret: process.env.KEY,
   issuer: process.env.ISSUER,
   algorithms: ["HS256"],
-  getToken: req => {
+  getToken: (req) => {
     return req.cookies.presence;
   },
 }).unless({
@@ -55,7 +55,7 @@ export const enforceTokenAccess = jwt({
     "/google",
     "/google/redirect",
     "/blogs",
-    "/downtime"
+    "/downtime",
   ],
 }); // register // all ota-code routes do their own verification outsides of JWT // login
 // TODO: Whitelist user routes

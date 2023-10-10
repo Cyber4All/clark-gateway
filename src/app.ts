@@ -5,5 +5,3 @@ import { ExpressDriver } from "./drivers/drivers";
 
 // ----------------------------------------------------------------------------------
 ExpressDriver.start();
-
-

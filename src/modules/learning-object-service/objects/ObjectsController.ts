@@ -3,7 +3,11 @@
 import { Router, Request } from "express";
 import proxy = require("express-http-proxy");
 import { Controller } from "../../../interfaces/Controller";
-import { ADMIN_LAMBDA_ROUTES, ADMIN_LEARNING_OBJECT_ROUTES, LEARNING_OBJECT_ROUTES } from "../../../routes";
+import {
+  ADMIN_LAMBDA_ROUTES,
+  ADMIN_LEARNING_OBJECT_ROUTES,
+  LEARNING_OBJECT_ROUTES,
+} from "../../../routes";
 import * as querystring from "querystring";
 
 const LEARNING_OBJECT_SERVICE_URI =
@@ -105,7 +109,18 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - Object not found
      */
-    router.route("/users/:username/learning-objects/:id").all(this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}?${req.query ? querystring.stringify(req.query) : ""}`));
+    router
+      .route("/users/:username/learning-objects/:id")
+      .all(
+        this.proxyRequest(
+          (req: Request) =>
+            `/users/${encodeURIComponent(
+              req.params.username,
+            )}/learning-objects/${encodeURIComponent(req.params.id)}?${
+              req.query ? querystring.stringify(req.query) : ""
+            }`,
+        ),
+      );
 
     /**
      * @swagger
@@ -139,7 +154,15 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - Object not found
      */
-    router.get("/users/:username/learning-objects/:id/children", this.proxyRequest((req: Request) => `/users/:username/learning-objects/${encodeURIComponent(req.params.id)}/children`));
+    router.get(
+      "/users/:username/learning-objects/:id/children",
+      this.proxyRequest(
+        (req: Request) =>
+          `/users/:username/learning-objects/${encodeURIComponent(
+            req.params.id,
+          )}/children`,
+      ),
+    );
 
     /**
      * @swagger
@@ -173,7 +196,15 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - Object not found
      */
-    router.get("/users/:username/learning-objects/:id/parents", this.proxyRequest((req: Request) => `/users/${req.params.username}/learning-objects/${encodeURIComponent(req.params.id)}/parents`));
+    router.get(
+      "/users/:username/learning-objects/:id/parents",
+      this.proxyRequest(
+        (req: Request) =>
+          `/users/${req.params.username}/learning-objects/${encodeURIComponent(
+            req.params.id,
+          )}/parents`,
+      ),
+    );
 
     /**
      * @swagger
@@ -214,10 +245,15 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - Object not found
      */
-    router.post("/learning-objects/:username/:learningObjectName/children", this.proxyRequest((req: Request) => `/learning-objects/${req.params.username}/${req.params.learningObjectName}/children`));
+    router.post(
+      "/learning-objects/:username/:learningObjectName/children",
+      this.proxyRequest(
+        (req: Request) =>
+          `/learning-objects/${req.params.username}/${req.params.learningObjectName}/children`,
+      ),
+    );
 
-
-        /**
+    /**
      * @swagger
      * /learning-objects/{username}/hierarchy-object:
      *  post:
@@ -260,7 +296,12 @@ export class ObjectsController implements Controller {
      *      403:
      *        description: UNAUTHORIZED - User not object author, admin, or editor
      */
-    router.post("/users/:username/hierarchy-object", this.proxyRequest((req: Request) => `/users/${req.params.username}/hierarchy-object`));
+    router.post(
+      "/users/:username/hierarchy-object",
+      this.proxyRequest(
+        (req: Request) => `/users/${req.params.username}/hierarchy-object`,
+      ),
+    );
 
     /**
      * @swagger
@@ -301,7 +342,13 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - Object not found
      */
-     router.patch("/learning-objects/:username/:learningObjectName/children", this.proxyRequest((req: Request) => `/learning-objects/${req.params.username}/${req.params.learningObjectName}/children`));
+    router.patch(
+      "/learning-objects/:username/:learningObjectName/children",
+      this.proxyRequest(
+        (req: Request) =>
+          `/learning-objects/${req.params.username}/${req.params.learningObjectName}/children`,
+      ),
+    );
 
     /**
      * @swagger
@@ -362,9 +409,23 @@ export class ObjectsController implements Controller {
      *      409:
      *        description: CONFLICT - Object with same name exists under the same author
      */
-    router.route("/users/:username/learning-objects")
-      .get(this.proxyRequest((req: Request) => (LEARNING_OBJECT_ROUTES.LOAD_LEARNING_OBJECT_SUMMARY(req.params.username) + "?" + querystring.stringify(req.query))))
-      .post(this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.CREATE_LEARNING_OBJECT(req.params.username)));
+    router
+      .route("/users/:username/learning-objects")
+      .get(
+        this.proxyRequest(
+          (req: Request) =>
+            LEARNING_OBJECT_ROUTES.LOAD_LEARNING_OBJECT_SUMMARY(
+              req.params.username,
+            ) +
+            "?" +
+            querystring.stringify(req.query),
+        ),
+      )
+      .post(
+        this.proxyRequest((req: Request) =>
+          LEARNING_OBJECT_ROUTES.CREATE_LEARNING_OBJECT(req.params.username),
+        ),
+      );
 
     /**
      * @swagger
@@ -384,8 +445,15 @@ export class ObjectsController implements Controller {
      *      301:
      *        description: MOVED PERMENENTLY - Redirects to GET /users/:username/learning-objects
      */
-    router.get("/users/:username/learning-objects/profile", this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.LOAD_USER_PROFILE(encodeURIComponent(req.params.username))));
-    
+    router.get(
+      "/users/:username/learning-objects/profile",
+      this.proxyRequest((req: Request) =>
+        LEARNING_OBJECT_ROUTES.LOAD_USER_PROFILE(
+          encodeURIComponent(req.params.username),
+        ),
+      ),
+    );
+
     /**
      * @swagger
      * /learning-objects/multiple/{names}:
@@ -408,7 +476,14 @@ export class ObjectsController implements Controller {
      *      403:
      *        description: UNAUTHORIZED - User is not author or is trying to delete a in review/released object
      */
-    router.delete("/learning-objects/multiple/:names", this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.DELETE_MULTIPLE_LEARNING_OBJECTS(req.params.names.split(","))));
+    router.delete(
+      "/learning-objects/multiple/:names",
+      this.proxyRequest((req: Request) =>
+        LEARNING_OBJECT_ROUTES.DELETE_MULTIPLE_LEARNING_OBJECTS(
+          req.params.names.split(","),
+        ),
+      ),
+    );
 
     /**
      * @swagger
@@ -438,7 +513,7 @@ export class ObjectsController implements Controller {
      *        description: The query to search for
      *      - in: query
      *        name: assigned
-     *        schema: 
+     *        schema:
      *           type: string
      *        required: false
      *        description: Boolean to determine if only the objects that were assigned to them should be returned
@@ -462,7 +537,15 @@ export class ObjectsController implements Controller {
      *                  items:
      *                    $ref: '#/components/schemas/LearningObject'
      */
-    router.get("/learning-objects", this.proxyRequest((req: Request) => `${LEARNING_OBJECT_ROUTES.FETCH_LEARNING_OBJECTS}?${querystring.stringify(req.query)}`));
+    router.get(
+      "/learning-objects",
+      this.proxyRequest(
+        (req: Request) =>
+          `${
+            LEARNING_OBJECT_ROUTES.FETCH_LEARNING_OBJECTS
+          }?${querystring.stringify(req.query)}`,
+      ),
+    );
 
     /**
      * @swagger
@@ -492,8 +575,17 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - Object is not found
      */
-    router.route("/learning-objects/:learningObjectId").get(this.proxyRequest((req: Request) => `/learning-objects/${encodeURIComponent(req.params.learningObjectId)}`));
-    
+    router
+      .route("/learning-objects/:learningObjectId")
+      .get(
+        this.proxyRequest(
+          (req: Request) =>
+            `/learning-objects/${encodeURIComponent(
+              req.params.learningObjectId,
+            )}`,
+        ),
+      );
+
     /**
      * @swagger
      * /learning-objects/{id}/children/summary:
@@ -524,7 +616,12 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - Object is not found
      */
-    router.get("/learning-objects/:id/children/summary", this.proxyRequest((req: Request) => LEARNING_OBJECT_ROUTES.GET_LEARNING_OBJECT_CHILDREN(req.params.id)));
+    router.get(
+      "/learning-objects/:id/children/summary",
+      this.proxyRequest((req: Request) =>
+        LEARNING_OBJECT_ROUTES.GET_LEARNING_OBJECT_CHILDREN(req.params.id),
+      ),
+    );
 
     /**
      * @swagger
@@ -560,8 +657,16 @@ export class ObjectsController implements Controller {
      *      403:
      *        description: UNAUTHORIZED - User is not privileged
      */
-    router.get("/admin/learning-objects", this.proxyRequest((req: Request) => `${ADMIN_LEARNING_OBJECT_ROUTES.FETCH_LEARNING_OBJECTS}?${querystring.stringify(req.query)}`));
-    
+    router.get(
+      "/admin/learning-objects",
+      this.proxyRequest(
+        (req: Request) =>
+          `${
+            ADMIN_LEARNING_OBJECT_ROUTES.FETCH_LEARNING_OBJECTS
+          }?${querystring.stringify(req.query)}`,
+      ),
+    );
+
     /**
      * @swagger
      * /admin/learning-objects:
@@ -588,8 +693,13 @@ export class ObjectsController implements Controller {
      *      403:
      *        description: UNAUTHORIZED - User is not privileged
      */
-    router.patch("/admin/learning-objects", this.proxyRequest((req: Request) => ADMIN_LEARNING_OBJECT_ROUTES.UPDATE_OBJECT()));
-    
+    router.patch(
+      "/admin/learning-objects",
+      this.proxyRequest((req: Request) =>
+        ADMIN_LEARNING_OBJECT_ROUTES.UPDATE_OBJECT(),
+      ),
+    );
+
     /**
      * @swagger
      * /admin/learning-objects/{learningObjectId}:
@@ -612,7 +722,14 @@ export class ObjectsController implements Controller {
      *      403:
      *        description: UNAUTHORIZED - User is not privileged
      */
-    router.get("/admin/learning-objects/:learningObjectId", this.proxyRequest((req: Request) => ADMIN_LEARNING_OBJECT_ROUTES.GET_FULL_OBJECT(req.params.learningObjectId)));
+    router.get(
+      "/admin/learning-objects/:learningObjectId",
+      this.proxyRequest((req: Request) =>
+        ADMIN_LEARNING_OBJECT_ROUTES.GET_FULL_OBJECT(
+          req.params.learningObjectId,
+        ),
+      ),
+    );
 
     /**
      * @swagger
@@ -642,8 +759,16 @@ export class ObjectsController implements Controller {
      *      403:
      *        description: UNAUTHORIZED - User is not privileged
      */
-    router.delete("/admin/users/:username/learning-objects/:learningObjectName", this.proxyRequest((req: Request) => ADMIN_LEARNING_OBJECT_ROUTES.DELETE_LEARNING_OBJECT(req.params.username, req.params.learningObjectName)));
-    
+    router.delete(
+      "/admin/users/:username/learning-objects/:learningObjectName",
+      this.proxyRequest((req: Request) =>
+        ADMIN_LEARNING_OBJECT_ROUTES.DELETE_LEARNING_OBJECT(
+          req.params.username,
+          req.params.learningObjectName,
+        ),
+      ),
+    );
+
     /**
      * @swagger
      * /admin/users/{username}/learning-objects/multiple/{learningObjectIDs}:
@@ -672,7 +797,15 @@ export class ObjectsController implements Controller {
      *      403:
      *        description: UNAUTHORIZED - User is not privileged
      */
-    router.delete("/admin/users/:username/learning-objects/multiple/:learningObjectIDs", this.proxyRequest((req: Request) => ADMIN_LEARNING_OBJECT_ROUTES.DELETE_MULTIPLE_LEARNING_OBJECTS(req.params.username, req.params.learningObjectIDs)));
+    router.delete(
+      "/admin/users/:username/learning-objects/multiple/:learningObjectIDs",
+      this.proxyRequest((req: Request) =>
+        ADMIN_LEARNING_OBJECT_ROUTES.DELETE_MULTIPLE_LEARNING_OBJECTS(
+          req.params.username,
+          req.params.learningObjectIDs,
+        ),
+      ),
+    );
 
     /**
      * @swagger
@@ -715,8 +848,16 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - User or object not found
      */
-    router.route("/users/:userId/learning-objects/:learningObjectId/change-author").post(this.proxyLambdaRequest((req: Request) => ADMIN_LAMBDA_ROUTES.CHANGE_AUTHOR(req.params.userId, req.params.learningObjectId)));
-    
+    router
+      .route("/users/:userId/learning-objects/:learningObjectId/change-author")
+      .post(
+        this.proxyLambdaRequest((req: Request) =>
+          ADMIN_LAMBDA_ROUTES.CHANGE_AUTHOR(
+            req.params.userId,
+            req.params.learningObjectId,
+          ),
+        ),
+      );
 
     /**
      * @swagger
@@ -761,8 +902,16 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - User or object not found
      */
-    router.post("/users/:username/learning-objects/:id/status", this.proxyRequest((req: Request) => `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(req.params.id)}/status`));
-    
+    router.post(
+      "/users/:username/learning-objects/:id/status",
+      this.proxyRequest(
+        (req: Request) =>
+          `/users/${encodeURIComponent(
+            req.params.username,
+          )}/learning-objects/${encodeURIComponent(req.params.id)}/status`,
+      ),
+    );
+
     /**
      * @swagger
      * /learning-objects/{username}/{learningObjectName}:
@@ -794,14 +943,22 @@ export class ObjectsController implements Controller {
      *      404:
      *        description: NOT FOUND - Object was not found for given name
      */
-    router.get("/learning-objects/:username/:learningObjectName", this.proxyRequest((req: Request) => `/learning-objects/${encodeURIComponent(req.params.username)}/${encodeURIComponent(req.params.learningObjectName)}`));
-    
+    router.get(
+      "/learning-objects/:username/:learningObjectName",
+      this.proxyRequest(
+        (req: Request) =>
+          `/learning-objects/${encodeURIComponent(
+            req.params.username,
+          )}/${encodeURIComponent(req.params.learningObjectName)}`,
+      ),
+    );
+
     return router;
   }
 
   private proxyRequest(callback: any) {
     return proxy(LEARNING_OBJECT_SERVICE_URI, {
-      proxyReqPathResolver: req => {
+      proxyReqPathResolver: (req) => {
         return callback(req);
       },
     });
@@ -809,9 +966,9 @@ export class ObjectsController implements Controller {
 
   private proxyLambdaRequest(callback: any) {
     return proxy(COA_API, {
-      proxyReqPathResolver: req => {
+      proxyReqPathResolver: (req) => {
         return callback(req);
-      }
+      },
     });
   }
 }
