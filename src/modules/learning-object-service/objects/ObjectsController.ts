@@ -116,8 +116,7 @@ export class ObjectsController implements Controller {
           (req: Request) =>
             `/users/${encodeURIComponent(
               req.params.username,
-            )}/learning-objects/${encodeURIComponent(req.params.id)}?${
-              req.query ? querystring.stringify(req.query) : ""
+            )}/learning-objects/${encodeURIComponent(req.params.id)}?${req.query ? querystring.stringify(req.query) : ""
             }`,
         ),
       );
@@ -158,7 +157,7 @@ export class ObjectsController implements Controller {
       "/users/:username/learning-objects/:id/children",
       this.proxyRequest(
         (req: Request) =>
-          `/users/:username/learning-objects/${encodeURIComponent(
+          `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(
             req.params.id,
           )}/children`,
       ),
@@ -200,7 +199,7 @@ export class ObjectsController implements Controller {
       "/users/:username/learning-objects/:id/parents",
       this.proxyRequest(
         (req: Request) =>
-          `/users/${req.params.username}/learning-objects/${encodeURIComponent(
+          `/users/${encodeURIComponent(req.params.username)}/learning-objects/${encodeURIComponent(
             req.params.id,
           )}/parents`,
       ),
@@ -249,7 +248,7 @@ export class ObjectsController implements Controller {
       "/learning-objects/:username/:learningObjectName/children",
       this.proxyRequest(
         (req: Request) =>
-          `/learning-objects/${req.params.username}/${req.params.learningObjectName}/children`,
+          `/learning-objects/${encodeURIComponent(req.params.username)}/${encodeURIComponent(req.params.learningObjectName)}/children`,
       ),
     );
 
@@ -299,7 +298,7 @@ export class ObjectsController implements Controller {
     router.post(
       "/users/:username/hierarchy-object",
       this.proxyRequest(
-        (req: Request) => `/users/${req.params.username}/hierarchy-object`,
+        (req: Request) => `/users/${encodeURIComponent(req.params.username)}/hierarchy-object`,
       ),
     );
 
@@ -346,7 +345,7 @@ export class ObjectsController implements Controller {
       "/learning-objects/:username/:learningObjectName/children",
       this.proxyRequest(
         (req: Request) =>
-          `/learning-objects/${req.params.username}/${req.params.learningObjectName}/children`,
+          `/learning-objects/${encodeURIComponent(req.params.username)}/${req.params.learningObjectName}/children`,
       ),
     );
 
@@ -541,8 +540,7 @@ export class ObjectsController implements Controller {
       "/learning-objects",
       this.proxyRequest(
         (req: Request) =>
-          `${
-            LEARNING_OBJECT_ROUTES.FETCH_LEARNING_OBJECTS
+          `${LEARNING_OBJECT_ROUTES.FETCH_LEARNING_OBJECTS
           }?${querystring.stringify(req.query)}`,
       ),
     );
@@ -661,8 +659,7 @@ export class ObjectsController implements Controller {
       "/admin/learning-objects",
       this.proxyRequest(
         (req: Request) =>
-          `${
-            ADMIN_LEARNING_OBJECT_ROUTES.FETCH_LEARNING_OBJECTS
+          `${ADMIN_LEARNING_OBJECT_ROUTES.FETCH_LEARNING_OBJECTS
           }?${querystring.stringify(req.query)}`,
       ),
     );
