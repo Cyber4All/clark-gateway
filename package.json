@@ -8,7 +8,8 @@
         "lint": "eslint . --ext .ts",
         "lint:fix": "eslint . --ext .ts --fix",
         "prepare": "husky install",
-        "prettier": "prettier --write .",
+        "prettier": "prettier --check .",
+        "prettier:fix": "prettier --write .",
         "serve": "node -r ts-node/register ./src/app.ts",
         "start": "nodemon"
     },
