@@ -29,7 +29,7 @@ export function buildProxyRouter(routes: ProxyRoute[], target?: string): Router 
  * 
  * @returns void (changes @param router Router object)
  */
-export async function proxyRoute(router: Router, route: ProxyRoute, target?: string): Promise<void> {
+async function proxyRoute(router: Router, route: ProxyRoute, target?: string): Promise<void> {
     if (!target && (route.proxy && !route.proxy.target)) {
         throw new ServiceError("Target must be set in either the proxy configuration or passed from RouteHandler", ServiceErrorReason.INTERNAL);
     }
@@ -44,16 +44,16 @@ export async function proxyRoute(router: Router, route: ProxyRoute, target?: str
 
     switch(route.method) {
         case HTTPMethod.GET:
-            router.get(route.url, proxy);
+            router.get(route.path, proxy);
             break;
         case HTTPMethod.POST:
-            router.post(route.url, proxy);
+            router.post(route.path, proxy);
             break;
         case HTTPMethod.PATCH:
-            router.patch(route.url, proxy);
+            router.patch(route.path, proxy);
             break;
         case HTTPMethod.DELETE:
-            router.delete(route.url, proxy);
+            router.delete(route.path, proxy);
             break;
         default:
             throw new ServiceError("HTTP Method Unsupported", ServiceErrorReason.INTERNAL);

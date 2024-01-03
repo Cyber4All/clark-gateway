@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { buildProxyRouter } from "../../../shared/functions/proxy";
+import { buildProxyRouter } from "../../../shared/functions/build-proxy-router";
 import { LIBRARY_ROUTES } from "./library.routes";
 
 export class LibraryRouteHandler {
