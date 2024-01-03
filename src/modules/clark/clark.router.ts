@@ -9,12 +9,14 @@ import { ReportsRouteHandler } from "./reports/reports.router";
 import { StandardGuidelinesRouteHandler } from "./standard-guidelines/standard-guidelines.router";
 import { UsersRouteHandler } from "./users/users.router";
 import { UtilityRouteHandler } from "./utility/utility.router";
+import { CollectionsRouteHandler } from "./collections/collections.router";
 
 export class ClarkRouteHandler {
     public static build(): Router {
         const router = Router();
 
         // Import Routers here
+        router.use(CollectionsRouteHandler.build());
         router.use(FeaturedRouteHandler.build());
         router.use(HierarchydRouteHandler.build());
         router.use(LearningObjectsRouteHandler.build());
