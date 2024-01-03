@@ -28,13 +28,17 @@ export class ExpressConfig {
         this.app.set("trust proxy", true);
         this.app.use(cookieParser());
 
-        this.app.use(morgan(formatMorganJson, { stream: { write: (message: any) => httpRequestFilter(message) }}));
-        
+        this.app.use(
+            morgan(formatMorganJson, {
+                stream: { write: (message: any) => httpRequestFilter(message) },
+            }),
+        );
+
         this.initServerHome();
-        
+
         // Route Handlers Here
-        // this.app.use(RouteHandler.build())        
-        
+        // this.app.use(RouteHandler.build())
+
         return this.app;
     }
 
@@ -44,7 +48,7 @@ export class ExpressConfig {
     private static initServerHome() {
         this.app.get("/", (req: exp.Request, res: exp.Response) => {
             res.json({
-                message: `Welcome to the Competency Gateway Version: ${version}`
+                message: `Welcome to the Competency Gateway Version: ${version}`,
             });
         });
     }

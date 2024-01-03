@@ -90,9 +90,7 @@ class EnvConfig {
     }
 }
 
-const envConfig = new EnvConfig(process.env).ensureValues([
-    NODE_ENV,
-]);
+const envConfig = new EnvConfig(process.env).ensureValues([NODE_ENV]);
 
 if (envConfig.isProduction() || envConfig.isStaging()) {
     envConfig.ensureValues([
