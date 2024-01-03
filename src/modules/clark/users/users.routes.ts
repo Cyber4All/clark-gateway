@@ -10,143 +10,143 @@ export const USERS_ROUTES: ProxyRoute[] = [
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/guidelines/members"
+        path: "/guidelines/members",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PUT,
-        path: "/guidelines/members/:memberId"
+        path: "/guidelines/members/:memberId",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
-        path: "/guidelines/members/:memberId"
+        path: "/guidelines/members/:memberId",
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/identifiers/active"
+        path: "/users/identifiers/active",
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/curators/:collection"
+        path: "/users/curators/:collection",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/collections/:colletionName/members"
+        path: "/collections/:colletionName/members",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PUT,
-        path: "/collections/:colletionName/members/:memberId"
+        path: "/collections/:colletionName/members/:memberId",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
-        path: "/collections/:colletionName/members/:memberId"
+        path: "/collections/:colletionName/members/:memberId",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
-        path: "/collections/:collectionName/members/:memberId"
+        path: "/collections/:collectionName/members/:memberId",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/users"
+        path: "/users",
     },
     {
         method: HTTPMethod.POST,
-        path: "/users"
+        path: "/users",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
-        path: "/users"
+        path: "/users",
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/stats"
+        path: "/users/stats",
     },
     {
         method: HTTPMethod.POST,
-        path: "/users/tokens"
+        path: "/users/tokens",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/users/:username/profile"
+        path: "/users/:username/profile",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/users/:username/collections"
+        path: "/users/:username/collections",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/users/tokens/refresh"
+        path: "/users/tokens/refresh",
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/tokens"
+        path: "/users/tokens",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
-        path: "/users/:username/tokens"
+        path: "/users/:username/tokens",
     },
     // TODO: I have no clue what is happening with this route in gateway
     // it is validating the ota-code and redirecting somehow
     {
         method: HTTPMethod.GET,
-        path: "/users/ota-codes"
+        path: "/users/ota-codes",
     },
     // TODO: I have no clue what is happening with this route in gateway
     // it is supposed to be sending an email...
     {
         method: HTTPMethod.POST,
-        path: "/users/ota-codes"
+        path: "/users/ota-codes",
     },
     // TODO: I have no clue what is happening with this route in gateway
     // it is resetting a user's password?
     {
         method: HTTPMethod.PATCH,
-        path: "/users/ota-codes"
+        path: "/users/ota-codes",
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/search"
-    },
-    // TODO: Make this route an authenticated route
-    {
-        method: HTTPMethod.GET,
-        path: "/validate-captcha"
+        path: "/users/search",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/users/:id/roles"
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/users/:user"
+        path: "/validate-captcha",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/users"
+        path: "/users/:id/roles",
     },
     {
         method: HTTPMethod.GET,
-        path: "/keys"
+        path: "/users/:user",
+    },
+    // TODO: Make this route an authenticated route
+    {
+        method: HTTPMethod.GET,
+        path: "/users",
     },
     {
         method: HTTPMethod.GET,
-        path: "/google"
+        path: "/keys",
     },
     {
         method: HTTPMethod.GET,
-        path: "/google/redirect"
-    }
+        path: "/google",
+    },
+    {
+        method: HTTPMethod.GET,
+        path: "/google/redirect",
+    },
 ];
