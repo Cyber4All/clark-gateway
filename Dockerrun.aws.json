@@ -1,0 +1,11 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "cyber4all/clark-gateway"
+  },
+  "Ports": [
+    {
+      "ContainerPort": 3001
+    }
+  ]
+}
