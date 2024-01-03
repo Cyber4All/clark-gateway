@@ -96,20 +96,20 @@ export const USERS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.DELETE,
         path: "/users/:username/tokens",
     },
-    // TODO: I have no clue what is happening with this route in gateway
-    // it is validating the ota-code and redirecting somehow
+    // TODO: This will be broken until migrated to clark-service
+    // manually test once migrated
     {
         method: HTTPMethod.GET,
         path: "/users/ota-codes",
     },
-    // TODO: I have no clue what is happening with this route in gateway
-    // it is supposed to be sending an email...
+    // TODO: This will be broken until migrated to clark-service
+    // manually test once migrated
     {
         method: HTTPMethod.POST,
         path: "/users/ota-codes",
     },
-    // TODO: I have no clue what is happening with this route in gateway
-    // it is resetting a user's password?
+    // TODO: This will be broken until migrated to clark-service
+    // manually test once migrated
     {
         method: HTTPMethod.PATCH,
         path: "/users/ota-codes",
