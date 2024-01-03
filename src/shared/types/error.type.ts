@@ -10,7 +10,11 @@ export enum ServiceErrorReason {
  */
 export class ServiceError extends Error {
     public additionalInformation: Record<string, any>;
-    constructor(message: string, type: ServiceErrorReason, additionalInformation?: Record<string, any>) {
+    constructor(
+        message: string,
+        type: ServiceErrorReason,
+        additionalInformation?: Record<string, any>,
+    ) {
         super(message);
         this.name = type;
         this.additionalInformation = additionalInformation;

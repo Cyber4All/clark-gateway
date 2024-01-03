@@ -8,12 +8,12 @@ export const UTILITY_ROUTES: ProxyRoute[] = [
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/blogs"
+        path: "/blogs",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.POST,
-        path: "/blogs"
+        path: "/blogs",
     },
 
     /**
@@ -21,6 +21,6 @@ export const UTILITY_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.GET,
-        path: "/clientversion"
-    }
+        path: "/clientversion",
+    },
 ];

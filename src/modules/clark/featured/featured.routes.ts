@@ -6,14 +6,14 @@ export const FEATURED_ROUTES: ProxyRoute[] = [
     // The following routes have been declared in clark-service but not yet implemented
     {
         method: HTTPMethod.GET,
-        path: "/featured/learning-objects"
+        path: "/featured/learning-objects",
     },
     {
         method: HTTPMethod.PATCH,
-        path: "/featured/learning-objects"
+        path: "/featured/learning-objects",
     },
     {
         method: HTTPMethod.PATCH,
-        path: "/featured/learning-objects/:collection"
-    }
+        path: "/featured/learning-objects/:collection",
+    },
 ];

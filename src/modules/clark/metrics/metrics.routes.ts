@@ -6,10 +6,10 @@ export const METRICS_ROUTES: ProxyRoute[] = [
     // The following routes have been declared in clark-service but not yet implemented
     {
         method: HTTPMethod.GET,
-        path: "/metrics"
+        path: "/metrics",
     },
     {
         method: HTTPMethod.GET,
-        path: "/learning-objects/metrics"
-    }
+        path: "/learning-objects/metrics",
+    },
 ];

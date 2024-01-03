@@ -5,18 +5,18 @@ export const LIBRARY_ROUTES: ProxyRoute[] = [
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/users/:username/library"
+        path: "/users/:username/library",
     },
     // TODO: Make this route an authenticated route
     // ** There is currently a bug in clark-service that doesn't check
     // for authentication on this route **
     {
         method: HTTPMethod.POST,
-        path: "/users/:username/library"
+        path: "/users/:username/library",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
-        path: "/users/:username/library/:id"
-    }
+        path: "/users/:username/library/:id",
+    },
 ];

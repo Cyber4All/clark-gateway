@@ -8,17 +8,17 @@ export const RATINGS_ROUTES: ProxyRoute[] = [
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
-        path: "/ratings/:ratingId/flags"
+        path: "/ratings/:ratingId/flags",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.POST,
-        path: "/ratings/:ratingId/flags"
+        path: "/ratings/:ratingId/flags",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
-        path: "/ratings/:ratingId/flags/:flagId"
+        path: "/ratings/:ratingId/flags/:flagId",
     },
 
     /**
@@ -26,26 +26,26 @@ export const RATINGS_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.GET,
-        path: "/ratings"
+        path: "/ratings",
     },
     {
         method: HTTPMethod.GET,
-        path: "/learning-objects/:cuid/version/:version/ratings"
+        path: "/learning-objects/:cuid/version/:version/ratings",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.POST,
-        path: "/learning-objects/:cuid/version/:version/ratings"
+        path: "/learning-objects/:cuid/version/:version/ratings",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
-        path: "/learning-objects/:cuid/version/:version/ratings/:ratingId"
+        path: "/learning-objects/:cuid/version/:version/ratings/:ratingId",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
-        path: "/learning-objects/:cuid/version/:version/ratings/:ratingId"
+        path: "/learning-objects/:cuid/version/:version/ratings/:ratingId",
     },
 
     /**
@@ -53,21 +53,21 @@ export const RATINGS_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.GET,
-        path: "/learning-objects/ratings/responses/:responseId"
+        path: "/learning-objects/ratings/responses/:responseId",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.POST,
-        path: "/learning-objects/ratings/:ratingId/responses"
+        path: "/learning-objects/ratings/:ratingId/responses",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
-        path: "/learning-objects/ratings/responses/:responseId"
+        path: "/learning-objects/ratings/responses/:responseId",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
-        path: "/learning-objects/ratings/responses/:responseId"
-    }
+        path: "/learning-objects/ratings/responses/:responseId",
+    },
 ];
