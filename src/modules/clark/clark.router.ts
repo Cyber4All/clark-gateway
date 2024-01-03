@@ -10,6 +10,7 @@ import { StandardGuidelinesRouteHandler } from "./standard-guidelines/standard-g
 import { UsersRouteHandler } from "./users/users.router";
 import { UtilityRouteHandler } from "./utility/utility.router";
 import { CollectionsRouteHandler } from "./collections/collections.router";
+import { MetricsRouteHandler } from "./metrics/metrics.router";
 
 export class ClarkRouteHandler {
     public static build(): Router {
@@ -21,6 +22,7 @@ export class ClarkRouteHandler {
         router.use(HierarchydRouteHandler.build());
         router.use(LearningObjectsRouteHandler.build());
         router.use(LibraryRouteHandler.build());
+        router.use(MetricsRouteHandler.build());
         router.use(NotificationsRouteHandler.build());
         router.use(RatingsRouteHandler.build());
         router.use(ReportsRouteHandler.build());
