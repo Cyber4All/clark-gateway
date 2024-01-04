@@ -32,14 +32,14 @@ export class JwtConfig {
      * @returns The User Token Key
      */
     public static getJwtSecret(): string {
-        const key = envConfig.getValue(AWS_JWT_SECRET, false); // won't throw error
-        if (!key && envConfig.isDevelopment()) {
+        const secret = envConfig.getValue(AWS_JWT_SECRET, false); // won't throw error
+        if (!secret && envConfig.isDevelopment()) {
             return "secret";
         }
         if (envConfig.isTest()) {
             // value must be different for test purposes
             return "testsecret";
         }
-        return key;
+        return secret;
     }
 }

@@ -1,11 +1,9 @@
 /* eslint-disable no-console */
 import * as http from "http";
-import * as dotenv from "dotenv";
 import { ExpressConfig } from "./config/express/express.config";
 import { envConfig } from "./config/env/env.driver";
 import { logger } from "./config/logging/logging.driver";
 
-dotenv.config();
 
 const app = ExpressConfig.build();
 

@@ -19,7 +19,7 @@ import { AuthenticateRequest } from "../../middlewares/authenticate-request";
  */
 export function buildProxyRouter(
     routes: ProxyRoute[],
-    target?: string,
+    target: string,
 ): Router {
     const router = Router();
 
@@ -66,7 +66,7 @@ export async function proxyRoute(
     });
 
     // Set whether authentication middleware will be used
-    const auth_middleware = route.auth ? AuthenticateRequest : null;
+    const auth_middleware = route.auth ? AuthenticateRequest : (req, res, next) => next();
 
     // Set the route based on the HTTP method
     switch (route.method) {
@@ -79,10 +79,14 @@ export async function proxyRoute(
         case HTTPMethod.PATCH:
             router.patch(route.path, auth_middleware, proxy);
             break;
+        case HTTPMethod.PUT:
+            router.put(route.path, auth_middleware, proxy);
+            break;
         case HTTPMethod.DELETE:
             router.delete(route.path, auth_middleware, proxy);
             break;
         default:
+            console.log(route.method);
             throw new ServiceError(
                 "HTTP Method Unsupported",
                 ServiceErrorReason.INTERNAL,

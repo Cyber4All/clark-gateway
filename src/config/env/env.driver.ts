@@ -7,11 +7,9 @@ import {
     CLARK_REPORTS_URI,
     CLARK_SERVICE_URI,
     CORALOGIX_PRIVATE_KEY,
-    FEATURE_SERVICE_URI,
     HIERARCHY_SERVICE_URI,
     ISSUER,
     LEARNING_OBJECT_SERVICE_URI,
-    LIBRARY_SERVICE_URI,
     NODE_ENV,
     NOTIFICATIONS_SERVICE_URI,
     PORT,
@@ -19,6 +17,10 @@ import {
     USER_SERVICE_URI,
     UTILITY_SERVICE_URI,
 } from "../global.env";
+import * as dotenv from "dotenv";
+
+
+dotenv.config();
 
 /**
  * Environment Variable Configuration File.
@@ -115,10 +117,8 @@ class EnvConfig {
         if (
             ![
                 CLARK_SERVICE_URI,
-                FEATURE_SERVICE_URI,
                 HIERARCHY_SERVICE_URI,
                 LEARNING_OBJECT_SERVICE_URI,
-                LIBRARY_SERVICE_URI,
                 NOTIFICATIONS_SERVICE_URI,
                 CLARK_REPORTS_URI,
                 STANDARD_GUIDELINES_SERVICE_URI,
@@ -143,10 +143,8 @@ const envConfig = new EnvConfig(process.env).ensureValues([
     //    Service URIs
     // =====================
     CLARK_SERVICE_URI,
-    FEATURE_SERVICE_URI,
     HIERARCHY_SERVICE_URI,
     LEARNING_OBJECT_SERVICE_URI,
-    LIBRARY_SERVICE_URI,
     NOTIFICATIONS_SERVICE_URI,
     CLARK_REPORTS_URI,
     STANDARD_GUIDELINES_SERVICE_URI,

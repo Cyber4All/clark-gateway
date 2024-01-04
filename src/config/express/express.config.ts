@@ -5,6 +5,7 @@ import morgan from "morgan";
 import { formatMorganJson, httpRequestFilter } from "../logging/logging.driver";
 import { ClarkRouteHandler } from "../../modules/clark/clark.router";
 import { ErrorParser } from "../../middlewares/error-parser";
+import { JwtDriver } from "../jwt/jwt.driver";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require("../../../package.json").version;
@@ -36,12 +37,12 @@ export class ExpressConfig {
             }),
         );
 
-        this.app.use(ErrorParser);
-
         this.initServerHome();
 
         // Route Handlers Here
         this.app.use(ClarkRouteHandler.build());
+
+        this.app.use(ErrorParser);
 
         return this.app;
     }
@@ -50,9 +51,18 @@ export class ExpressConfig {
      * Initializes the route '/' with a welcome message
      */
     private static initServerHome() {
-        this.app.get("/", (req: exp.Request, res: exp.Response) => {
+        this.app.get("/", async (req: exp.Request, res: exp.Response) => {
+            const token = await JwtDriver.generateBearerToken({
+                userId: "123456",
+                username: "john_doe",
+                name: "John Doe",
+                email: "john.doe@example.com",
+                organization: "Example Organization",
+                emailVerified: true,
+                accessGroups: ["group1", "group2"]
+            });
             res.json({
-                message: `Welcome to the Competency Gateway Version: ${version}`,
+                message: `Welcome to the Competency Gateway Version: ${version} ${token}`,
             });
         });
     }
