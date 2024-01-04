@@ -1,2 +1,2 @@
 deploy:
-  artifact: Dockerrun.aws.json
+    artifact: Dockerrun.aws.json

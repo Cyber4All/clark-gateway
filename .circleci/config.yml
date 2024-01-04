@@ -1,32 +1,32 @@
 version: 2.1
 orbs:
-  cyber4all: cyber4all/orb@2.0.12
-  docker: circleci/docker@2.2.0
+    cyber4all: cyber4all/orb@2.0.12
+    docker: circleci/docker@2.2.0
 
 workflows:
-  integration-testing:
-    jobs:
-      - cyber4all/publish:
-          image: 'cyber4all/clark-gateway'
-          deploy: false
+    integration-testing:
+        jobs:
+            - cyber4all/publish:
+                  image: "cyber4all/clark-gateway"
+                  deploy: false
 
-      - cyber4all/lint
+            - cyber4all/lint
 
-      - docker/hadolint:
-          ignore-rules: 'DL3018,DL3019'
+            - docker/hadolint:
+                  ignore-rules: "DL3018,DL3019"
 
-  deploy-production:
-    when:
-      equal: [releases, <<pipeline.git.branch>>]
-    jobs:
-      - cyber4all/publish:
-          context: [DockerHub]
-          image: 'cyber4all/clark-gateway'
-          tag: "$(jq -r '.version' package.json),latest"
+    deploy-production:
+        when:
+            equal: [releases, <<pipeline.git.branch>>]
+        jobs:
+            - cyber4all/publish:
+                  context: [DockerHub]
+                  image: "cyber4all/clark-gateway"
+                  tag: "$(jq -r '.version' package.json),latest"
 
-      - cyber4all/elasticbeanstalk:
-          requires: [cyber4all/publish]
-          context: [AWS, Slack]
-          application: CLARK-Gateway
-          environment: clark-gateway-production
-          role-session-name: elasticbeanstalk
+            - cyber4all/elasticbeanstalk:
+                  requires: [cyber4all/publish]
+                  context: [AWS, Slack]
+                  application: CLARK-Gateway
+                  environment: clark-gateway-production
+                  role-session-name: elasticbeanstalk
