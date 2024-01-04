@@ -60,16 +60,16 @@ export async function proxyRoute(
 
     switch (route.method) {
         case HTTPMethod.GET:
-            router.get(route.url, proxy);
+            router.get(route.path, proxy);
             break;
         case HTTPMethod.POST:
-            router.post(route.url, proxy);
+            router.post(route.path, proxy);
             break;
         case HTTPMethod.PATCH:
-            router.patch(route.url, proxy);
+            router.patch(route.path, proxy);
             break;
         case HTTPMethod.DELETE:
-            router.delete(route.url, proxy);
+            router.delete(route.path, proxy);
             break;
         default:
             throw new ServiceError(

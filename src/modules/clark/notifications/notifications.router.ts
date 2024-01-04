@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { buildProxyRouter } from "../../../shared/functions/proxy";
+import { buildProxyRouter } from "../../../shared/functions/build-proxy-router";
 import { NOTIFICATIONS_ROUTES } from "./notifications.routes";
 
 export class NotificationsRouteHandler {

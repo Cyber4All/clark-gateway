@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { buildProxyRouter } from "../../../shared/functions/proxy";
+import { buildProxyRouter } from "../../../shared/functions/build-proxy-router";
 import { STANDARD_GUIDELINES_ROUTES } from "./standard-guidelines.routes";
 
 export class StandardGuidelinesRouteHandler {

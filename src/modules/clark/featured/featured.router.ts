@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { buildProxyRouter } from "../../../shared/functions/proxy";
+import { buildProxyRouter } from "../../../shared/functions/build-proxy-router";
 import { FEATURED_ROUTES } from "./featured.routes";
 
 export class FeaturedRouteHandler {

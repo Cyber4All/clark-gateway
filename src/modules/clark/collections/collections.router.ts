@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { buildProxyRouter } from "../../../shared/functions/build-proxy-router";
-import { HIERARCHY_ROUTES } from "./hierarchy.routes";
+import { COLLECTION_ROUTES } from "./collections.routes";
 
-export class HierarchydRouteHandler {
+export class CollectionsRouteHandler {
     public static build(): Router {
-        return buildProxyRouter(HIERARCHY_ROUTES);
+        return buildProxyRouter(COLLECTION_ROUTES);
     }
 }
