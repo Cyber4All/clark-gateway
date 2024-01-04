@@ -1,11 +1,6 @@
 import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 
-/**
- * TODO LIST for this file (chris): Go through each route and check if they need to be authenticated
- * this can be done by  checking whether these paths are matched in the unlessin the jwt.config.ts file
- */
-
 export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     /**
      * The following routes have not been declared by
@@ -18,15 +13,15 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     /**
      * Changelog routes
      */
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/users/:userId/learning-objects/:cuid/changelog",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.GET,
         path: "/users/:userId/learning-objects/:cuid/changelogs",
+        auth: true,
     },
 
     /**
@@ -44,44 +39,44 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/collections",
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/learning-objects/:learningObjectId/collections",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/users/:username/learning-objects/:cuid/collection",
+        auth: true,
     },
 
     /**
      * File Manager routes
      */
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.GET,
         path: "/users/:username/learning-objects/:id/bundle",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/users/:username/learning-objects/:id/bundle",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/users/:username/learning-objects/:learningObjectId/materials/files/:fileId",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.DELETE,
         path: "/users/:username/learning-objects/:learningObjectId/materials/files/:fileId",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/learning-objects/:id/pdf",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
@@ -91,15 +86,15 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/users/:username/learning-objects/:id/materials",
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/users/:username/learning-objects/:id/materials/files",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/users/:username/learning-objects/:id/files/bundle",
+        auth: true,
     },
 
     /**
@@ -109,15 +104,15 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/users/:username/learning-objects/:id",
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/users/:username/learning-objects/:id",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.DELETE,
         path: "/users/:username/learning-objects/:id",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
@@ -127,38 +122,39 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/users/:username/learning-objects/:id/parents",
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/learning-objects/:username/:learningObjectName/children",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/users/:username/hierarchy-object",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/learning-objects/:username/:learningObjectName/children",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
         path: "/users/:username/learning-objects",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/users/:username/learning-objects",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
         path: "/users/:username/learning-objects/profile",
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.DELETE,
         path: "/learning-objects/multiple/:names",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
@@ -172,64 +168,64 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/learning-objects/:id/children/summary",
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.GET,
         path: "/admin/learning-objects",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/admin/learning-objects",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.GET,
         path: "/admin/learning-objects/:learningObjectId",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.DELETE,
         path: "/admin/users/:username/learning-objects/:learningObjectName",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.DELETE,
         path: "/admin/users/:username/learning-objects/multiple/:learningObjectIDs",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/users/:userId/learning-objects/:learningObjectId/change-author",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/users/:username/learning-objects/:id/status",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.GET,
         path: "/learning-objects/:username/:learningObjectName",
+        auth: true,
     },
 
     /**
      * Outcomes routes
      */
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/learning-objects/:learningObjectId/learning-outcomes",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/learning-objects/:learningObjectId/learning-outcomes/:outcomeId",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.DELETE,
         path: "/learning-objects/:learningObjectId/learning-outcomes/:outcomeId",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
@@ -239,44 +235,44 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     /**
      * Relevancy routes
      */
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/users/:username/learning-objects/:id/relevancy-check",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
         path: "/topics",
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/users/:username/learning-objects/:id/learning-outcomes/:outcomeId/guidelines",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/users/:username/learning-objects/:id/topics",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.DELETE,
         path: "/users/:username/learning-objects/:id/topics/:topicId",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/learning-objects/evaluators",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/users/:username/learning-objects/:cuid/evaluation",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.PATCH,
         path: "/learning-objects/evaluators",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
@@ -286,19 +282,19 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     /**
      * Revisions routes
      */
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/users/:username/learning-objects/:cuid/versions",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
         path: "/users/:username/learning-objects/:learningObjectId/revisions/:revisionId",
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.DELETE,
         path: "/users/:username/learning-objects/:cuid/versions/:version",
+        auth: true,
     },
 
     /**
@@ -316,14 +312,14 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/users/:userId/learning-objects/:learningObjectId/submissions",
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.POST,
         path: "/users/:userId/learning-objects/:learningObjectId/submissions",
+        auth: true,
     },
-    // TODO: Make this route authenticated
     {
         method: HTTPMethod.DELETE,
         path: "/users/:userId/learning-objects/:learningObjectId/submissions",
+        auth: true,
     },
 ];

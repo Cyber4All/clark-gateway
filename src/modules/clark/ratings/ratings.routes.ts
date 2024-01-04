@@ -5,20 +5,20 @@ export const RATINGS_ROUTES: ProxyRoute[] = [
     /**
      * Rating Flags Routes
      */
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/ratings/:ratingId/flags",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.POST,
         path: "/ratings/:ratingId/flags",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
         path: "/ratings/:ratingId/flags/:flagId",
+        auth: true,
     },
 
     /**
@@ -32,20 +32,20 @@ export const RATINGS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/learning-objects/:cuid/version/:version/ratings",
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.POST,
         path: "/learning-objects/:cuid/version/:version/ratings",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
         path: "/learning-objects/:cuid/version/:version/ratings/:ratingId",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
         path: "/learning-objects/:cuid/version/:version/ratings/:ratingId",
+        auth: true,
     },
 
     /**
@@ -55,19 +55,19 @@ export const RATINGS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/learning-objects/ratings/responses/:responseId",
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.POST,
         path: "/learning-objects/ratings/:ratingId/responses",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
         path: "/learning-objects/ratings/responses/:responseId",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
         path: "/learning-objects/ratings/responses/:responseId",
+        auth: true,
     },
 ];

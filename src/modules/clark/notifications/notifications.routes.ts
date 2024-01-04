@@ -9,19 +9,19 @@ export const NOTIFICATIONS_ROUTES: ProxyRoute[] = [
      *
      * The target for the following routes shoud be notifications-service
      */
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/users/:username/notifications",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
         path: "/users/:username/notifications/:id",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.POST,
         path: "/users/:username/learning-objects/:cuid/notifications",
+        auth: true,
     },
 ];

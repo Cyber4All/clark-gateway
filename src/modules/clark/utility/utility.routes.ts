@@ -1,3 +1,5 @@
+import { envConfig } from "../../../config/env/env.driver";
+import { UTILITY_SERVICE_URI } from "../../../config/global.env";
 import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 
@@ -5,15 +7,15 @@ export const UTILITY_ROUTES: ProxyRoute[] = [
     /**
      * Blog Routes
      */
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/blogs",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.POST,
         path: "/blogs",
+        auth: true,
     },
 
     /**
@@ -33,5 +35,6 @@ export const UTILITY_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/downtime",
+        target: envConfig.getUri(UTILITY_SERVICE_URI),
     },
 ];
