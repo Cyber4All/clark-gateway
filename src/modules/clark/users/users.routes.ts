@@ -7,6 +7,10 @@ export const USERS_ROUTES: ProxyRoute[] = [
      * clark-service yet and will have a different target
      * than clark-service
      */
+
+    /**
+     * Mapper routes
+     */
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
@@ -22,14 +26,99 @@ export const USERS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.DELETE,
         path: "/guidelines/members/:memberId",
     },
+    
+    /**
+     * Authentication routes
+     */
     {
         method: HTTPMethod.GET,
         path: "/users/identifiers/active",
     },
     {
         method: HTTPMethod.GET,
+        path: "/keys",
+    },
+    // TODO: Make this route an authenticated route
+    {
+        method: HTTPMethod.GET,
+        path: "/users/tokens/refresh",
+    },
+    {
+        method: HTTPMethod.POST,
+        path: "/users/tokens",
+    },
+    {
+        method: HTTPMethod.POST,
+        path: "/users",
+    },
+    // TODO: Make this route an authenticated route
+    {
+        method: HTTPMethod.DELETE,
+        path: "/users/:username/tokens",
+    },
+    {
+        method: HTTPMethod.GET,
+        path: "/google",
+    },
+    {
+        method: HTTPMethod.GET,
+        path: "/google/redirect",
+    },
+
+
+    /**
+     * Personal routes
+     */
+    {
+        method: HTTPMethod.GET,
+        path: "/users/tokens",
+    },
+    {
+        method: HTTPMethod.GET,
+        path: "/users/:username/learning-objects",
+    },
+    {
+        method: HTTPMethod.GET,
+        path: "/users/:user",
+    },
+    // TODO: Make this route an authenticated route
+    {
+        method: HTTPMethod.GET,
+        path: "/users/:username/collections",
+    },
+    // TODO: Make this route an authenticated route
+    {
+        method: HTTPMethod.GET,
+        path: "/users/:id/roles",
+    },
+    // TODO: Make this route an authenticated route
+    {
+        method: HTTPMethod.PATCH,
+        path: "/users",
+    },
+
+    /**
+     * Public routes
+     */
+    // TODO: Make this route an authenticated route
+    {
+        method: HTTPMethod.GET,
+        path: "/users",
+    },
+    // TODO: Make this route an authenticated route
+    {
+        method: HTTPMethod.GET,
+        path: "/users/:username/profile",
+    },
+    {
+        method: HTTPMethod.GET,
         path: "/users/curators/:collection",
     },
+
+
+    /**
+     * Access Groups routes
+     */
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
@@ -52,50 +141,24 @@ export const USERS_ROUTES: ProxyRoute[] = [
     },
     // TODO: Make this route an authenticated route
     {
-        method: HTTPMethod.GET,
-        path: "/users",
-    },
-    {
-        method: HTTPMethod.POST,
-        path: "/users",
-    },
-    // TODO: Make this route an authenticated route
-    {
         method: HTTPMethod.PATCH,
-        path: "/users",
+        path: "/access-groups/:group/members/:memberId"
     },
+    
+    
+    
+    /**
+     * User Stats routes
+     */
     {
         method: HTTPMethod.GET,
         path: "/users/stats",
     },
-    {
-        method: HTTPMethod.POST,
-        path: "/users/tokens",
-    },
-    // TODO: Make this route an authenticated route
-    {
-        method: HTTPMethod.GET,
-        path: "/users/:username/profile",
-    },
-    // TODO: Make this route an authenticated route
-    {
-        method: HTTPMethod.GET,
-        path: "/users/:username/collections",
-    },
-    // TODO: Make this route an authenticated route
-    {
-        method: HTTPMethod.GET,
-        path: "/users/tokens/refresh",
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/users/tokens",
-    },
-    // TODO: Make this route an authenticated route
-    {
-        method: HTTPMethod.DELETE,
-        path: "/users/:username/tokens",
-    },
+    
+    
+    /**
+     * Recovery routes
+     */
     // TODO: This will be broken until migrated to clark-service
     // manually test once migrated
     {
@@ -113,40 +176,10 @@ export const USERS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.PATCH,
         path: "/users/ota-codes",
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/users/search",
     },
     // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/validate-captcha",
-    },
-    // TODO: Make this route an authenticated route
-    {
-        method: HTTPMethod.GET,
-        path: "/users/:id/roles",
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/users/:user",
-    },
-    // TODO: Make this route an authenticated route
-    {
-        method: HTTPMethod.GET,
-        path: "/users",
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/keys",
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/google",
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/google/redirect",
     },
 ];
