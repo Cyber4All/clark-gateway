@@ -1,9 +1,23 @@
 import {
+    ServiceError,
+    ServiceErrorReason,
+} from "../../shared/types/error.type";
+import {
     AWS_JWT_SECRET,
+    CLARK_REPORTS_URI,
+    CLARK_SERVICE_URI,
     CORALOGIX_PRIVATE_KEY,
+    FEATURE_SERVICE_URI,
+    HIERARCHY_SERVICE_URI,
     ISSUER,
+    LEARNING_OBJECT_SERVICE_URI,
+    LIBRARY_SERVICE_URI,
     NODE_ENV,
+    NOTIFICATIONS_SERVICE_URI,
     PORT,
+    STANDARD_GUIDELINES_SERVICE_URI,
+    USER_SERVICE_URI,
+    UTILITY_SERVICE_URI,
 } from "../global.env";
 
 /**
@@ -25,7 +39,10 @@ class EnvConfig {
             return "test";
         }
         if (throwOnMissing && !this.env[key]) {
-            throw new Error(`config error - missing env.${key}`);
+            throw new ServiceError(
+                `config error - missing env.${key}`,
+                ServiceErrorReason.INTERNAL,
+            );
         }
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         return this.env[key]!;
@@ -88,9 +105,54 @@ class EnvConfig {
     public getPort() {
         return this.getValue(PORT, false);
     }
+
+    /**
+     * Gets the URI for the service
+     * @param service the service to get the URI for
+     * @returns the URI for the service
+     */
+    public getUri(service: string) {
+        if (
+            ![
+                CLARK_SERVICE_URI,
+                FEATURE_SERVICE_URI,
+                HIERARCHY_SERVICE_URI,
+                LEARNING_OBJECT_SERVICE_URI,
+                LIBRARY_SERVICE_URI,
+                NOTIFICATIONS_SERVICE_URI,
+                CLARK_REPORTS_URI,
+                STANDARD_GUIDELINES_SERVICE_URI,
+                USER_SERVICE_URI,
+                UTILITY_SERVICE_URI,
+            ].includes(service)
+        ) {
+            throw new ServiceError(
+                `config error - missing env.${service}`,
+                ServiceErrorReason.INTERNAL,
+            );
+        }
+
+        return this.getValue(service);
+    }
 }
 
-const envConfig = new EnvConfig(process.env).ensureValues([NODE_ENV]);
+const envConfig = new EnvConfig(process.env).ensureValues([
+    NODE_ENV,
+
+    // =====================
+    //    Service URIs
+    // =====================
+    CLARK_SERVICE_URI,
+    FEATURE_SERVICE_URI,
+    HIERARCHY_SERVICE_URI,
+    LEARNING_OBJECT_SERVICE_URI,
+    LIBRARY_SERVICE_URI,
+    NOTIFICATIONS_SERVICE_URI,
+    CLARK_REPORTS_URI,
+    STANDARD_GUIDELINES_SERVICE_URI,
+    USER_SERVICE_URI,
+    UTILITY_SERVICE_URI,
+]);
 
 if (envConfig.isProduction() || envConfig.isStaging()) {
     envConfig.ensureValues([
