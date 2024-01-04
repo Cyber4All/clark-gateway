@@ -3,6 +3,8 @@ import cookieParser from "cookie-parser";
 import exp from "express";
 import morgan from "morgan";
 import { formatMorganJson, httpRequestFilter } from "../logging/logging.driver";
+import { ClarkRouteHandler } from "../../modules/clark/clark.router";
+import { ErrorParser } from "../../middlewares/error-parser";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require("../../../package.json").version;
@@ -34,10 +36,12 @@ export class ExpressConfig {
             }),
         );
 
+        this.app.use(ErrorParser);
+
         this.initServerHome();
 
         // Route Handlers Here
-        // this.app.use(RouteHandler.build())
+        this.app.use(ClarkRouteHandler.build());
 
         return this.app;
     }
