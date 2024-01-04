@@ -8,6 +8,7 @@ import {
 } from "http-proxy-middleware";
 import { envConfig } from "../../config/env/env.driver";
 import { ServiceError, ServiceErrorReason } from "../types/error.type";
+import { AuthenticateRequest } from "../../middlewares/authenticate-request";
 
 /**
  * Sets up a Router based on the configuration from ProxyRoute[]
@@ -43,33 +44,43 @@ export async function proxyRoute(
     route: ProxyRoute,
     target?: string,
 ): Promise<void> {
-    if (!target && route.proxy && !route.proxy.target) {
+    // Ensure a target is set
+    if (!target && !route.target) {
         throw new ServiceError(
-            "Target must be set in either the proxy configuration or passed from RouteHandler",
+            "Proxy Target Not Found",
             ServiceErrorReason.INTERNAL,
         );
     }
 
     const proxy: RequestHandler = createProxyMiddleware({
-        target: target,
-        onProxyReq: fixRequestBody,
-        secure: envConfig.isProduction(),
+        // URL for the proxy to send requests to
+        // prioritizes target set in the ProxyRoute
+        target: route.target || target,
         changeOrigin: true,
-        ...route.proxy, // if target is set, it'll override target being set here
+
+        // fixes body parsing for POST requests
+        onProxyReq: fixRequestBody,
+
+        // enable SSL cert verification
+        secure: envConfig.isProduction(),
     });
 
+    // Set whether authentication middleware will be used
+    const auth_middleware = route.auth ? AuthenticateRequest : null;
+
+    // Set the route based on the HTTP method
     switch (route.method) {
         case HTTPMethod.GET:
-            router.get(route.path, proxy);
+            router.get(route.path, auth_middleware, proxy);
             break;
         case HTTPMethod.POST:
-            router.post(route.path, proxy);
+            router.post(route.path, auth_middleware, proxy);
             break;
         case HTTPMethod.PATCH:
-            router.patch(route.path, proxy);
+            router.patch(route.path, auth_middleware, proxy);
             break;
         case HTTPMethod.DELETE:
-            router.delete(route.path, proxy);
+            router.delete(route.path, auth_middleware, proxy);
             break;
         default:
             throw new ServiceError(
