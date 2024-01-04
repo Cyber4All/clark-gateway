@@ -17,10 +17,7 @@ import { AuthenticateRequest } from "../../middlewares/authenticate-request";
  * @param target Url string to be parsed (i.e host)
  * @returns Router object with proxy routes
  */
-export function buildProxyRouter(
-    routes: ProxyRoute[],
-    target: string,
-): Router {
+export function buildProxyRouter(routes: ProxyRoute[], target: string): Router {
     const router = Router();
 
     routes.forEach(async (route: ProxyRoute) =>
@@ -66,7 +63,9 @@ export async function proxyRoute(
     });
 
     // Set whether authentication middleware will be used
-    const auth_middleware = route.auth ? AuthenticateRequest : (req, res, next) => next();
+    const auth_middleware = route.auth
+        ? AuthenticateRequest
+        : (req, res, next) => next();
 
     // Set the route based on the HTTP method
     switch (route.method) {

@@ -59,7 +59,7 @@ export class ExpressConfig {
                 email: "john.doe@example.com",
                 organization: "Example Organization",
                 emailVerified: true,
-                accessGroups: ["group1", "group2"]
+                accessGroups: ["group1", "group2"],
             });
             res.json({
                 message: `Welcome to the Competency Gateway Version: ${version} ${token}`,

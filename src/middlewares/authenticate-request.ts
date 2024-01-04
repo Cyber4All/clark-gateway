@@ -15,7 +15,6 @@ export async function AuthenticateRequest(
     next?: NextFunction, // eslint-disable-line @typescript-eslint/no-unused-vars
 ): Promise<void> {
     try {
-
         // Get token from authorization header
         const bearerToken = JwtDriver.parseBearerToken(req);
 

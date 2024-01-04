@@ -4,7 +4,6 @@ import { ExpressConfig } from "./config/express/express.config";
 import { envConfig } from "./config/env/env.driver";
 import { logger } from "./config/logging/logging.driver";
 
-
 const app = ExpressConfig.build();
 
 const server = http.createServer(app);
