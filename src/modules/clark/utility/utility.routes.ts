@@ -23,4 +23,15 @@ export const UTILITY_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/clientversion",
     },
+
+    /**
+     * The following routes have not been declared by
+     * clark-service yet and will have a different target
+     * than clark-service
+     */
+    // TODO: This routes target should be set for utility service
+    {
+        method: HTTPMethod.GET,
+        path: "/downtime",
+    },
 ];
