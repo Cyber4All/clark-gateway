@@ -8,6 +8,7 @@ import {
 } from "http-proxy-middleware";
 import { envConfig } from "../../config/env/env.driver";
 import { ServiceError, ServiceErrorReason } from "../types/error.type";
+import { AuthenticateRequest } from "../../middlewares/authenticate-request";
 
 /**
  * Sets up a Router based on the configuration from ProxyRoute[]
@@ -16,10 +17,7 @@ import { ServiceError, ServiceErrorReason } from "../types/error.type";
  * @param target Url string to be parsed (i.e host)
  * @returns Router object with proxy routes
  */
-export function buildProxyRouter(
-    routes: ProxyRoute[],
-    target?: string,
-): Router {
+export function buildProxyRouter(routes: ProxyRoute[], target: string): Router {
     const router = Router();
 
     routes.forEach(async (route: ProxyRoute) =>
@@ -43,35 +41,51 @@ export async function proxyRoute(
     route: ProxyRoute,
     target?: string,
 ): Promise<void> {
-    if (!target && route.proxy && !route.proxy.target) {
+    // Ensure a target is set
+    if (!target && !route.target) {
         throw new ServiceError(
-            "Target must be set in either the proxy configuration or passed from RouteHandler",
+            "Proxy Target Not Found",
             ServiceErrorReason.INTERNAL,
         );
     }
 
     const proxy: RequestHandler = createProxyMiddleware({
-        target: target,
-        onProxyReq: fixRequestBody,
-        secure: envConfig.isProduction(),
+        // URL for the proxy to send requests to
+        // prioritizes target set in the ProxyRoute
+        target: route.target || target,
         changeOrigin: true,
-        ...route.proxy, // if target is set, it'll override target being set here
+
+        // fixes body parsing for POST requests
+        onProxyReq: fixRequestBody,
+
+        // enable SSL cert verification
+        secure: envConfig.isProduction(),
     });
 
+    // Set whether authentication middleware will be used
+    const auth_middleware = route.auth
+        ? AuthenticateRequest
+        : (req, res, next) => next();
+
+    // Set the route based on the HTTP method
     switch (route.method) {
         case HTTPMethod.GET:
-            router.get(route.path, proxy);
+            router.get(route.path, auth_middleware, proxy);
             break;
         case HTTPMethod.POST:
-            router.post(route.path, proxy);
+            router.post(route.path, auth_middleware, proxy);
             break;
         case HTTPMethod.PATCH:
-            router.patch(route.path, proxy);
+            router.patch(route.path, auth_middleware, proxy);
+            break;
+        case HTTPMethod.PUT:
+            router.put(route.path, auth_middleware, proxy);
             break;
         case HTTPMethod.DELETE:
-            router.delete(route.path, proxy);
+            router.delete(route.path, auth_middleware, proxy);
             break;
         default:
+            console.log(route.method);
             throw new ServiceError(
                 "HTTP Method Unsupported",
                 ServiceErrorReason.INTERNAL,

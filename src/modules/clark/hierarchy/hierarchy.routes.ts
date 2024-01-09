@@ -9,9 +9,9 @@ export const HIERARCHY_ROUTES: ProxyRoute[] = [
      *
      * The target for the following routes shoud be  hierarchy-service
      */
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
         path: "/learning-objects/:id/status",
+        auth: true,
     },
 ];

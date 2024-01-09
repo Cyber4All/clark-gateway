@@ -21,62 +21,62 @@ export const STANDARD_GUIDELINES_ROUTES: ProxyRoute[] = [
     /**
      * Framework routes
      */
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/frameworks/:id",
+        auth: true,
     },
     {
         method: HTTPMethod.POST,
         path: "/frameworks",
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
         path: "/frameworks/:id",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
         path: "/frameworks/:id/deprecate",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
         path: "/frameworks/:id",
+        auth: true,
     },
 
     /**
      * Guideline routes
      */
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/frameworks/:id/guidelines",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/guidelines/:id",
+        auth: true,
     },
     {
         method: HTTPMethod.POST,
         path: "/guidelines",
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
         path: "/guidelines/:id",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
         path: "/guidelines/:id/deprecate",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
         path: "/guidelines/:id",
+        auth: true,
     },
 
     /**

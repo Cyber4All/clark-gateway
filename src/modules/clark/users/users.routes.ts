@@ -11,22 +11,22 @@ export const USERS_ROUTES: ProxyRoute[] = [
     /**
      * Mapper routes
      */
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/guidelines/members",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PUT,
         path: "/guidelines/members/:memberId",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
         path: "/guidelines/members/:memberId",
+        auth: true,
     },
-    
+
     /**
      * Authentication routes
      */
@@ -38,10 +38,10 @@ export const USERS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/keys",
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/users/tokens/refresh",
+        auth: true,
     },
     {
         method: HTTPMethod.POST,
@@ -51,10 +51,10 @@ export const USERS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.POST,
         path: "/users",
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
         path: "/users/:username/tokens",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
@@ -64,7 +64,6 @@ export const USERS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/google/redirect",
     },
-
 
     /**
      * Personal routes
@@ -81,72 +80,69 @@ export const USERS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/users/:user",
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/users/:username/collections",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/users/:id/roles",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
         path: "/users",
+        auth: true,
     },
 
     /**
      * Public routes
      */
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/users",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/users/:username/profile",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
         path: "/users/curators/:collection",
     },
 
-
     /**
      * Access Groups routes
      */
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/collections/:colletionName/members",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PUT,
         path: "/collections/:colletionName/members/:memberId",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
         path: "/collections/:colletionName/members/:memberId",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.DELETE,
         path: "/collections/:collectionName/members/:memberId",
+        auth: true,
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.PATCH,
-        path: "/access-groups/:group/members/:memberId"
+        path: "/access-groups/:group/members/:memberId",
+        auth: true,
     },
-    
-    
-    
+
     /**
      * User Stats routes
      */
@@ -154,8 +150,7 @@ export const USERS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/users/stats",
     },
-    
-    
+
     /**
      * Recovery routes
      */
@@ -177,9 +172,9 @@ export const USERS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.PATCH,
         path: "/users/ota-codes",
     },
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.GET,
         path: "/validate-captcha",
+        auth: true,
     },
 ];

@@ -9,9 +9,9 @@ export const REPORTS_ROUTES: ProxyRoute[] = [
      *
      * The target for the following routes shoud be clar reports lambda
      */
-    // TODO: Make this route an authenticated route
     {
         method: HTTPMethod.POST,
         path: "/reports",
+        auth: true,
     },
 ];

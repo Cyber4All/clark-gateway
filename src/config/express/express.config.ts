@@ -3,6 +3,8 @@ import cookieParser from "cookie-parser";
 import exp from "express";
 import morgan from "morgan";
 import { formatMorganJson, httpRequestFilter } from "../logging/logging.driver";
+import { ClarkRouteHandler } from "../../modules/clark/clark.router";
+import { ErrorParser } from "../../middlewares/error-parser";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require("../../../package.json").version;
@@ -37,7 +39,9 @@ export class ExpressConfig {
         this.initServerHome();
 
         // Route Handlers Here
-        // this.app.use(RouteHandler.build())
+        this.app.use(ClarkRouteHandler.build());
+
+        this.app.use(ErrorParser);
 
         return this.app;
     }
@@ -46,7 +50,7 @@ export class ExpressConfig {
      * Initializes the route '/' with a welcome message
      */
     private static initServerHome() {
-        this.app.get("/", (req: exp.Request, res: exp.Response) => {
+        this.app.get("/", async (req: exp.Request, res: exp.Response) => {
             res.json({
                 message: `Welcome to the Competency Gateway Version: ${version}`,
             });
