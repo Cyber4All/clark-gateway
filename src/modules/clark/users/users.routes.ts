@@ -86,11 +86,6 @@ export const USERS_ROUTES: ProxyRoute[] = [
         auth: true,
     },
     {
-        method: HTTPMethod.GET,
-        path: "/users/:id/roles",
-        auth: true,
-    },
-    {
         method: HTTPMethod.PATCH,
         path: "/users",
         auth: true,
@@ -117,6 +112,11 @@ export const USERS_ROUTES: ProxyRoute[] = [
     /**
      * Access Groups routes
      */
+    {
+        method: HTTPMethod.GET,
+        path: "/access-groups/users/:id",
+        auth: true,
+    },
     {
         method: HTTPMethod.GET,
         path: "/collections/:colletionName/members",
