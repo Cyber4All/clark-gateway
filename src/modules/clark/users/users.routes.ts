@@ -118,6 +118,11 @@ export const USERS_ROUTES: ProxyRoute[] = [
         auth: true,
     },
     {
+        method: HTTPMethod.POST,
+        path: "/access-groups/users/:username",
+        auth: true,
+    },
+    {
         method: HTTPMethod.DELETE,
         path: "/collections/:collectionName/members/:memberId",
         auth: true,
