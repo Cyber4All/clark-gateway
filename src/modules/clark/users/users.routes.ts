@@ -45,7 +45,7 @@ export const USERS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.POST,
-        path: "/users/tokens",
+        path: "/users/login",
     },
     {
         method: HTTPMethod.POST,
