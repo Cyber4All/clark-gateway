@@ -85,7 +85,6 @@ export async function proxyRoute(
             router.delete(route.path, auth_middleware, proxy);
             break;
         default:
-            console.log(route.method);
             throw new ServiceError(
                 "HTTP Method Unsupported",
                 ServiceErrorReason.INTERNAL,
