@@ -17,11 +17,6 @@ export const USERS_ROUTES: ProxyRoute[] = [
         auth: true,
     },
     {
-        method: HTTPMethod.PUT,
-        path: "/guidelines/members/:memberId",
-        auth: true,
-    },
-    {
         method: HTTPMethod.DELETE,
         path: "/guidelines/members/:memberId",
         auth: true,
@@ -86,11 +81,6 @@ export const USERS_ROUTES: ProxyRoute[] = [
         auth: true,
     },
     {
-        method: HTTPMethod.GET,
-        path: "/users/:id/roles",
-        auth: true,
-    },
-    {
         method: HTTPMethod.PATCH,
         path: "/users",
         auth: true,
@@ -119,17 +109,12 @@ export const USERS_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.GET,
-        path: "/collections/:colletionName/members",
+        path: "/collections/:collectionName/members",
         auth: true,
     },
     {
-        method: HTTPMethod.PUT,
-        path: "/collections/:colletionName/members/:memberId",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.PATCH,
-        path: "/collections/:colletionName/members/:memberId",
+        method: HTTPMethod.POST,
+        path: "/access-groups/users/:username",
         auth: true,
     },
     {
