@@ -139,7 +139,7 @@ export const USERS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.PATCH,
-        path: "/access-groups/:group/members/:memberId",
+        path: "/access-groups/users/:username",
         auth: true,
     },
 
