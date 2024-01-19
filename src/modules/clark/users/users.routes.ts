@@ -122,6 +122,11 @@ export const USERS_ROUTES: ProxyRoute[] = [
         path: "/collections/:collectionName/members/:memberId",
         auth: true,
     },
+    {
+        method: HTTPMethod.PATCH,
+        path: "/access-groups/users/:username",
+        auth: true,
+    },
 
     /**
      * User Stats routes
