@@ -129,14 +129,6 @@ export const USERS_ROUTES: ProxyRoute[] = [
     },
 
     /**
-     * User Stats routes
-     */
-    {
-        method: HTTPMethod.GET,
-        path: "/users/stats",
-    },
-
-    /**
      * Recovery routes
      */
     // TODO: This will be broken until migrated to clark-service
