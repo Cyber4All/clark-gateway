@@ -12,6 +12,7 @@ import { UtilityRouteHandler } from "./utility/utility.router";
 import { CollectionsRouteHandler } from "./collections/collections.router";
 import { MetricsRouteHandler } from "./metrics/metrics.router";
 import { AccessGroupRouteHandler } from "./access-group-module/access-group.router";
+import { AuthRouteHandler } from "./auth-module/auth.router";
 
 export class ClarkRouteHandler {
     public static build(): Router {
@@ -19,6 +20,7 @@ export class ClarkRouteHandler {
 
         // Import Routers here
         router.use(AccessGroupRouteHandler.build());
+        router.use(AuthRouteHandler.build());
         router.use(CollectionsRouteHandler.build());
         router.use(FeaturedRouteHandler.build());
         router.use(HierarchydRouteHandler.build());
