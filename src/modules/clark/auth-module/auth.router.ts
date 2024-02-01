@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { buildProxyRouter } from "../../../shared/functions/build-proxy-router";
-import { ACCESS_GROUP_ROUTES } from "./access-group.routes";
 import { CLARK_SERVICE_URI } from "../../../config/global.env";
 import { envConfig } from "../../../config/env/env.driver";
+import { AUTH_ROUTES } from "./auth.routes";
 
-export class AccessGroupRouteHandler {
+export class AuthRouteHandler {
     public static build(): Router {
         return buildProxyRouter(
-            ACCESS_GROUP_ROUTES,
+            AUTH_ROUTES,
             envConfig.getUri(CLARK_SERVICE_URI),
         );
     }

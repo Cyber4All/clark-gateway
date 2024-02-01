@@ -23,50 +23,8 @@ export const USERS_ROUTES: ProxyRoute[] = [
     },
 
     /**
-     * Authentication routes
-     */
-    {
-        method: HTTPMethod.GET,
-        path: "/users/identifiers/active",
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/keys",
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/users/tokens/refresh",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.POST,
-        path: "/users/login",
-    },
-    {
-        method: HTTPMethod.POST,
-        path: "/users",
-    },
-    {
-        method: HTTPMethod.DELETE,
-        path: "/users/:username/tokens",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/google",
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/google/redirect",
-    },
-
-    /**
      * Personal routes
      */
-    {
-        method: HTTPMethod.GET,
-        path: "/users/tokens",
-    },
     {
         method: HTTPMethod.GET,
         path: "/users/:username/learning-objects",
@@ -102,30 +60,6 @@ export const USERS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/users/curators/:collection",
-    },
-
-    /**
-     * Access Groups routes
-     */
-    {
-        method: HTTPMethod.GET,
-        path: "/collections/:collectionName/members",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.POST,
-        path: "/access-groups/users/:username",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.DELETE,
-        path: "/collections/:collectionName/members/:memberId",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.PATCH,
-        path: "/access-groups/users/:username",
-        auth: true,
     },
 
     /**
