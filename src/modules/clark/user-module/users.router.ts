@@ -2,7 +2,7 @@ import { Router } from "express";
 import { buildProxyRouter } from "../../../shared/functions/build-proxy-router";
 import { USERS_ROUTES } from "./users.routes";
 import { envConfig } from "../../../config/env/env.driver";
-import { CLARK_SERVICE_URI, USER_SERVICE_URI } from "../../../config/global.env";
+import { CLARK_SERVICE_URI } from "../../../config/global.env";
 
 export class UsersRouteHandler {
     public static build(): Router {

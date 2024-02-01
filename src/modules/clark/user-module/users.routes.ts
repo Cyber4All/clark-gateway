@@ -18,7 +18,7 @@ export const USERS_ROUTES: ProxyRoute[] = [
         auth: true,
         target: envConfig.getUri(USER_SERVICE_URI),
     },
-    
+
     /**
      * The following routes have not been declared by
      * clark-service yet and will have a different target
