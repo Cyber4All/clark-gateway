@@ -1,5 +1,7 @@
+import { CLARK_SERVICE_URI } from "../../../config/global.env";
 import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
+import { envConfig } from "../../../config/env/env.driver";
 
 export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     /**
@@ -197,6 +199,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.POST,
         path: "/users/:userId/learning-objects/:learningObjectId/change-author",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.POST,
