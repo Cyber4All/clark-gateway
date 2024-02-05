@@ -4,11 +4,9 @@ import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 
 export const ACCESS_GROUP_ROUTES: ProxyRoute[] = [
-    // TODO: This route is not yet implemented in clark-service
-    // renamed to /access-groups/collections/:collectionName/users
     {
         method: HTTPMethod.GET,
-        path: "/collections/:collectionName/members",
+        path: "/access-groups/collections/:collectionAbvName/users",
         auth: true,
         target: envConfig.getUri(USER_SERVICE_URI),
     },
