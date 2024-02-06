@@ -67,6 +67,8 @@ export async function proxyRoute(
         ? AuthenticateRequest
         : (req, res, next) => next();
 
+    console.log(auth_middleware, target, route.target, route.path, route.method, route.auth);
+
     // Set the route based on the HTTP method
     switch (route.method) {
         case HTTPMethod.GET:

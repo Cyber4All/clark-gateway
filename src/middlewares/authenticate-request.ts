@@ -9,17 +9,25 @@ import { JwtDriver } from "../config/jwt/jwt.driver";
  *
  * Maps all outgoing errors to the proper status codes.
  */
-export async function AuthenticateRequest(
+export function AuthenticateRequest(
     req?: Request,
     res?: Response, // eslint-disable-line @typescript-eslint/no-unused-vars
     next?: NextFunction, // eslint-disable-line @typescript-eslint/no-unused-vars
-): Promise<void> {
+): void {
     try {
         // Get token from authorization header
         const bearerToken = JwtDriver.parseBearerToken(req);
 
         // Verify token
-        await JwtDriver.verifyToken(bearerToken);
+        JwtDriver.verifyToken(bearerToken)
+            .then(() => {
+                // If successful, proxy the request
+                next();
+            })
+            .catch((error) => {
+                // If not, send an error
+                next(error);
+            });
     } catch (error) {
         next(error);
     }
