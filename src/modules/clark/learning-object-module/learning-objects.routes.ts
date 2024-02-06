@@ -83,6 +83,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/users/:username/learning-objects/:id/files/:fileId/download",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
