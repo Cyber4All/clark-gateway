@@ -30,7 +30,18 @@ export const AUTH_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.POST,
         path: "/users",
     },
-
+    {
+        method: HTTPMethod.GET,
+        path: "/users/ota-code",
+    },
+    {
+        method: HTTPMethod.POST,
+        path: "/users/ota-code",
+    },
+    {
+        method: HTTPMethod.PATCH,
+        path: "/users/ota-code",
+    },
     // TODO: The following routes are not yet implemented in clark-service
     // once they have been implemented the target should be removed
     {

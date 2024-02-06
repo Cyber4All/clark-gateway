@@ -30,19 +30,4 @@ export const USERS_ROUTES: ProxyRoute[] = [
         auth: true,
         target: envConfig.getUri(USER_SERVICE_URI),
     },
-    {
-        method: HTTPMethod.GET,
-        path: "/users/ota-codes",
-        target: envConfig.getUri(USER_SERVICE_URI),
-    },
-    {
-        method: HTTPMethod.POST,
-        path: "/users/ota-codes",
-        target: envConfig.getUri(USER_SERVICE_URI),
-    },
-    {
-        method: HTTPMethod.PATCH,
-        path: "/users/ota-codes",
-        target: envConfig.getUri(USER_SERVICE_URI),
-    },
 ];
