@@ -1,5 +1,3 @@
-import { envConfig } from "../../../config/env/env.driver";
-import { USER_SERVICE_URI } from "../../../config/global.env";
 import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 
