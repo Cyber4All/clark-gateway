@@ -8,7 +8,6 @@ export const ACCESS_GROUP_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/access-groups/collections/:collectionAbvName/users",
         auth: true,
-        target: envConfig.getUri(USER_SERVICE_URI),
     },
     {
         method: HTTPMethod.GET,
