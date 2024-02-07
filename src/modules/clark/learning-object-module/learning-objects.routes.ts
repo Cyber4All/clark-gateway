@@ -16,7 +16,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      * Changelog routes
      */
     {
-        method: HTTPMethod.PATCH,
+        method: HTTPMethod.POST,
         path: "/users/:userId/learning-objects/:cuid/changelog",
         auth: true,
     },
