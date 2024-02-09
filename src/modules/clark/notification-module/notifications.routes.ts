@@ -21,7 +21,7 @@ export const NOTIFICATIONS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.POST,
-        path: "/users/:username/learning-objects/:cuid/notifications",
+        path: "/learning-objects/:cuid/notifications",
         auth: true,
     },
 ];
