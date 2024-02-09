@@ -156,7 +156,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.DELETE,
-        path: "/learning-objects/multiple/:names",
+        path: "/learning-objects/:names/multiple",
         auth: true,
     },
     {
@@ -193,7 +193,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.DELETE,
-        path: "/admin/users/:username/learning-objects/multiple/:learningObjectIDs",
+        path: "/admin/learning-objects/:learningObjectNames/multiple",
         auth: true,
     },
     {
@@ -290,10 +290,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.POST,
         path: "/users/:username/learning-objects/:cuid/versions",
         auth: true,
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/users/:username/learning-objects/:learningObjectId/revisions/:revisionId",
     },
     {
         method: HTTPMethod.DELETE,

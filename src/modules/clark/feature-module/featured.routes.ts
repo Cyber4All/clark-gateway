@@ -9,9 +9,11 @@ export const FEATURED_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.PATCH,
         path: "/featured/learning-objects",
+        auth: true,
     },
     {
         method: HTTPMethod.PATCH,
         path: "/featured/learning-objects/:collectionAbvName",
+        auth: true,
     },
 ];
