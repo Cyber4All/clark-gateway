@@ -27,7 +27,6 @@ export const USERS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/users/:username/profile",
-        auth: true,
         target: envConfig.getUri(USER_SERVICE_URI),
     },
 ];

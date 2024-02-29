@@ -24,7 +24,6 @@ export const STANDARD_GUIDELINES_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/frameworks/:id",
-        auth: true,
     },
     {
         method: HTTPMethod.POST,
@@ -52,12 +51,10 @@ export const STANDARD_GUIDELINES_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/frameworks/:id/guidelines",
-        auth: true,
     },
     {
         method: HTTPMethod.GET,
         path: "/guidelines/:id",
-        auth: true,
     },
     {
         method: HTTPMethod.POST,

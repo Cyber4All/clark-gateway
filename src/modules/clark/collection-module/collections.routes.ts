@@ -5,6 +5,5 @@ export const COLLECTION_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/users/:username/collections",
-        auth: true,
     },
 ];
