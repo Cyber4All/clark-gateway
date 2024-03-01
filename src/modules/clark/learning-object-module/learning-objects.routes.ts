@@ -244,8 +244,9 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.PATCH,
-        path: "/users/:username/learning-objects/:id/relevancy-check",
+        path: "/learning-objects/:id/relevancy-check",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.GET,
