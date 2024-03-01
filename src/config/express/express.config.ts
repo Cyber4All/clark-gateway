@@ -52,7 +52,7 @@ export class ExpressConfig {
     private static initServerHome() {
         this.app.get("/", async (req: exp.Request, res: exp.Response) => {
             res.json({
-                message: `Welcome to the Competency Gateway Version: ${version}`,
+                message: `Welcome to the Cybersecurity Labs and Resource Directory (C.L.A.R.D.) Gateway v${version}`,
             });
         });
     }
