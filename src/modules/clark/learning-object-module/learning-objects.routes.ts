@@ -263,8 +263,9 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.DELETE,
-        path: "/users/:username/learning-objects/:id/topics/:topicId",
+        path: "/learning-objects/:learningObjectId/topics/:topicId",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.POST,
