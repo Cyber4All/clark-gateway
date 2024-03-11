@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { FeaturedRouteHandler } from "./feature-module/featured.router";
-import { HierarchydRouteHandler } from "./hierarch-module/hierarchy.router";
+import { HierarchydRouteHandler } from "./hierarchy-module/hierarchy.router";
 import { LearningObjectsRouteHandler } from "./learning-object-module/learning-objects.router";
 import { LibraryRouteHandler } from "./library-module/library.router";
 import { NotificationsRouteHandler } from "./notification-module/notifications.router";
