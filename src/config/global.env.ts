@@ -41,16 +41,6 @@ export const CLARK_REPORTS_URI = "CLARK_REPORTS_URI";
 export const STANDARD_GUIDELINES_SERVICE_URI =
     "STANDARD_GUIDELINES_SERVICE_URI";
 
-/**
- * URI target for the user-service
- */
-export const USER_SERVICE_URI = "USER_SERVICE_URI";
-
-/**
- * URI target for the utility-service
- */
-export const UTILITY_SERVICE_URI = "UTILITY_SERVICE_URI";
-
 // ========================================================
 //                        Optional ENVS
 // ========================================================
