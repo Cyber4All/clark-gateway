@@ -102,7 +102,8 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.GET,
-        path: "/users/:username/learning-objects/:id",
+        path: "/learning-objects/:cuid",
+        auth: true,
     },
     {
         method: HTTPMethod.PATCH,
