@@ -98,6 +98,38 @@ export class FeatureServiceController implements Controller {
             )}`,
         ),
       );
+
+      /**
+     * @swagger
+     * /featured/learning-objects/:collection:
+     *  patch:
+     *      description: Updates the list of featured learning objects for a collection
+     *      tags:
+     *          - Feature Service
+     *      responses:
+     *          200:
+     *              description: CREATED
+     *              content:
+     *                  application/json:
+     *                      schema:
+     *                          type: array
+     *                          items:
+     *                              $ref: '#/components/schemas/LearningObject'
+     *          400:
+     *              description: BAD REQUEST - At least one of the learning objects is not from the desired featured collection
+     *          404:
+     *              description: NOT FOUND - The desired collection does not exist
+     */
+    router
+    .route("/featured/learning-objects/:collection")
+    .patch(
+      this.proxyRequest(
+        (req: Request) =>
+          `/featured/learning-objects/${encodeURIComponent(
+            req.params.collection,
+          )}`,
+      ),
+    );
     return router;
   }
 
