@@ -15,6 +15,15 @@ workflows:
             - docker/hadolint:
                   ignore-rules: "DL3018,DL3019"
 
+    deploy-clark-service-refactor:
+        when:
+            equal: [clark-service-refactor, <<pipeline.git.branch>>]
+        jobs:
+            - cyber4all/publish:
+                  context: [DockerHub]
+                  image: "cyber4all/clark-gateway"
+                  tag: "staging"
+
     deploy-production:
         when:
             equal: [releases, <<pipeline.git.branch>>]
@@ -24,9 +33,6 @@ workflows:
                   image: "cyber4all/clark-gateway"
                   tag: "$(jq -r '.version' package.json),latest"
 
-            - cyber4all/elasticbeanstalk:
-                  requires: [cyber4all/publish]
-                  context: [AWS, Slack]
-                  application: CLARK-Gateway
-                  environment: clark-gateway-production
-                  role-session-name: elasticbeanstalk
+            # TODO: Add a job to deploy the new version to ECS
+            # once we have the ECS infrastructure in place
+            # for the CLARD environment

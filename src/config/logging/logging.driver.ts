@@ -37,8 +37,8 @@ export class Logger {
                     level: envConfig.isProduction() ? "info" : "debug", // only sends logs of `level` or higher priority
                     format: winston.format.combine(
                         winston.format((info) => ({
-                            applicationName: `competency-${identifier}`,
-                            subsystemName: "competency-gateway",
+                            applicationName: `clark-${identifier}`,
+                            subsystemName: "clark-gateway",
                             computerName: os.hostname(),
                             timestamp: Date.now(),
                             severity:

@@ -1,14 +1,14 @@
 import { Router } from "express";
 import { buildProxyRouter } from "../../../shared/functions/build-proxy-router";
-import { USERS_ROUTES } from "./users.routes";
+import { ACCESS_GROUP_ROUTES } from "./access-group.routes";
+import { CLARK_SERVICE_URI } from "../../../config/global.env";
 import { envConfig } from "../../../config/env/env.driver";
-import { USER_SERVICE_URI } from "../../../config/global.env";
 
-export class UsersRouteHandler {
+export class AccessGroupRouteHandler {
     public static build(): Router {
         return buildProxyRouter(
-            USERS_ROUTES,
-            envConfig.getUri(USER_SERVICE_URI),
+            ACCESS_GROUP_ROUTES,
+            envConfig.getUri(CLARK_SERVICE_URI),
         );
     }
 }

@@ -1,5 +1,7 @@
+import { CLARK_SERVICE_URI } from "../../../config/global.env";
 import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
+import { envConfig } from "../../../config/env/env.driver";
 
 export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     /**
@@ -14,7 +16,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      * Changelog routes
      */
     {
-        method: HTTPMethod.PATCH,
+        method: HTTPMethod.POST,
         path: "/users/:userId/learning-objects/:cuid/changelog",
         auth: true,
     },
@@ -81,6 +83,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/users/:username/learning-objects/:id/files/:fileId/download",
+        auth: true,
     },
     {
         method: HTTPMethod.GET,
@@ -153,7 +156,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.DELETE,
-        path: "/learning-objects/multiple/:names",
+        path: "/learning-objects/:names/multiple",
         auth: true,
     },
     {
@@ -190,13 +193,14 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.DELETE,
-        path: "/admin/users/:username/learning-objects/multiple/:learningObjectIDs",
+        path: "/admin/learning-objects/:learningObjectNames/multiple",
         auth: true,
     },
     {
         method: HTTPMethod.POST,
         path: "/users/:userId/learning-objects/:learningObjectId/change-author",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.POST,
@@ -286,10 +290,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.POST,
         path: "/users/:username/learning-objects/:cuid/versions",
         auth: true,
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/users/:username/learning-objects/:learningObjectId/revisions/:revisionId",
     },
     {
         method: HTTPMethod.DELETE,
