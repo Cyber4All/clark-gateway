@@ -69,13 +69,15 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.PATCH,
-        path: "/users/:username/learning-objects/:learningObjectId/materials/files/:fileId",
+        path: "/learning-objects/:learningObjectId/materials/files/:fileId",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.DELETE,
-        path: "/users/:username/learning-objects/:learningObjectId/materials/files/:fileId",
+        path: "/learning-objects/:learningObjectId/materials/files/:fileId",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.PATCH,
@@ -108,7 +110,8 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.GET,
-        path: "/users/:username/learning-objects/:id",
+        path: "/learning-objects/:id",
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.PATCH,
@@ -207,8 +210,9 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.POST,
-        path: "/users/:username/learning-objects/:id/status",
+        path: "/learning-objects/:learningObjectId/status",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.GET,
@@ -293,8 +297,9 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.POST,
-        path: "/users/:username/learning-objects/:cuid/versions",
+        path: "/learning-objects/:cuid/version",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.DELETE,
