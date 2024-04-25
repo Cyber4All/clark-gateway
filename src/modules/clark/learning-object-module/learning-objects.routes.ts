@@ -86,8 +86,9 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/:username/learning-objects/:id/files/:fileId/download",
+        path: "/learning-objects/:id/files/:fileId/download",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI)
     },
     {
         method: HTTPMethod.GET,
@@ -168,6 +169,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/learning-objects",
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.GET,
@@ -303,8 +305,9 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.DELETE,
-        path: "/users/:username/learning-objects/:cuid/versions/:version",
+        path: "/learning-objects/:cuid/versions/:version",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
 
     /**
