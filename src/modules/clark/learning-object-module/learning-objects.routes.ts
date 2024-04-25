@@ -250,7 +250,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.PATCH,
-        path: "/users/:username/learning-objects/:id/learning-outcomes/:outcomeId/guidelines",
+        path: "/learning-objects/:id/learning-outcomes/:outcomeId/guidelines",
         auth: true,
     },
     {
