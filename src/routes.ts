@@ -97,7 +97,7 @@ export const LEARNING_OBJECT_ROUTES = {
     learningObjectId: string;
     fileId: string;
   }) {
-    return `/users/${username}/learning-objects/${learningObjectId}/materials/files/${encodeURIComponent(
+    return `/users/${encodeURIComponent(username)}/learning-objects/${learningObjectId}/materials/files/${encodeURIComponent(
       fileId,
     )}`;
   },
@@ -110,7 +110,7 @@ export const LEARNING_OBJECT_ROUTES = {
     learningObjectId: string;
     fileId: string;
   }) {
-    return `/users/${username}/learning-objects/${learningObjectId}/materials/files/${encodeURIComponent(
+    return `/users/${encodeURIComponent(username)}/learning-objects/${learningObjectId}/materials/files/${encodeURIComponent(
       fileId,
     )}`;
   },
