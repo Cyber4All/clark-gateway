@@ -259,13 +259,15 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.PATCH,
-        path: "/users/:username/learning-objects/:id/learning-outcomes/:outcomeId/guidelines",
+        path: "/learning-objects/:id/learning-outcomes/:outcomeId/guidelines",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.PATCH,
-        path: "/users/:username/learning-objects/:id/topics",
+        path: "/learning-objects/:id/topics",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.DELETE,
