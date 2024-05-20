@@ -22,8 +22,9 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/:userId/learning-objects/:cuid/changelogs",
+        path: "/learning-objects/:cuid/changelogs",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI)
     },
 
     /**
