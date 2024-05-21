@@ -18,6 +18,5 @@ export const USERS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/users/:username/profile",
-        auth: true,
     },
 ];

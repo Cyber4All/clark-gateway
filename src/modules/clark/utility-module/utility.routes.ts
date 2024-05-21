@@ -10,7 +10,6 @@ export const UTILITY_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/blogs",
-        auth: true,
     },
     {
         method: HTTPMethod.POST,
