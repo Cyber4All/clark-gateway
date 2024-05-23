@@ -17,13 +17,15 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.POST,
-        path: "/users/:userId/learning-objects/:cuid/changelog",
+        path: "/learning-objects/:cuid/changelog",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/:userId/learning-objects/:cuid/changelogs",
+        path: "/learning-objects/:cuid/changelogs",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
 
     /**
