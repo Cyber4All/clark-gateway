@@ -199,7 +199,11 @@ export class RelevancyController implements Controller {
       "/users/:username/learning-objects/:id/topics",
       this.proxyRequest(
         (req: Request) =>
-          `/users/${req.params.username}/learning-objects/${req.params.id}/topics`,
+          `/users/${encodeURIComponent(
+            req.params.username
+          )}/learning-objects/${encodeURIComponent(
+            req.params.id
+          )}/topics`,
       ),
     );
 
@@ -245,7 +249,13 @@ export class RelevancyController implements Controller {
       "/users/:username/learning-objects/:id/topics/:topicId",
       this.proxyRequest(
         (req: Request) =>
-          `/users/${req.params.username}/learning-objects/${req.params.id}/topics/${req.params.topicId}`,
+          `/users/${encodeURIComponent(
+            req.params.username
+          )}/learning-objects/${encodeURIComponent(
+            req.params.id
+          )}/topics/${encodeURI(
+            req.params.topicId
+          )}`,
       ),
     );
 
