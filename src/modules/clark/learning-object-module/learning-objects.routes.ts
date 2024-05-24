@@ -114,7 +114,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.GET,
-        path: "/learning-objects/stats"
+        path: "/learning-objects/stats",
     },
 
     /**
