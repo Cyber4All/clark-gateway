@@ -94,7 +94,8 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/:username/learning-objects/:id/materials",
+        path: "/learning-objects/:id/materials",
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.POST,
