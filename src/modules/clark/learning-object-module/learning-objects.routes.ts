@@ -110,6 +110,14 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
 
     /**
+     * Stats routes
+     */
+    {
+        method: HTTPMethod.GET,
+        path: "/learning-objects/stats"
+    },
+
+    /**
      * Objects routes
      */
     {
@@ -315,14 +323,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         path: "/learning-objects/:cuid/versions/:version",
         auth: true,
         target: envConfig.getUri(CLARK_SERVICE_URI),
-    },
-
-    /**
-     * Stats routes
-     */
-    {
-        method: HTTPMethod.GET,
-        path: "/learning-objects/stats",
     },
 
     /**
