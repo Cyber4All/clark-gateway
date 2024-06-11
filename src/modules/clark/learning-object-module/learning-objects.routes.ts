@@ -218,6 +218,26 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         path: "/admin/learning-objects/:learningObjectNames/multiple",
         auth: true,
     },
+    /**
+     * Submissions routes
+     */
+    {
+        method: HTTPMethod.GET,
+        path: "/learning-objects/:learningObjectId/submissions",
+        target: envConfig.getUri(CLARK_SERVICE_URI),
+        auth: true,
+    },
+    {
+        method: HTTPMethod.POST,
+        path: "/learning-objects/:learningObjectId/submissions",
+        target: envConfig.getUri(CLARK_SERVICE_URI),
+        auth: true,
+    },
+    {
+        method: HTTPMethod.DELETE,
+        path: "/users/:userId/learning-objects/:learningObjectId/submissions",
+        auth: true,
+    },
     {
         method: HTTPMethod.POST,
         path: "/users/:userId/learning-objects/:learningObjectId/change-author",
@@ -325,26 +345,5 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         path: "/learning-objects/:cuid/versions/:version",
         auth: true,
         target: envConfig.getUri(CLARK_SERVICE_URI),
-    },
-
-    /**
-     * Submissions routes
-     */
-    {
-        method: HTTPMethod.GET,
-        path: "/learning-objects/:learningObjectId/submissions",
-        target: envConfig.getUri(CLARK_SERVICE_URI),
-        auth: true,
-    },
-    {
-        method: HTTPMethod.POST,
-        path: "/learning-objects/:learningObjectId/submissions",
-        target: envConfig.getUri(CLARK_SERVICE_URI),
-        auth: true,
-    },
-    {
-        method: HTTPMethod.DELETE,
-        path: "/users/:userId/learning-objects/:learningObjectId/submissions",
-        auth: true,
     },
 ];
