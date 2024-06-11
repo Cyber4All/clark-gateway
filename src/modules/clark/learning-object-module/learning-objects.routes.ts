@@ -338,7 +338,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.POST,
-        path: "/users/:userId/learning-objects/:learningObjectId/submissions",
+        path: "/learning-objects/:learningObjectId/submissions",
         auth: true,
     },
     {
