@@ -16,6 +16,12 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      * Changelog routes
      */
     {
+        method: HTTPMethod.GET,
+        path: "/learning-objects/:learningObjectId/bundle",
+        auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
+    },
+    {
         method: HTTPMethod.POST,
         path: "/learning-objects/:cuid/changelog",
         auth: true,
@@ -58,11 +64,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     /**
      * File Manager routes
      */
-    {
-        method: HTTPMethod.GET,
-        path: "/users/:username/learning-objects/:id/bundle",
-        auth: true,
-    },
     {
         method: HTTPMethod.POST,
         path: "/learning-objects/:learningObjectId/bundle",
