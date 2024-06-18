@@ -16,6 +16,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      * Changelog routes
      */
     {
+        // Moved up this route to avoid any potential errors
         method: HTTPMethod.GET,
         path: "/learning-objects/:learningObjectId/bundle",
         auth: true,
