@@ -161,7 +161,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         path: "/learning-objects/:learningObjectId/children",
         auth: true,
         target: envConfig.getUri(CLARK_SERVICE_URI),
-
     },
     {
         method: HTTPMethod.GET,
@@ -233,12 +232,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         auth: true,
         target: envConfig.getUri(CLARK_SERVICE_URI),
     },
-    {
-        method: HTTPMethod.GET,
-        path: "/learning-objects/:username/:learningObjectName",
-        auth: true,
-    },
-
     /**
      * Outcomes routes
      */
@@ -260,7 +253,13 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/:username/learning-objects/:learningObjectId/outcomes",
+        path: "/learning-objects/:id/outcomes",
+        target: envConfig.getUri(CLARK_SERVICE_URI),
+    },
+    {
+        method: HTTPMethod.GET,
+        path: "/learning-objects/:username/:learningObjectName",
+        auth: true,
     },
 
     /**
