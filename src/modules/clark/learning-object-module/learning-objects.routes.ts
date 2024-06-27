@@ -343,7 +343,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.POST,
-        path: "/learning-objects/:cuid/version",
+        path: "/learning-objects/:cuid/versions",
         auth: true,
         target: envConfig.getUri(CLARK_SERVICE_URI),
     },
