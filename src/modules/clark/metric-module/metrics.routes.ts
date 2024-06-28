@@ -14,4 +14,8 @@ export const METRICS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/users/metrics",
     },
+    {
+        method: HTTPMethod.GET,
+        path: "/learning-objects/stats",
+    },
 ];
