@@ -111,12 +111,12 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
 
     /**
-     * Stats routes
+     * Legacy Stats route
      */
-    {
-        method: HTTPMethod.GET,
-        path: "/learning-objects/stats",
-    },
+    // {
+    //     method: HTTPMethod.GET,
+    //     path: "/learning-objects/stats",
+    // },
 
     /**
      * Objects routes
