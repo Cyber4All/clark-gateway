@@ -268,8 +268,9 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.PATCH,
-        path: "/learning-objects/:learningObjectId/learning-outcomes/:outcomeId",
+        path: "/learning-outcomes/:outcomeId",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.DELETE,
