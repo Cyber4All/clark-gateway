@@ -12,11 +12,7 @@ export const USERS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.PATCH,
-        path: "/users",
+        path: "/users/:username",
         auth: true,
-    },
-    {
-        method: HTTPMethod.GET,
-        path: "/users/:username/profile",
     },
 ];
