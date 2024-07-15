@@ -355,25 +355,4 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         target: envConfig.getUri(CLARK_SERVICE_URI),
     },
 
-    /**
-     * Submissions routes
-     */
-    {
-        method: HTTPMethod.GET,
-        path: "/learning-objects/:learningObjectId/submissions",
-        target: envConfig.getUri(CLARK_SERVICE_URI),
-        auth: true,
-    },
-    {
-        method: HTTPMethod.POST,
-        path: "/learning-objects/:learningObjectId/submissions",
-        target: envConfig.getUri(CLARK_SERVICE_URI),
-        auth: true,
-    },
-    {
-        method: HTTPMethod.DELETE,
-        path: "/learning-objects/:learningObjectId/submissions",
-        target: envConfig.getUri(CLARK_SERVICE_URI),
-        auth: true,
-    },
 ];
