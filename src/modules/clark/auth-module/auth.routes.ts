@@ -70,5 +70,5 @@ export const AUTH_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.PATCH,
         path: "/users/ota-code",
-    }
+    },
 ];
