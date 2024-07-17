@@ -26,7 +26,7 @@ export const UTILITY_ROUTES: ProxyRoute[] = [
     },
 
     /**
-     * Downtime Routes
+     * SecurEd Downtime Service Route
      */
     {
         method: HTTPMethod.GET,
