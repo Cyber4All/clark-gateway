@@ -12,10 +12,10 @@ export const METRICS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/metrics",
+        path: "/learning-objects/stats",
     },
     {
         method: HTTPMethod.GET,
-        path: "/learning-objects/stats",
+        path: "/users/metrics",
     },
 ];
