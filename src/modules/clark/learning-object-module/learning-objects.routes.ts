@@ -183,11 +183,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         path: "/users/:username/learning-objects/profile",
     },
     {
-        method: HTTPMethod.DELETE,
-        path: "/learning-objects/:names/multiple",
-        auth: true,
-    },
-    {
         method: HTTPMethod.GET,
         path: "/learning-objects",
         target: envConfig.getUri(CLARK_SERVICE_URI),
@@ -213,16 +208,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/admin/learning-objects/:learningObjectId",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.DELETE,
-        path: "/admin/users/:username/learning-objects/:learningObjectName",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.DELETE,
-        path: "/admin/learning-objects/:learningObjectNames/multiple",
         auth: true,
     },
     /**
