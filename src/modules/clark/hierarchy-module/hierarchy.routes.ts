@@ -11,7 +11,7 @@ export const HIERARCHY_ROUTES: ProxyRoute[] = [
      */
     {
         method: HTTPMethod.PATCH,
-        path: "/learning-objects/:id/status",
+        path: "/learning-objects/:learningObjectId/status",
         auth: true,
     },
 ];
