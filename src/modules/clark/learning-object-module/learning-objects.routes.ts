@@ -112,14 +112,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
 
     /**
-     * Legacy Stats route
-     */
-    // {
-    //     method: HTTPMethod.GET,
-    //     path: "/learning-objects/stats",
-    // },
-
-    /**
      * Objects routes
      */
     {
@@ -181,15 +173,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/:username/learning-objects/profile",
-    },
-    {
-        method: HTTPMethod.DELETE,
-        path: "/learning-objects/:names/multiple",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.GET,
         path: "/learning-objects",
         target: envConfig.getUri(CLARK_SERVICE_URI),
     },
@@ -214,16 +197,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/admin/learning-objects/:learningObjectId",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.DELETE,
-        path: "/admin/users/:username/learning-objects/:learningObjectName",
-        auth: true,
-    },
-    {
-        method: HTTPMethod.DELETE,
-        path: "/admin/learning-objects/:learningObjectNames/multiple",
         auth: true,
     },
     /**
@@ -269,8 +242,9 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.PATCH,
-        path: "/learning-objects/:learningObjectId/learning-outcomes/:outcomeId",
+        path: "/learning-outcomes/:outcomeId",
         auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.DELETE,
@@ -355,5 +329,4 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
         auth: true,
         target: envConfig.getUri(CLARK_SERVICE_URI),
     },
-
 ];
