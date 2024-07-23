@@ -90,7 +90,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/learning-objects/:id/files/:fileId/download",
-        auth: true,
         target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
