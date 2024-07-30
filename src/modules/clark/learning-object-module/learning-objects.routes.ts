@@ -35,7 +35,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
 
     {
         method: HTTPMethod.GET,
-        path: "/learning-objects/:id/materials",
+        path: "/learning-objects/:learningObjectId/materials",
         target: envConfig.getUri(CLARK_SERVICE_URI),
     },
 
@@ -55,7 +55,7 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.DELETE,
-        path: "/learning-objects/:id",
+        path: "/learning-objects/:learningObjectId",
         auth: true,
         target: envConfig.getUri(CLARK_SERVICE_URI),
     },
@@ -96,10 +96,13 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/learning-objects/:learningObjectId",
+        auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
+        // DEPRECATED
         method: HTTPMethod.GET,
-        path: "/learning-objects/:id/children/summary",
+        path: "/learning-objects/:learningObjectId/children/summary",
     },
     {
         method: HTTPMethod.GET,
