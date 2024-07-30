@@ -1,7 +1,7 @@
+import { envConfig } from "../../../config/env/env.driver";
 import { CLARK_SERVICE_URI } from "../../../config/global.env";
 import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
-import { envConfig } from "../../../config/env/env.driver";
 
 export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     /**
@@ -61,12 +61,13 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "/learning-objects/:id/children",
+        path: "/learning-objects/:learningObjectId/children",
         target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.GET,
-        path: "/users/:username/learning-objects/:id/parents",
+        path: "/learning-objects/:learningObjectId/parents",
+        target: envConfig.getUri(CLARK_SERVICE_URI),
     },
     {
         method: HTTPMethod.POST,
@@ -83,6 +84,12 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.POST,
         path: "/learning-objects",
+        auth: true,
+        target: envConfig.getUri(CLARK_SERVICE_URI),
+    },
+    {
+        method: HTTPMethod.POST,
+        path: "/learning-objects/:learningObjectId/status",
         auth: true,
         target: envConfig.getUri(CLARK_SERVICE_URI),
     },
