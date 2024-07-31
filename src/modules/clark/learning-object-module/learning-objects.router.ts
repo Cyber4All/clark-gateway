@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { buildProxyRouter } from "../../../shared/functions/build-proxy-router";
 import { envConfig } from "../../../config/env/env.driver";
-import { LEARNING_OBJECT_SERVICE_URI } from "../../../config/global.env";
+import { CLARK_SERVICE_URI } from "../../../config/global.env";
 // Import all routes from modular route files
 import { BUNDLING_ROUTES } from "./bundling.routes";
 import { CHANGE_AUTHORSHIP_ROUTES } from "./change-authorship.routes";
@@ -29,7 +29,7 @@ export class LearningObjectsRouteHandler {
                 ...SUBMISSIONS_ROUTES,
                 ...TOPICS_ROUTES,
             ],
-            envConfig.getUri(LEARNING_OBJECT_SERVICE_URI),
+            envConfig.getUri(CLARK_SERVICE_URI),
         );
     }
 }
