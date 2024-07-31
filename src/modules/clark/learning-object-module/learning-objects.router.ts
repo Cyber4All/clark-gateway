@@ -29,7 +29,7 @@ export class LearningObjectsRouteHandler {
                 ...SEARCH_ROUTES,
                 ...SUBMISSIONS_ROUTES,
                 ...TOPICS_ROUTES,
-                ...LEGACY_ROUTES
+                ...LEGACY_ROUTES,
             ],
             envConfig.getUri(CLARK_SERVICE_URI),
         );
