@@ -12,6 +12,11 @@ export const OUTCOMES_ROUTES: ProxyRoute[] = [
         auth: true,
     },
     {
+        method: HTTPMethod.PATCH,
+        path: "/learning-outcomes/:outcomeId",
+        auth: true,
+    },
+    {
         method: HTTPMethod.DELETE,
         path: "/learning-outcomes/:outcomeId",
         auth: true,
