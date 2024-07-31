@@ -3,7 +3,7 @@ import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 import { LEARNING_OBJECT_SERVICE_URI } from "../../../config/global.env";
 
-export const DEPRECATED_ROUTES: ProxyRoute[] = [
+export const LEGACY_ROUTES: ProxyRoute[] = [
     /**
      * Evaluations routes
      */
