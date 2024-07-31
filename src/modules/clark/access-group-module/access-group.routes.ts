@@ -4,12 +4,12 @@ import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 export const ACCESS_GROUP_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
-        path: "/access-groups/collections/:collectionAbvName/users",
+        path: "/access-groups/users/:id",
         auth: true,
     },
     {
         method: HTTPMethod.GET,
-        path: "/access-groups/users/:id",
+        path: "/access-groups/collections/:collectionAbvName/users",
         auth: true,
     },
     {
