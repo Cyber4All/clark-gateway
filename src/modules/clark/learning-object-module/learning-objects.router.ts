@@ -14,8 +14,6 @@ import { SEARCH_ROUTES } from "./search.routes";
 import { SUBMISSIONS_ROUTES } from "./submissions.routes";
 import { TOPICS_ROUTES } from "./topics.routes";
 
-
-
 export class LearningObjectsRouteHandler {
     public static build(): Router {
         return buildProxyRouter(
