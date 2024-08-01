@@ -3,7 +3,7 @@ import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 
 export const RATINGS_ROUTES: ProxyRoute[] = [
     /**
-     * Rating Flags Routes
+     * Flag Routes
      */
     {
         method: HTTPMethod.GET,

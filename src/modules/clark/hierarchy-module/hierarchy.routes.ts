@@ -7,11 +7,11 @@ export const HIERARCHY_ROUTES: ProxyRoute[] = [
      * clark-service yet and will have a different target
      * than clark-service
      *
-     * The target for the following routes shoud be  hierarchy-service
+     * The target for the following routes should be  hierarchy-service
      */
     {
         method: HTTPMethod.PATCH,
-        path: "/learning-objects/:id/status",
+        path: "/learning-objects/:learningObjectId/status",
         auth: true,
     },
 ];

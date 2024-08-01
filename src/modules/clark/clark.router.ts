@@ -13,6 +13,7 @@ import { CollectionsRouteHandler } from "./collection-module/collections.router"
 import { MetricsRouteHandler } from "./metric-module/metrics.router";
 import { AccessGroupRouteHandler } from "./access-group-module/access-group.router";
 import { AuthRouteHandler } from "./auth-module/auth.router";
+import { FileRouteHandler } from "./file-module/file.router";
 
 export class ClarkRouteHandler {
     public static build(): Router {
@@ -23,6 +24,7 @@ export class ClarkRouteHandler {
         router.use(AuthRouteHandler.build());
         router.use(CollectionsRouteHandler.build());
         router.use(FeaturedRouteHandler.build());
+        router.use(FileRouteHandler.build());
         router.use(HierarchydRouteHandler.build());
         router.use(LearningObjectsRouteHandler.build());
         router.use(LibraryRouteHandler.build());

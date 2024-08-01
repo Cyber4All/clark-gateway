@@ -1,13 +1,13 @@
 import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 
-export const COLLECTION_ROUTES: ProxyRoute[] = [
+export const SEARCH_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
-        path: "/collections",
+        path: "/learning-objects",
     },
     {
         method: HTTPMethod.GET,
-        path: "/collections/:abvName",
+        path: "/users/:username/learning-objects",
     },
 ];
