@@ -17,7 +17,6 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/learning-objects/:learningObjectId/materials",
-        auth: true,
     },
     {
         method: HTTPMethod.POST,
