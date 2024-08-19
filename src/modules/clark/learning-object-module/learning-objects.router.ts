@@ -14,6 +14,7 @@ import { SEARCH_ROUTES } from "./search.routes";
 import { SUBMISSIONS_ROUTES } from "./submissions.routes";
 import { TOPICS_ROUTES } from "./topics.routes";
 import { LEGACY_ROUTES } from "./legacy.routes";
+import { REVISIONS_ROUTES } from "./revisions.routes";
 
 export class LearningObjectsRouteHandler {
     public static build(): Router {
@@ -26,6 +27,7 @@ export class LearningObjectsRouteHandler {
                 ...LEARNING_OBJECTS_ROUTES,
                 ...OUTCOMES_ROUTES,
                 ...RELEVANCY_ROUTES,
+                ...REVISIONS_ROUTES,
                 ...SEARCH_ROUTES,
                 ...SUBMISSIONS_ROUTES,
                 ...TOPICS_ROUTES,
