@@ -5,31 +5,31 @@ export const REPORT_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         auth: true,
-        path: "/users/:userId/resources/:resourceId/reports"
+        path: "/users/:userId/resources/:resourceId/reports",
     },
     {
         method: HTTPMethod.GET,
         auth: true,
-        path: "/users/:userId/resources/:resourceId/reports/:reportId"
+        path: "/users/:userId/resources/:resourceId/reports/:reportId",
     },
     {
         method: HTTPMethod.POST,
         auth: true,
-        path:"/users/:userId/resources/:resourceId/reports"
+        path: "/users/:userId/resources/:resourceId/reports",
     },
     {
         method: HTTPMethod.PATCH,
         auth: true,
-        path: "/users/:userId/resources/:resourceId/reports/:reportId"
+        path: "/users/:userId/resources/:resourceId/reports/:reportId",
     },
     {
-        method: HTTPMethod.PATCH,    
+        method: HTTPMethod.PATCH,
         auth: true,
-        path: "/users/:userId/resources/:resourceId/reports/:reportId/state"
+        path: "/users/:userId/resources/:resourceId/reports/:reportId/state",
     },
     {
         method: HTTPMethod.DELETE,
         auth: true,
-        path: "/users/:userId/resources/:resourceId/reports/:reportId"
-    }
+        path: "/users/:userId/resources/:resourceId/reports/:reportId",
+    },
 ];
