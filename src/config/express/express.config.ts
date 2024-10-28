@@ -5,6 +5,7 @@ import morgan from "morgan";
 import { formatMorganJson, httpRequestFilter } from "../logging/logging.driver";
 import { ClarkRouteHandler } from "../../modules/clark/clark.router";
 import { ErrorParser } from "../../middlewares/error-parser";
+import { CardRouteHandler } from "../../modules/card/card.router";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require("../../../package.json").version;
@@ -39,6 +40,7 @@ export class ExpressConfig {
         this.initServerHome();
 
         // Route Handlers Here
+        this.app.use(CardRouteHandler.build());
         this.app.use(ClarkRouteHandler.build());
 
         this.app.use(ErrorParser);
