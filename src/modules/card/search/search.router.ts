@@ -4,7 +4,7 @@ import { CARD_SERVICE_URI } from "../../../config/global.env";
 import { envConfig } from "../../../config/env/env.driver";
 import { SEARCH_ROUTES } from "./search.routes";
 
-export class SearchRouter {
+export class SearchRouteHandler {
     public static build(): Router {
         return buildProxyRouter(
             SEARCH_ROUTES,

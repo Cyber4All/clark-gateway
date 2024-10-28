@@ -4,7 +4,7 @@ import { CARD_SERVICE_URI } from "../../../config/global.env";
 import { envConfig } from "../../../config/env/env.driver";
 import { REPORT_ROUTES } from "./report.routes";
 
-export class ReportRouter {
+export class ReportRouteHandler {
     public static build(): Router {
         return buildProxyRouter(
             REPORT_ROUTES,
