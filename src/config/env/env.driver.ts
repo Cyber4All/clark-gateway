@@ -4,6 +4,7 @@ import {
 } from "../../shared/types/error.type";
 import {
     AWS_JWT_SECRET,
+    CARD_SERVICE_URI,
     CLARK_REPORTS_URI,
     CLARK_SERVICE_URI,
     CORALOGIX_PRIVATE_KEY,
@@ -121,6 +122,7 @@ class EnvConfig {
                 CLARK_REPORTS_URI,
                 STANDARD_GUIDELINES_SERVICE_URI,
                 SECURED_DOWNTIME_SERVICE_URI,
+                CARD_SERVICE_URI,
             ].includes(service)
         ) {
             throw new ServiceError(
@@ -146,6 +148,7 @@ const envConfig = new EnvConfig(process.env).ensureValues([
     CLARK_REPORTS_URI,
     STANDARD_GUIDELINES_SERVICE_URI,
     SECURED_DOWNTIME_SERVICE_URI,
+    CARD_SERVICE_URI,
 ]);
 
 if (envConfig.isProduction() || envConfig.isStaging()) {
