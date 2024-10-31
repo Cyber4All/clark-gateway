@@ -6,7 +6,6 @@ import { SEARCH_ROUTES } from "./search.routes";
 
 export class SearchRouteHandler {
     public static build(): Router {
-        console.log('SearchRouteHandler.build()');
         return buildProxyRouter(
             SEARCH_ROUTES,
             envConfig.getUri(CARD_SERVICE_URI),
