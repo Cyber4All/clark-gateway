@@ -26,11 +26,6 @@ export const CARD_SERVICE_URI = "CARD_SERVICE_URI";
 export const HIERARCHY_SERVICE_URI = "HIERARCHY_SERVICE_URI";
 
 /**
- * URI target for the learning-object-service
- */
-export const LEARNING_OBJECT_SERVICE_URI = "LEARNING_OBJECT_SERVICE_URI";
-
-/**
  * URI target for the notifications-service
  */
 export const NOTIFICATIONS_SERVICE_URI = "NOTIFICATIONS_SERVICE_URI";
