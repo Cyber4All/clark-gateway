@@ -13,7 +13,6 @@ import { RELEVANCY_ROUTES } from "./relevancy.routes";
 import { SEARCH_ROUTES } from "./search.routes";
 import { SUBMISSIONS_ROUTES } from "./submissions.routes";
 import { TOPICS_ROUTES } from "./topics.routes";
-import { LEGACY_ROUTES } from "./legacy.routes";
 import { REVISIONS_ROUTES } from "./revisions.routes";
 
 export class LearningObjectsRouteHandler {
@@ -31,7 +30,6 @@ export class LearningObjectsRouteHandler {
                 ...SEARCH_ROUTES,
                 ...SUBMISSIONS_ROUTES,
                 ...TOPICS_ROUTES,
-                ...LEGACY_ROUTES,
             ],
             envConfig.getUri(CLARK_SERVICE_URI),
         );

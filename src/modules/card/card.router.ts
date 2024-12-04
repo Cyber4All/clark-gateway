@@ -5,6 +5,7 @@ import { ResourceRouteHandler } from "./resource/resource.router";
 import { SearchRouteHandler } from "./search/search.router";
 import { UpdateRouteHandler } from "./update/update.router";
 import { UtilityRouteHandler } from "./utility/utility.router";
+import { EmailRouteHandler } from "./email/email.router";
 
 export class CardRouteHandler {
     public static build(): Router {
@@ -17,6 +18,7 @@ export class CardRouteHandler {
         router.use(SearchRouteHandler.build());
         router.use(UpdateRouteHandler.build());
         router.use(UtilityRouteHandler.build());
+        router.use(EmailRouteHandler.build());
 
         return router;
     }
