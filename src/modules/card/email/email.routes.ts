@@ -2,9 +2,9 @@ import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 
 /**
- * only one route present here in which would actually be found in the CARD user route handler, 
- * but we are no longer using CARD user routes apart from this which is for CARD link checking to send emails,
- * so for better naming convention this is kept as EMAIL_ROUTES. Part of CLARD Unified Users Epic.
+ * Note: The emailType route can be found in the `cards-service` user route handler. With the delegation of user 
+ * administration to CLARK it was most appropriate to update the naming convention to EMAIL_ROUTES.
+ * This change was introduced as part of the `CLARD Unified Users Epic`.
  */
 export const EMAIL_ROUTES: ProxyRoute[] = [
     {
