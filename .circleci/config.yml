@@ -1,38 +1,54 @@
 version: 2.1
 orbs:
     cyber4all: cyber4all/orb@2.1.8
-    docker: circleci/docker@2.2.0
+    docker: circleci/docker@2.8.1
+    node: circleci/node@7.0.0
+    aws-cli: circleci/aws-cli@5.1.2
+    aws-ecs: circleci/aws-ecs@6.0.2
 
 workflows:
-    integration-testing:
+    continuous-integration:
         jobs:
-            - cyber4all/publish:
-                  image: "cyber4all/clark-gateway"
-                  deploy: false
-
-            - cyber4all/lint
-
             - docker/hadolint:
-                  ignore-rules: "DL3018,DL3019"
-
-    deploy-clark-service-refactor:
+                  ignore-rules: DL3018
+            - cyber4all/publish:
+                  deploy: false
+            - cyber4all/lint
+            - test
+    continuous-delivery:
         when:
-            equal: [clark-service-refactor, <<pipeline.git.branch>>]
+            equal:
+                - main
+                - << pipeline.git.branch >>
         jobs:
             - cyber4all/publish:
-                  context: [DockerHub]
-                  image: "cyber4all/clark-gateway"
-                  tag: "staging"
-
-    deploy-production:
+                  context:
+                      - DockerHub
+                  tag: staging
+    release-prod:
         when:
-            equal: [releases, <<pipeline.git.branch>>]
+            equal:
+                - releases
+                - << pipeline.git.branch >>
         jobs:
-            - cyber4all/publish:
-                  context: [DockerHub]
-                  image: "cyber4all/clark-gateway"
-                  tag: "$(jq -r '.version' package.json),latest"
-
-            # TODO: Add a job to deploy the new version to ECS
-            # once we have the ECS infrastructure in place
-            # for the CLARD environment
+            - cyber4all/release:
+                  context:
+                      - Github
+                  tag: $(jq -r '.version' package.json)
+            - cyber4all/promote:
+                  requires: [cyber4all/release]
+                  context:
+                      - DockerHub
+                  tag: $(jq -r '.version' package.json),latest
+            - aws-ecs/deploy_service_update:
+                  requires: [cyber4all/promote]
+                  context: [AWS, Slack]
+                  auth:
+                      - aws-cli/setup:
+                            profile_name: ecs_oidc
+                            role_arn: $ECS_OIDC_ROLE
+                  cluster: clard-prod-cluster
+                  container_image_name_updates: container=clark-gateway,tag=latest
+                  family: clark-gateway
+                  profile_name: ecs_oidc
+                  verify_revision_is_deployed: true
