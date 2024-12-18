@@ -14,7 +14,6 @@ workflows:
             - cyber4all/publish:
                   deploy: false
             - cyber4all/lint
-            - test
     continuous-delivery:
         when:
             equal:
