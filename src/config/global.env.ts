@@ -28,12 +28,7 @@ export const HIERARCHY_SERVICE_URI = "HIERARCHY_SERVICE_URI";
 /**
  * URI target for the notifications-service
  */
-export const NOTIFICATIONS_SERVICE_URI = "NOTIFICATIONS_SERVICE_URI";
-
-/**
- * URI target for the reporting-service
- */
-export const CLARK_REPORTS_URI = "CLARK_REPORTS_URI";
+export const NOTIFICATIONS_SERVICE_URI = "NOTIFICATION_SERVICE_URI";
 
 /**
  * URI target for the standard-guidelines-service
