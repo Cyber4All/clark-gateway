@@ -24,6 +24,4 @@ export const TOPICS_ROUTES: ProxyRoute[] = [
         path: "/users/:username/learning-objects/:id/topics/:topicId",
         auth: true,
     },
-
-
 ];
