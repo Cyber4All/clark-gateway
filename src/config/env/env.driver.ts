@@ -113,6 +113,7 @@ class EnvConfig {
         if (
             ![
                 CLARK_SERVICE_URI,
+                HIERARCHY_SERVICE_URI,
                 STANDARD_GUIDELINES_SERVICE_URI,
                 SECURED_DOWNTIME_SERVICE_URI,
                 CARD_SERVICE_URI,
