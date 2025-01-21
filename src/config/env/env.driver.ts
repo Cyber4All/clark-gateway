@@ -10,7 +10,6 @@ import {
     HIERARCHY_SERVICE_URI,
     ISSUER,
     NODE_ENV,
-    NOTIFICATIONS_SERVICE_URI,
     PORT,
     SECURED_DOWNTIME_SERVICE_URI,
     STANDARD_GUIDELINES_SERVICE_URI,
@@ -25,7 +24,7 @@ dotenv.config();
  * to retrieve the value of the environment variable
  */
 class EnvConfig {
-    constructor(private env: { [k: string]: string | undefined }) { }
+    constructor(private env: { [k: string]: string | undefined }) {}
 
     /**
      * Gets the value of a environment variable
@@ -115,7 +114,6 @@ class EnvConfig {
             ![
                 CLARK_SERVICE_URI,
                 HIERARCHY_SERVICE_URI,
-                NOTIFICATIONS_SERVICE_URI,
                 STANDARD_GUIDELINES_SERVICE_URI,
                 SECURED_DOWNTIME_SERVICE_URI,
                 CARD_SERVICE_URI,
@@ -139,7 +137,6 @@ const envConfig = new EnvConfig(process.env).ensureValues([
     // =====================
     CLARK_SERVICE_URI,
     HIERARCHY_SERVICE_URI,
-    NOTIFICATIONS_SERVICE_URI,
     STANDARD_GUIDELINES_SERVICE_URI,
     SECURED_DOWNTIME_SERVICE_URI,
     CARD_SERVICE_URI,

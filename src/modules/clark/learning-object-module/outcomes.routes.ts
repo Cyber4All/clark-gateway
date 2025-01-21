@@ -21,4 +21,8 @@ export const OUTCOMES_ROUTES: ProxyRoute[] = [
         path: "/learning-outcomes/:outcomeId",
         auth: true,
     },
+    {
+        method: HTTPMethod.GET,
+        path: "learning-outcomes/stats",
+    },
 ];

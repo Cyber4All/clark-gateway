@@ -11,6 +11,11 @@ export const TOPICS_ROUTES: ProxyRoute[] = [
         path: "/learning-objects/:id/topics",
         auth: true,
     },
+    {
+        method: HTTPMethod.PUT,
+        path: "/learning-objects/:cuid/tags",
+        auth: true,
+    },
     /**
      * DELETE METHOD NOT YET IMPLEMENTED IN CLARK-SERVICE
      */
