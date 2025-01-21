@@ -14,5 +14,5 @@ export const SEARCH_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         auth: true,
         path: "/users/:userId/resources",
-    }
+    },
 ];
