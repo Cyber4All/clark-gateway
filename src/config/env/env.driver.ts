@@ -24,7 +24,7 @@ dotenv.config();
  * to retrieve the value of the environment variable
  */
 class EnvConfig {
-    constructor(private env: { [k: string]: string | undefined }) { }
+    constructor(private env: { [k: string]: string | undefined }) {}
 
     /**
      * Gets the value of a environment variable
