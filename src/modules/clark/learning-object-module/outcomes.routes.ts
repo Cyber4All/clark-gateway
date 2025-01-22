@@ -23,6 +23,6 @@ export const OUTCOMES_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "learning-outcomes/stats",
+        path: "/learning-outcomes/stats",
     },
 ];
