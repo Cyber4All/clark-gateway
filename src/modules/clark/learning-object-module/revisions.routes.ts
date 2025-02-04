@@ -8,6 +8,11 @@ export const REVISIONS_ROUTES: ProxyRoute[] = [
         auth: true,
     },
     {
+        method: HTTPMethod.POST,
+        path: "/learning-objects/:cuid/versions/story",
+        auth: true
+    },
+    {
         method: HTTPMethod.DELETE,
         path: "/learning-objects/:cuid/versions/:version",
         auth: true,
