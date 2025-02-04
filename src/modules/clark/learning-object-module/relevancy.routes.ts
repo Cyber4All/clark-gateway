@@ -12,4 +12,8 @@ export const RELEVANCY_ROUTES: ProxyRoute[] = [
         path: "/learning-objects/:id/relevancy-check",
         auth: true,
     },
+    {
+        method: HTTPMethod.POST,
+        path: "/learning-objects/:cuid/ask-clair"
+    }
 ];
