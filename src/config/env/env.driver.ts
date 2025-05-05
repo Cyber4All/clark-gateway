@@ -11,7 +11,6 @@ import {
     ISSUER,
     NODE_ENV,
     PORT,
-    SECURED_DOWNTIME_SERVICE_URI,
     STANDARD_GUIDELINES_SERVICE_URI,
 } from "../global.env";
 import * as dotenv from "dotenv";
@@ -115,7 +114,6 @@ class EnvConfig {
                 CLARK_SERVICE_URI,
                 HIERARCHY_SERVICE_URI,
                 STANDARD_GUIDELINES_SERVICE_URI,
-                SECURED_DOWNTIME_SERVICE_URI,
                 CARD_SERVICE_URI,
             ].includes(service)
         ) {
@@ -138,7 +136,6 @@ const envConfig = new EnvConfig(process.env).ensureValues([
     CLARK_SERVICE_URI,
     HIERARCHY_SERVICE_URI,
     STANDARD_GUIDELINES_SERVICE_URI,
-    SECURED_DOWNTIME_SERVICE_URI,
     CARD_SERVICE_URI,
 ]);
 

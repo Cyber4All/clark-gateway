@@ -1,5 +1,3 @@
-import { envConfig } from "../../../config/env/env.driver";
-import { SECURED_DOWNTIME_SERVICE_URI } from "../../../config/global.env";
 import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 
@@ -23,14 +21,5 @@ export const UTILITY_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/clientversion",
-    },
-
-    /**
-     * SecurEd Downtime Service Route
-     */
-    {
-        method: HTTPMethod.GET,
-        path: "/downtime",
-        target: envConfig.getUri(SECURED_DOWNTIME_SERVICE_URI),
-    },
+    }
 ];
