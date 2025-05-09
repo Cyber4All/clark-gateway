@@ -31,11 +31,6 @@ export const HIERARCHY_SERVICE_URI = "HIERARCHY_SERVICE_URI";
 export const STANDARD_GUIDELINES_SERVICE_URI =
     "STANDARD_GUIDELINES_SERVICE_URI";
 
-/**
- * URI target for the downtime-service
- */
-export const SECURED_DOWNTIME_SERVICE_URI = "SECURED_DOWNTIME_SERVICE_URI";
-
 // ========================================================
 //                        Optional ENVS
 // ========================================================
