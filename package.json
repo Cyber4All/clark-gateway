@@ -1,6 +1,6 @@
 {
     "name": "clark-gateway",
-    "version": "4.2.0",
+    "version": "4.3.0",
     "description": "Internet facing gateway application for both of the CLARK and CARD services.",
     "main": "src/app.js",
     "scripts": {
@@ -36,6 +36,8 @@
         "typescript": "5.3.3"
     },
     "dependencies": {
+        "@opentelemetry/api": "^1.9.0",
+        "@opentelemetry/auto-instrumentations-node": "^0.59.0",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "dotenv": "^16.3.1",
