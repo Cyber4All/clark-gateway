@@ -46,8 +46,8 @@ workflows:
                       - aws-cli/setup:
                             profile_name: ecs_oidc
                             role_arn: $ECS_OIDC_ROLE
-                  cluster: clard-prod-cluster
-                  container_image_name_updates: container=clark-gateway,tag=latest
-                  family: clark-gateway
+                  cluster: prd-secured-cluster-use1
+                  container_image_name_updates: container=prd-clark-gateway-use1,tag=latest
+                  family: prd-clark-gateway-use1
                   profile_name: ecs_oidc
                   verify_revision_is_deployed: true
