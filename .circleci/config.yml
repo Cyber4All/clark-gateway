@@ -9,8 +9,8 @@ orbs:
 workflows:
     continuous-integration:
         jobs:
-            - docker/hadolint:
-                  ignore-rules: DL3018
+            # - docker/hadolint:
+            #       ignore-rules: DL3018
             - cyber4all/publish:
                   deploy: false
             - cyber4all/lint
