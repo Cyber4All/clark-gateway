@@ -18,4 +18,8 @@ export const METRICS_ROUTES: ProxyRoute[] = [
         method: HTTPMethod.GET,
         path: "/users/metrics",
     },
+    {
+        method: HTTPMethod.GET,
+        path: "/tags/:tagId/metrics"
+    }
 ];
