@@ -8,7 +8,6 @@ export const FILE_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/learning-objects/:learningObjectId/files/:fileId/download",
-        auth: true,
     },
     {
         method: HTTPMethod.PATCH,
