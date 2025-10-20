@@ -14,6 +14,7 @@ import { MetricsRouteHandler } from "./metric-module/metrics.router";
 import { AccessGroupRouteHandler } from "./access-group-module/access-group.router";
 import { AuthRouteHandler } from "./auth-module/auth.router";
 import { FileRouteHandler } from "./file-module/file.router";
+import { ChatBotRouteHandler } from "./chatbot-module/chatbot.router";
 
 export class ClarkRouteHandler {
     public static build(): Router {
@@ -35,6 +36,7 @@ export class ClarkRouteHandler {
         router.use(StandardGuidelinesRouteHandler.build());
         router.use(UsersRouteHandler.build());
         router.use(UtilityRouteHandler.build());
+        router.use(ChatBotRouteHandler.build());
 
         return router;
     }
