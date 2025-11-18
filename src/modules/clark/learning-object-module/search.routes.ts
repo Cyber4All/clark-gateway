@@ -12,6 +12,6 @@ export const SEARCH_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "/learning-objects/name/:name"
+        path: "/learning-objects/name/check/:name"
     }
 ];
