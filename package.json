@@ -1,6 +1,6 @@
 {
     "name": "clark-gateway",
-    "version": "4.3.2",
+    "version": "4.3.3",
     "description": "Internet facing gateway application for both of the CLARK and CARD services.",
     "main": "src/app.js",
     "scripts": {
