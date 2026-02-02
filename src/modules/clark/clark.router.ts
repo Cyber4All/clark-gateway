@@ -15,7 +15,7 @@ import { AccessGroupRouteHandler } from "./access-group-module/access-group.rout
 import { AuthRouteHandler } from "./auth-module/auth.router";
 import { FileRouteHandler } from "./file-module/file.router";
 import { ChatBotRouteHandler } from "./chatbot-module/chatbot.router";
-import { OrganizationRouteHandler } from "./organization/organization.router";
+import { OrganizationRouteHandler } from "./organization-module/organization.router";
 
 export class ClarkRouteHandler {
     public static build(): Router {
