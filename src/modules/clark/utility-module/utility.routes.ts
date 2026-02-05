@@ -21,5 +21,5 @@ export const UTILITY_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/clientversion",
-    }
+    },
 ];

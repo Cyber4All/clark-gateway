@@ -1,14 +1,12 @@
 import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 
-export const SEARCH_ROUTES: ProxyRoute[] = [
+export const ORGANIZATION_ROUTES: ProxyRoute[] = [
+    /**
+     * Search route
+     */
     {
         method: HTTPMethod.GET,
-        path: "/resources",
-    },
-    {
-        method: HTTPMethod.GET,
-        auth: true,
-        path: "/users/:userId/resources",
+        path: "/organizations",
     },
 ];
