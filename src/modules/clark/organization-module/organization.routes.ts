@@ -12,5 +12,9 @@ export const ORGANIZATION_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.GET,
         path: "/organizations/suggest",
+    },
+    {
+        method: HTTPMethod.POST,
+        path: "/organizations",
     }
 ];
