@@ -16,5 +16,10 @@ export const ORGANIZATION_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.POST,
         path: "/organizations",
+    },
+    {
+        method: HTTPMethod.PATCH,
+        auth: true,
+        path: "/organizations/:organizationId",
     }
 ];
