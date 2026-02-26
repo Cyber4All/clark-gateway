@@ -11,6 +11,10 @@ export const ORGANIZATION_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
+        path: "/organizations/:organizationId",
+    },
+    {
+        method: HTTPMethod.GET,
         path: "/organizations/suggest",
     },
     {
