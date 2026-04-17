@@ -2,17 +2,23 @@ import { HTTPMethod } from "../../../shared/types/http-method.type";
 import { ProxyRoute } from "../../../shared/types/proxy-route.type";
 
 export const ORGANIZATION_ROUTES: ProxyRoute[] = [
+    /**
+     * Search route
+     */
+    {
+        method: HTTPMethod.GET,
+        path: "/organizations",
+    },
     {
         method: HTTPMethod.GET,
         path: "/organizations/:organizationId",
     },
     {
         method: HTTPMethod.GET,
-        path: "/organizations/ids/multiple",
+        path: "/organizations/suggest",
     },
     {
         method: HTTPMethod.POST,
-        auth: true,
         path: "/organizations",
     },
     {
@@ -21,13 +27,8 @@ export const ORGANIZATION_ROUTES: ProxyRoute[] = [
         path: "/organizations/:organizationId",
     },
     {
-        method: HTTPMethod.PATCH,
+        method: HTTPMethod.POST,
         auth: true,
-        path: "/organizations/:organizationId/verify",
-    },
-    {
-        method: HTTPMethod.DELETE,
-        auth: true,
-        path: "/organizations/:organizationId",
-    },
+        path: "/organizations/:organizationId/migrate",
+    }
 ];
