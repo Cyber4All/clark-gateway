@@ -8,10 +8,6 @@ export const SEARCH_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "/organizations",
-    },
-    {
-        method: HTTPMethod.GET,
         auth: true,
         path: "/users/:userId/resources",
     },

@@ -20,6 +20,6 @@ export const METRICS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
-        path: "/tags/:tagId/metrics"
-    }
+        path: "/tags/:tagId/metrics",
+    },
 ];

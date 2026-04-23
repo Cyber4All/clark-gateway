@@ -5,5 +5,5 @@ export const CHATBOT_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.POST,
         path: "/chat",
-    }, 
+    },
 ];
