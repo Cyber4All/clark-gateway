@@ -6,6 +6,7 @@ import { formatMorganJson, httpRequestFilter } from "../logging/logging.driver";
 import { ClarkRouteHandler } from "../../modules/clark/clark.router";
 import { ErrorParser } from "../../middlewares/error-parser";
 import { CardRouteHandler } from "../../modules/card/card.router";
+import { MCPRouteHandler } from "../../modules/mcp/mcp.router";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require("../../../package.json").version;
@@ -42,6 +43,7 @@ export class ExpressConfig {
         // Route Handlers Here
         this.app.use(CardRouteHandler.build());
         this.app.use(ClarkRouteHandler.build());
+        this.app.use(MCPRouteHandler.build());
 
         this.app.use(ErrorParser);
 

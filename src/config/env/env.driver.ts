@@ -9,6 +9,7 @@ import {
     CORALOGIX_PRIVATE_KEY,
     HIERARCHY_SERVICE_URI,
     ISSUER,
+    MCP_SERVICE_URI,
     NODE_ENV,
     PORT,
     STANDARD_GUIDELINES_SERVICE_URI,
@@ -115,6 +116,7 @@ class EnvConfig {
                 HIERARCHY_SERVICE_URI,
                 STANDARD_GUIDELINES_SERVICE_URI,
                 CARD_SERVICE_URI,
+                MCP_SERVICE_URI
             ].includes(service)
         ) {
             throw new ServiceError(
