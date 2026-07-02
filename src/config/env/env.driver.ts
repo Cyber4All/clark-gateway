@@ -116,7 +116,7 @@ class EnvConfig {
                 HIERARCHY_SERVICE_URI,
                 STANDARD_GUIDELINES_SERVICE_URI,
                 CARD_SERVICE_URI,
-                MCP_SERVICE_URI
+                MCP_SERVICE_URI,
             ].includes(service)
         ) {
             throw new ServiceError(

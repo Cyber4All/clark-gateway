@@ -5,5 +5,5 @@ export const MCP_ROUTES: ProxyRoute[] = [
     {
         method: HTTPMethod.POST,
         path: "/mcp",
-    }
-]
+    },
+];
