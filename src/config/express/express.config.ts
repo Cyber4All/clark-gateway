@@ -27,7 +27,6 @@ export class ExpressConfig {
      * @returns The Express App
      */
     private static buildDriver() {
-        this.app.use(exp.json());
         this.app.use(cors({ origin: true, credentials: true }));
         this.app.set("trust proxy", true);
         this.app.use(cookieParser());
@@ -40,10 +39,15 @@ export class ExpressConfig {
 
         this.initServerHome();
 
+        // Proxy MCP before JSON body parser
+        this.app.use(MCPRouteHandler.build());
+
+        // JSON parser after proxy routes
+        this.app.use(exp.json());
+
         // Route Handlers Here
         this.app.use(CardRouteHandler.build());
         this.app.use(ClarkRouteHandler.build());
-        this.app.use(MCPRouteHandler.build());
 
         this.app.use(ErrorParser);
 
