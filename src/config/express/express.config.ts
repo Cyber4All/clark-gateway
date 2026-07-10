@@ -6,6 +6,7 @@ import { formatMorganJson, httpRequestFilter } from "../logging/logging.driver";
 import { ClarkRouteHandler } from "../../modules/clark/clark.router";
 import { ErrorParser } from "../../middlewares/error-parser";
 import { CardRouteHandler } from "../../modules/card/card.router";
+import { MCPRouteHandler } from "../../modules/mcp/mcp.router";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require("../../../package.json").version;
@@ -26,7 +27,6 @@ export class ExpressConfig {
      * @returns The Express App
      */
     private static buildDriver() {
-        this.app.use(exp.json());
         this.app.use(cors({ origin: true, credentials: true }));
         this.app.set("trust proxy", true);
         this.app.use(cookieParser());
@@ -38,6 +38,12 @@ export class ExpressConfig {
         );
 
         this.initServerHome();
+
+        // Proxy MCP before JSON body parser
+        this.app.use(MCPRouteHandler.build());
+
+        // JSON parser after proxy routes
+        this.app.use(exp.json());
 
         // Route Handlers Here
         this.app.use(CardRouteHandler.build());

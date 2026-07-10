@@ -27,8 +27,13 @@ export const ORGANIZATION_ROUTES: ProxyRoute[] = [
         path: "/organizations/:organizationId",
     },
     {
+        method: HTTPMethod.DELETE,
+        auth: true,
+        path: "/organizations/:organizationId",
+    },
+    {
         method: HTTPMethod.POST,
         auth: true,
         path: "/organizations/:organizationId/migrate",
-    }
+    },
 ];
