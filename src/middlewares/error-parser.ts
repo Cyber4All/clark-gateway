@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
+import { logger } from "../config/sentry/logging.driver";
 import {
     ResourceErrorReason,
     ServiceErrorReason,
 } from "../shared/types/error.type";
-import { logger } from "../config/logging/logging.driver";
 
 /**
  *

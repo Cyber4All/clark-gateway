@@ -1,11 +1,11 @@
-import * as jose from "jose";
-import { JwtConfig } from "./jwt.config";
-import { logger } from "../logging/logging.driver";
 import { Request } from "express";
+import * as jose from "jose";
 import {
     ResourceError,
     ResourceErrorReason,
 } from "../../shared/types/error.type";
+import { logger } from "../sentry/logging.driver";
+import { JwtConfig } from "./jwt.config";
 
 export class JwtDriver {
     /**
