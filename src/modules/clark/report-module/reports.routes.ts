@@ -25,4 +25,14 @@ export const REPORTS_ROUTES: ProxyRoute[] = [
         path: "/reports/top-downloaders",
         auth: true,
     },
+    {
+        method: HTTPMethod.GET,
+        path: "/reports/top-topics",
+        auth: true,
+    },
+    {
+        method: HTTPMethod.GET,
+        path: "/reports/top-tags",
+        auth: true,
+    },
 ];
