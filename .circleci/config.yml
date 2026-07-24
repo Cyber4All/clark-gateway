@@ -47,7 +47,7 @@ workflows:
                             profile_name: ecs_oidc
                             role_arn: $ECS_OIDC_ROLE
                   cluster: prd-cyber4all-cluster-use1-c804ab27
-                  container_image_name_updates: container=prd-clark-gateway-use1-c8577541,tag=latest
+                  container_image_name_updates: container=clark-gateway,tag=latest
                   family: prd-clark-gateway-use1-c8577541
                   profile_name: ecs_oidc
                   verify_revision_is_deployed: true
