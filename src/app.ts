@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
+import "./config/sentry/instrument";
 import * as http from "node:http";
 import { envConfig } from "./config/env/env.driver";
-import "./config/sentry/instrument";
 
 import { ExpressConfig } from "./config/express/express.config";
 import { logger } from "./config/sentry/logging.driver";
