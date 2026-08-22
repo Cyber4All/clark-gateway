@@ -1,18 +1,19 @@
-import cors from "cors";
+import * as Sentry from "@sentry/node";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import exp from "express";
 import morgan from "morgan";
-import { formatMorganJson, httpRequestFilter } from "../logging/logging.driver";
-import { ClarkRouteHandler } from "../../modules/clark/clark.router";
 import { ErrorParser } from "../../middlewares/error-parser";
 import { CardRouteHandler } from "../../modules/card/card.router";
+import { ClarkRouteHandler } from "../../modules/clark/clark.router";
 import { MCPRouteHandler } from "../../modules/mcp/mcp.router";
+import { formatMorganJson, httpRequestFilter } from "../sentry/logging.driver";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const version = require("../../../package.json").version;
 
 export class ExpressConfig {
-    private static app = exp();
+    private static readonly app = exp();
 
     /**
      * Builds the Express App
@@ -49,6 +50,7 @@ export class ExpressConfig {
         this.app.use(CardRouteHandler.build());
         this.app.use(ClarkRouteHandler.build());
 
+        Sentry.setupExpressErrorHandler(this.app);
         this.app.use(ErrorParser);
 
         return this.app;

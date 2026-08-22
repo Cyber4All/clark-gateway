@@ -1,3 +1,4 @@
+import * as dotenv from "dotenv";
 import {
     ServiceError,
     ServiceErrorReason,
@@ -6,7 +7,6 @@ import {
     AWS_JWT_SECRET,
     CARD_SERVICE_URI,
     CLARK_SERVICE_URI,
-    CORALOGIX_PRIVATE_KEY,
     HIERARCHY_SERVICE_URI,
     ISSUER,
     MCP_SERVICE_URI,
@@ -14,7 +14,6 @@ import {
     PORT,
     STANDARD_GUIDELINES_SERVICE_URI,
 } from "../global.env";
-import * as dotenv from "dotenv";
 
 dotenv.config();
 
@@ -142,12 +141,7 @@ const envConfig = new EnvConfig(process.env).ensureValues([
 ]);
 
 if (envConfig.isProduction() || envConfig.isStaging()) {
-    envConfig.ensureValues([
-        CORALOGIX_PRIVATE_KEY,
-        ISSUER,
-        AWS_JWT_SECRET,
-        PORT,
-    ]);
+    envConfig.ensureValues([ISSUER, AWS_JWT_SECRET, PORT]);
 }
 
 export { envConfig };

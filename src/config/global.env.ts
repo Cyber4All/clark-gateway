@@ -55,12 +55,6 @@ export const AWS_JWT_SECRET = "AWS_JWT_SECRET";
 export const ISSUER = "ISSUER";
 
 /**
- * Coralogix Private Key for logging
- * Required for production & staging
- */
-export const CORALOGIX_PRIVATE_KEY = "CORALOGIX_PRIVATE_KEY";
-
-/**
  * URI target for the mcp server
  */
 export const MCP_SERVICE_URI = "MCP_SERVICE_URI";

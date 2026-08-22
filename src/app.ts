@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
-import * as http from "http";
-import { ExpressConfig } from "./config/express/express.config";
+import "./config/sentry/instrument";
+import * as http from "node:http";
 import { envConfig } from "./config/env/env.driver";
-import { logger } from "./config/logging/logging.driver";
+
+import { ExpressConfig } from "./config/express/express.config";
+import { logger } from "./config/sentry/logging.driver";
 
 const app = ExpressConfig.build();
 

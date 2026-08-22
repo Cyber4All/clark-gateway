@@ -5,7 +5,7 @@
 #
 # Prepares production layer
 # ----------------------------------------------------------------
-FROM node:16-alpine3.16@sha256:15dd66f723aab8b367abc7ac6ed25594ca4653f2ce49ad1505bfbe740ad5190e as base
+FROM node:lts-alpine3.23@sha256:7fddd9ddeae8196abf4a3ef2de34e11f7b1a722119f91f28ddf1e99dcafdf114 AS base
 
 WORKDIR /opt/app
 
