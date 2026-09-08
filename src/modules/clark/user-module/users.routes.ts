@@ -8,6 +8,16 @@ export const USERS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.GET,
+        path: "/users/download-history",
+        auth: true,
+    },
+    {
+        method: HTTPMethod.GET,
+        path: "/users/:user/download-history",
+        auth: true,
+    },
+    {
+        method: HTTPMethod.GET,
         path: "/users/:user",
     },
     {
