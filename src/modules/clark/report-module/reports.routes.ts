@@ -44,4 +44,9 @@ export const REPORTS_ROUTES: ProxyRoute[] = [
         path: "/reports/top-tags",
         auth: true,
     },
+    {
+        method: HTTPMethod.GET,
+        path: "/reports/total-downloads",
+        auth: true,
+    },
 ];
