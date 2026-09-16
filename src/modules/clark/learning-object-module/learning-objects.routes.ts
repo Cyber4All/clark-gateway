@@ -30,6 +30,11 @@ export const LEARNING_OBJECTS_ROUTES: ProxyRoute[] = [
     },
     {
         method: HTTPMethod.POST,
+        path: "/learning-objects/:learningObjectId/build",
+        auth: true,
+    },
+    {
+        method: HTTPMethod.POST,
         path: "/learning-objects",
         auth: true,
     },
