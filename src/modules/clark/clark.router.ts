@@ -2,7 +2,6 @@ import { Router } from "express";
 import { FeaturedRouteHandler } from "./feature-module/featured.router";
 import { HierarchydRouteHandler } from "./hierarchy-module/hierarchy.router";
 import { LearningObjectsRouteHandler } from "./learning-object-module/learning-objects.router";
-import { LibraryRouteHandler } from "./library-module/library.router";
 import { NotificationsRouteHandler } from "./notification-module/notifications.router";
 import { RatingsRouteHandler } from "./rating-module/ratings.router";
 import { ReportsRouteHandler } from "./report-module/reports.router";
@@ -29,7 +28,6 @@ export class ClarkRouteHandler {
         router.use(FileRouteHandler.build());
         router.use(HierarchydRouteHandler.build());
         router.use(LearningObjectsRouteHandler.build());
-        router.use(LibraryRouteHandler.build());
         router.use(MetricsRouteHandler.build());
         router.use(NotificationsRouteHandler.build());
         router.use(RatingsRouteHandler.build());
