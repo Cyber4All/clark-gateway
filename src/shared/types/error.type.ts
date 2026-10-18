@@ -89,10 +89,28 @@ export enum ResourceErrorReason {
 }
 
 /**
+ * Maps each ResourceErrorReason to its HTTP status code.
+ */
+export const RESOURCE_ERROR_STATUS: Record<ResourceErrorReason, number> = {
+    [ResourceErrorReason.BAD_REQUEST]: 400,
+    [ResourceErrorReason.INVALID_ACCESS]: 401,
+    [ResourceErrorReason.FORBIDDEN]: 403,
+    [ResourceErrorReason.NOT_FOUND]: 404,
+    [ResourceErrorReason.CONFLICT]: 409,
+    [ResourceErrorReason.TOO_MANY_REQUEST]: 429,
+    [ResourceErrorReason.INTERNAL_SERVER_ERROR]: 500,
+};
+
+/**
  * Defines an error involving a specific resource in the service.
+ *
+ * `status` is set from the reason so that Sentry's Express error handler
+ * (which only captures errors with no status or a status >= 500) does not
+ * report expected client errors (4xx) as unhandled exceptions.
  */
 export class ResourceError extends Error {
     public additionalInformation: Record<string, any>;
+    public status: number;
     constructor(
         message: string,
         type: ResourceErrorReason,
@@ -100,6 +118,7 @@ export class ResourceError extends Error {
     ) {
         super(message);
         this.name = type;
+        this.status = RESOURCE_ERROR_STATUS[type] ?? 500;
         this.additionalInformation = additionalInformation;
     }
 }
