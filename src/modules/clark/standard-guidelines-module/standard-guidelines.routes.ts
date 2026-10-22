@@ -84,6 +84,11 @@ export const STANDARD_GUIDELINES_ROUTES: ProxyRoute[] = [
         path: "/tags",
     },
     {
+        method: HTTPMethod.POST,
+        path: "/tags",
+        auth: true,
+    },
+    {
         method: HTTPMethod.GET,
         path: "/tags/:tagId",
     },
