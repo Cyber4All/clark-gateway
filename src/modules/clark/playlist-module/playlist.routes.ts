@@ -12,6 +12,16 @@ export const PLAYLIST_ROUTES: ProxyRoute[] = [
         path: "/playlists",
     },
     {
+        method: HTTPMethod.PUT,
+        path: "/playlists/:playlistId/objects/:cuid",
+        auth: true,
+    },
+    {
+        method: HTTPMethod.DELETE,
+        path: "/playlists/:playlistId/objects/:cuid",
+        auth: true,
+    },
+    {
         method: HTTPMethod.PATCH,
         path: "/playlists/:playlistId",
         auth: true,

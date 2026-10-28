@@ -21,11 +21,6 @@ export const CLARK_SERVICE_URI = "CLARK_SERVICE_URI";
 export const CARD_SERVICE_URI = "CARD_SERVICE_URI";
 
 /**
- * URI target for the hierarchy-service
- */
-export const HIERARCHY_SERVICE_URI = "HIERARCHY_SERVICE_URI";
-
-/**
  * URI target for the standard-guidelines-service
  */
 export const STANDARD_GUIDELINES_SERVICE_URI =
