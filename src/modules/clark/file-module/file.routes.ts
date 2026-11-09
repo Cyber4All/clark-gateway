@@ -29,6 +29,11 @@ export const FILE_ROUTES: ProxyRoute[] = [
         auth: true,
     },
     {
+        method: HTTPMethod.GET,
+        path: "/learning-objects/:learningObjectId/materials/files/:fileId/processing-status",
+        auth: true,
+    },
+    {
         method: HTTPMethod.POST,
         path: "/learning-objects/:learningObjectId/materials/files",
         auth: true,
