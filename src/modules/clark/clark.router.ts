@@ -16,6 +16,7 @@ import { AuthRouteHandler } from "./auth-module/auth.router";
 import { FileRouteHandler } from "./file-module/file.router";
 import { ChatBotRouteHandler } from "./chatbot-module/chatbot.router";
 import { OrganizationRouteHandler } from "./organization-module/organization.router";
+import { PlaylistRouteHandler } from "./playlist-module/playlist.router";
 
 export class ClarkRouteHandler {
     public static build(): Router {
@@ -39,6 +40,7 @@ export class ClarkRouteHandler {
         router.use(UtilityRouteHandler.build());
         router.use(ChatBotRouteHandler.build());
         router.use(OrganizationRouteHandler.build());
+        router.use(PlaylistRouteHandler.build());
 
         return router;
     }
