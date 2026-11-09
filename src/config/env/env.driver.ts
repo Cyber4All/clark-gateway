@@ -7,7 +7,6 @@ import {
     AWS_JWT_SECRET,
     CARD_SERVICE_URI,
     CLARK_SERVICE_URI,
-    HIERARCHY_SERVICE_URI,
     ISSUER,
     MCP_SERVICE_URI,
     NODE_ENV,
@@ -112,7 +111,6 @@ class EnvConfig {
         if (
             ![
                 CLARK_SERVICE_URI,
-                HIERARCHY_SERVICE_URI,
                 STANDARD_GUIDELINES_SERVICE_URI,
                 CARD_SERVICE_URI,
                 MCP_SERVICE_URI,
@@ -135,7 +133,6 @@ const envConfig = new EnvConfig(process.env).ensureValues([
     //    Service URIs
     // =====================
     CLARK_SERVICE_URI,
-    HIERARCHY_SERVICE_URI,
     STANDARD_GUIDELINES_SERVICE_URI,
     CARD_SERVICE_URI,
 ]);
