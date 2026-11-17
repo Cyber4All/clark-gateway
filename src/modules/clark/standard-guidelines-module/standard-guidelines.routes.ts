@@ -77,6 +77,15 @@ export const STANDARD_GUIDELINES_ROUTES: ProxyRoute[] = [
     },
 
     /**
+     * KUs routes
+     */
+    {
+        method: HTTPMethod.GET,
+        path: "/kus",
+        auth: false,
+    },
+
+    /**
      * Tag routes
      */
     {
