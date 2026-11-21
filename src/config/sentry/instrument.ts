@@ -19,7 +19,7 @@ Sentry.init({
     enableLogs: true,
 
     // Tracing
-    tracesSampleRate: 1.0,
+    tracesSampleRate: 0.0,
 
     // Profiling
     profileSessionSampleRate: 1.0,
